@@ -1,5 +1,5 @@
 {
-  "cleanUrls": true,
+  "cleanUrls": false,
   "trailingSlash": true,
   "redirects": [
     { "source": "(.*)", "has": [{"type": "host", "value": "www.dammyhenry.com"}], "destination": "https://dammyhenry.com$1", "permanent": true }
