@@ -11,6 +11,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <style>
+    /* Page-scoped enhancements for a clean, professional resume layout */
+    main.container { padding-top: 2rem; padding-bottom: 3rem; }
+    .avatar { width: 120px; height: 120px; border-radius: 9999px; object-fit: cover; box-shadow: 0 10px 20px rgba(15,23,42,.15); }
+    .avatar { display:block; margin: 0 auto; }
+    .subtitle { font-weight: 600; color: #0f172a; margin: 0.75rem 0 1.25rem; text-align:center; }
+    .subtitle a { color: inherit; text-decoration: underline; }
+    h2 { margin-top: 2.5rem; margin-bottom: 0.75rem; font-size: 1.15rem; letter-spacing: .2px; }
+    article.post-preview { background: #ffffff; border: 1px solid rgba(2,6,23,.08); border-radius: 12px; padding: 1rem 1.25rem; margin-top: 1rem; box-shadow: 0 1px 2px rgba(2,6,23,.04); }
+    article.post-preview h3 { margin: 0 0 .25rem; font-size: 1rem; }
+    article.post-preview time { display: block; color: #475569; font-size: .9rem; margin-bottom: .5rem; }
+    ul { margin: .5rem 0 0 1.25rem; }
+    li { margin: .35rem 0; }
+
+    /* Quick anchor links */
+    .resume-quicklinks { display: flex; flex-wrap: wrap; gap: .5rem .75rem; margin: 0 0 1rem; }
+    .resume-quicklinks a { display:inline-block; padding: .35rem .6rem; border: 1px solid rgba(2,6,23,.12); border-radius: 999px; color:#0f172a; text-decoration:none; background:#fff; font-size:.9rem; }
+    .resume-quicklinks a:hover { border-color: rgba(2,6,23,.25); box-shadow: 0 1px 2px rgba(2,6,23,.08); }
+
+    /* Skills grid */
+    .skills-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; margin-top: .75rem; }
+    .skill-card { background:#fff; border: 1px solid rgba(2,6,23,.08); border-radius: 10px; padding: .75rem .9rem; }
+    .skill-card h3 { margin: 0 0 .35rem; font-size: .95rem; }
+    .skill-list { margin: 0; padding-left: 1.1rem; }
+    .skill-list li { margin: .25rem 0; font-size: .95rem; }
+    /* Print-friendly tweaks */
+    @media print {
+      .site-header, .site-footer { display: none; }
+      main.container { padding: 0; }
+      article.post-preview { box-shadow: none; border-color: #cbd5e1; }
+    }
+  </style>
+
   <link rel="icon" href="/img/dammyhenry.png" type="image/png">
   <link rel="apple-touch-icon" href="/img/dammyhenry.png">
   <meta name="application-name" content="your meticulous analyst">
@@ -51,14 +84,20 @@
 
   <main class="container">
     <section>
-      <h1>Resume</h1>
-      <p class="subtitle">DAMMY HENRY, MBA · Harrisburg, PA · 623-200-3789 · <a href="mailto:dammy2013@gmail.com">dammy2013@gmail.com</a></p>
+      <nav class="resume-quicklinks">
+        <a href="#summary">Summary</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+      </nav>
+      <p class="subtitle">DAMMY HENRY, MBA</p>
       <img src="../img/dammyhenry.png" alt="Portrait of Dammy Henry" class="avatar" />
 
-      <h2>Professional Summary</h2>
+      <h2 id="summary">Professional Summary</h2>
       <p>Financial Analyst with extensive experience in financial analysis, trend forecasting, and implementing Integrated Payables and EDI services. Proven track record in influencing decisions and delivering detailed insights to support strategic objectives. Adept at using data-driven approaches to enhance financial operations and drive business success.</p>
 
-      <h2>Work Experience</h2>
+      <h2 id="experience">Work Experience</h2>
 
       <article class="post-preview">
         <h3>PNC Bank — Sr. Implementation Analyst</h3>
@@ -116,14 +155,50 @@
         </ul>
       </article>
 
-      <h2>Education</h2>
+      <h2 id="skills">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Data & Analytics</h3>
+          <ul class="skill-list">
+            <li>SQL, Power BI (DAX, RLS)</li>
+            <li>Excel (Power Query), ETL</li>
+            <li>Reporting & Dashboarding</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Implementation</h3>
+          <ul class="skill-list">
+            <li>EDI (X12, onboarding, QA)</li>
+            <li>Integrated Payables</li>
+            <li>Process Mapping (Visio)</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Automation</h3>
+          <ul class="skill-list">
+            <li>RPA (UiPath, starter)</li>
+            <li>Scripting & Workflow</li>
+            <li>Documentation & SOPs</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Core</h3>
+          <ul class="skill-list">
+            <li>Stakeholder Management</li>
+            <li>Problem Solving</li>
+            <li>Communication</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 id="education">Education</h2>
       <ul>
         <li>Harvard Business School Online, Boston, MA — Certification, Business Analytics</li>
         <li>Grand Canyon University, Phoenix, AZ — MBA, Business Analysis & Marketing</li>
         <li>Federal University of Technology, Minna, NG — B.Tech, Urban Planning and Data Science</li>
       </ul>
 
-      <h2>Certifications</h2>
+      <h2 id="certifications">Certifications</h2>
       <ul>
         <li>Certified Associate in Project Management (PMI) — 2015</li>
         <li>AutoCAD 2D & 3D Design Certification — 2010</li>
