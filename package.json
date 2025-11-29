@@ -1,0 +1,44 @@
+{
+  "name": "dammyhenryweb",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postbuild": "cp -r public/. out/"
+  },
+  "dependencies": {
+    "@types/nodemailer": "^7.0.3",
+    "next": "15.5.6",
+    "nodemailer": "^7.0.10",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "vercel": "^48.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vercel/static-build": "^1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.6",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
