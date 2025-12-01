@@ -23,13 +23,13 @@ const blogs: BlogPost[] = [
     date: 'October 26, 2025',
     title: 'Strengthening Supply-Chain Resilience Through EDI Integration',
     intro: 'As global disruptions continue to challenge supply chains, companies are turning to EDI to enhance visibility, agility, and communication with partners.',
-    url: '/blog/supply-chain-resilience-edi/',
+    url: '/blog/supply-chain-resilience-edi',
   },
   {
     date: 'October 20, 2025',
     title: 'The Future is Here: How AI is Revolutionizing EDI Integration',
     intro: 'Discover how Artificial Intelligence (AI) is transforming Electronic Data Interchange (EDI) systems, boosting efficiency, accuracy, and business intelligence.',
-    url: '/blog/ai-edi-integration/',
+    url: '/blog/ai-edi-integration',
   },
 ];
 
