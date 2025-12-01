@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from 'next/link';
 
 type SkillCategory = "frontend" | "design" | "backend";
-type WorkCategory = "web" | "app" | "design";
+type WorkCategory = "web" | "app" | "design" | "crm";
 
 type Skill = {
   n: string;
@@ -17,14 +16,8 @@ type WorkItem = {
   cat: WorkCategory;
   img: string;
   title: string;
-};
-
-type Testimonial = {
-  desc: string;
-  date: string;
-  name: string;
-  role: string;
-  img: string;
+  url: string;
+  github?: string;
 };
 
 type Service = {
@@ -36,54 +29,30 @@ type Service = {
 const skills: Record<SkillCategory, Skill[]> = {
   frontend: [
     { n: "HTML", p: 90 },
-    { n: "CSS", p: 80 },
-    { n: "Javascript", p: 60 },
-    { n: "React", p: 85 },
+    { n: "CSS", p: 85 },
+    { n: "JavaScript", p: 80 },
+    { n: "React", p: 75 },
+    { n: "TypeScript", p: 70 },
+    { n: "Swift", p: 65 },
   ],
   design: [
-    { n: "Figma", p: 90 },
-    { n: "Sketch", p: 80 },
-    { n: "PhotoShop", p: 70 },
+    { n: "Figma", p: 85 },
+    { n: "UI Design", p: 80 },
+    { n: "UX Research", p: 75 },
   ],
   backend: [
-    { n: "PHP", p: 80 },
     { n: "Python", p: 80 },
-    { n: "MySQL", p: 70 },
-    { n: "Firebase", p: 75 },
+    { n: "PLpgSQL", p: 75 },
+    { n: "SQL", p: 85 },
+    { n: "Firebase", p: 70 },
   ],
 };
 
 const works: WorkItem[] = [
-  { id: 1, cat: "web", img: "https://i.postimg.cc/43Th5VXJ/work-1.png", title: "Web Design" },
-  { id: 2, cat: "app", img: "https://i.postimg.cc/sXLjnC5p/work-2.png", title: "App Design" },
-  { id: 3, cat: "design", img: "https://i.postimg.cc/QNB1jXYZ/work-3.png", title: "Brand Design" },
-  { id: 4, cat: "app", img: "https://i.postimg.cc/s2DGqyG8/work-4.png", title: "App Design" },
-  { id: 5, cat: "web", img: "https://i.postimg.cc/TYVyPhrF/work-5.png", title: "Brand Design" },
-  { id: 6, cat: "design", img: "https://i.postimg.cc/wMdqKcbv/work-6.png", title: "Web Design" },
-];
-
-const testimonials: Testimonial[] = [
-  {
-    desc: "Working with Miriam was an absolute pleasure from start to finish...",
-    date: "March 30, 2025",
-    name: "Chen Xiuying",
-    role: "Marketing Director",
-    img: "https://i.postimg.cc/MTr9j4Yn/client1.jpg",
-  },
-  {
-    desc: "Miriam truly understood our business needs through her modern design...",
-    date: "January 18, 2025",
-    name: "Joshua Middletown",
-    role: "Sales Director",
-    img: "https://i.postimg.cc/wvV7f8rB/client2.jpg",
-  },
-  {
-    desc: "I was blown away by the website Miriam created for my business...",
-    date: "November 29, 2024",
-    name: "Melanie Stone",
-    role: "Business Owner",
-    img: "https://i.postimg.cc/pdP9DL0S/client3.jpg",
-  },
+  { id: 1, cat: "web", img: "https://i.postimg.cc/43Th5VXJ/work-1.png", title: "Web Design", url: "https://dammyhenry.com" },
+  { id: 2, cat: "app", img: "https://i.postimg.cc/sXLjnC5p/work-2.png", title: "iOS App Design", url: "https://github.com/rudeboydamn/valecrm", github: "https://github.com/rudeboydamn/valecrm" },
+  { id: 3, cat: "design", img: "https://i.postimg.cc/QNB1jXYZ/work-3.png", title: "Brand Design", url: "https://keystonevale.org", github: "https://github.com/rudeboydamn/keystonevale" },
+  { id: 4, cat: "crm", img: "https://i.postimg.cc/s2DGqyG8/work-4.png", title: "CRM Design", url: "https://keystonevale.org/crm" },
 ];
 
 const services: Service[] = [
@@ -102,6 +71,21 @@ const services: Service[] = [
     title: "Branding<br>Designer",
     items: ["Competitive Analysis", "Accessibility Design", "Project Management", "Design Iteration", "User Research"],
   },
+  {
+    icon: "chart-line",
+    title: "Data &<br>Analytics",
+    items: ["SQL & Power BI (DAX, RLS)", "Excel (Power Query), ETL", "Reporting & Dashboarding", "Trend Forecasting", "Data Visualization"],
+  },
+  {
+    icon: "setting",
+    title: "Implementation<br>& Integration",
+    items: ["EDI (X12, onboarding, QA)", "Integrated Payables", "Process Mapping (Visio)", "Partner Onboarding", "Workflow Automation"],
+  },
+  {
+    icon: "robot",
+    title: "Automation<br>& RPA",
+    items: ["RPA (UiPath)", "Scripting & Workflow", "Documentation & SOPs", "Process Improvement", "System Testing"],
+  },
 ];
 
 const PortfolioWebsite: React.FC = () => {
@@ -111,18 +95,10 @@ const PortfolioWebsite: React.FC = () => {
   const [modal, setModal] = useState<number | null>(null);
   const [sidebar, setSidebar] = useState(false);
   const [section, setSection] = useState("home");
-  const [testimonial, setTestimonial] = useState(0);
   const [focus, setFocus] = useState<Record<string, boolean>>({});
 
   const filteredWorks = activeFilter === "all" ? works : works.filter((w) => w.cat === activeFilter);
   const activeService = modal !== null ? services[modal] : undefined;
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -158,7 +134,7 @@ const PortfolioWebsite: React.FC = () => {
         .glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);box-shadow:0 8px 32px var(--shadow)}
         .glass-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2);transition:all 0.4s cubic-bezier(0.23,1,0.320,1)}
         .glass-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 25px 50px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3)}
-        .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--skin);color:var(--title);padding:.75rem 1.4rem;border:none;border-radius:50px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden;font-weight:500;text-decoration:none}
+        .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--skin);color:var(--title);padding:.75rem 1.4rem;border:none;border-radius:50px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden;font-weight:500;text-decoration:none;margin-right:0.5rem;margin-top:0.5rem}
         .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);transition:left 0.5s}
         .btn:hover::before{left:100%}
         .btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(102,126,234,0.4)}
@@ -177,18 +153,16 @@ const PortfolioWebsite: React.FC = () => {
         .nav-toggle:hover{transform:scale(1.1);box-shadow:0 5px 15px rgba(0,0,0,0.2)}
         .nav-close{color:var(--title);font-size:1.8rem}
         .main{margin-left:100px;min-height:100vh;position:relative}
-        .home{background:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('/dammyhenry.png') center/cover;height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
-        .home::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at center, rgba(102,126,234,0.1) 0%, transparent 70%);pointer-events:none}
-        .home-data{max-width:600px;padding:3rem;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:30px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.2);animation:fadeInUp 1s ease;margin:2rem}
+        .home{background:linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+        .home::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%, rgba(120,119,198,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(120,219,255,0.3) 0%, transparent 50%);pointer-events:none}
+        .home-data{max-width:700px;padding:3rem;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:30px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.2);animation:fadeInUp 1s ease;margin:2rem}
         @keyframes fadeInUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
         .home-title{font-size:3.5rem;color:var(--title);margin-bottom:.5rem;font-weight:700;background:linear-gradient(135deg, #667eea, #764ba2, #f093fb);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 3s ease-in-out infinite}
         @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
         .home-subtitle{font-size:1.8rem;margin-bottom:1rem;color:var(--text);font-weight:500}
         .home-desc{margin-bottom:2rem;line-height:1.8;font-size:1.1rem;color:var(--text)}
-        .about{padding:8rem 0}.about-container{grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-        .about-img{width:100%;border-radius:25px;box-shadow:0 20px 40px rgba(0,0,0,0.2);transition:transform 0.3s ease}
-        .about-img:hover{transform:scale(1.05) rotate(2deg)}
-        .about-info{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:3rem 0}
+        .about{padding:8rem 0}.about-container{grid-template-columns:1fr;gap:3rem;align-items:center;text-align:center}
+        .about-info{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin:3rem auto;max-width:500px}
         .about-box{padding:2rem;border-radius:20px;text-align:center;transition:all 0.3s ease;position:relative;overflow:hidden}
         .about-box::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));border-radius:20px;transition:opacity 0.3s ease;opacity:0}
         .about-box:hover::before{opacity:1}
@@ -241,11 +215,6 @@ const PortfolioWebsite: React.FC = () => {
         .modal-content{border-radius:25px;padding:3rem;max-width:600px;position:relative;animation:slideUp 0.3s ease}
         .modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.1);border:none;color:var(--title);font-size:1.5rem;cursor:pointer;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
         .modal-close:hover{background:rgba(255,255,255,0.2);transform:rotate(90deg)}
-        .testimonial{border-radius:25px;padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden}
-        .testimonial::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05));border-radius:25px}
-        .testimonial-profile{display:flex;align-items:center;gap:1.5rem;margin-top:1.5rem}
-        .testimonial-img{width:70px;height:70px;border-radius:50%;border:3px solid rgba(255,255,255,0.2);transition:transform 0.3s ease;object-fit:cover}
-        .testimonial:hover .testimonial-img{transform:scale(1.1)}
         .contact-container{grid-template-columns:1fr 1fr;gap:4rem}
         .contact-card{padding:2rem;border-radius:20px;text-align:center;margin-bottom:1.5rem;transition:all 0.3s ease;position:relative;overflow:hidden}
         .contact-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05));border-radius:20px;opacity:0;transition:opacity 0.3s ease}
@@ -258,7 +227,7 @@ const PortfolioWebsite: React.FC = () => {
         textarea.input{min-height:150px;resize:vertical}
         .footer{border-radius:30px 30px 0 0;padding:4rem 0;text-align:center;margin-top:4rem;position:relative;overflow:hidden}
         .footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1))}
-        .footer-links{display:flex;justify-content:center;gap:3rem;margin:2rem 0;flex-wrap:wrap}
+        .footer-links{display:flex;justify-content:center;gap:2rem;margin:2rem 0;flex-wrap:wrap}
         .footer-link{color:var(--text);text-decoration:none;transition:all 0.3s ease;padding:0.5rem 1rem;border-radius:10px;text-transform:capitalize}
         .footer-link:hover{color:var(--title);background:rgba(255,255,255,0.1);transform:translateY(-3px)}
         @media(max-width:1024px){
@@ -279,6 +248,7 @@ const PortfolioWebsite: React.FC = () => {
           .home-data{margin:1rem;padding:2rem}
           .work-filters{gap:0.5rem}
           .work-item{padding:0.8rem 1.5rem;font-size:0.9rem}
+          .about-info{grid-template-columns:1fr}
         }
       `;
 
@@ -325,9 +295,11 @@ const PortfolioWebsite: React.FC = () => {
         <section className="home" id="home">
           <div className="home-data">
             <h1 className="home-title">Hi, I&apos;m Dammy</h1>
-            <h3 className="home-subtitle">Creative Developer &amp; Designer</h3>
+            <h3 className="home-subtitle">Financial Analyst &amp; Web Developer</h3>
             <p className="home-desc">
-              I craft immersive digital experiences with clean code, intuitive design, and a passion for storytelling.
+              Financial Analyst by day, Full Stack Web Developer by night. I bring extensive experience in financial analysis, 
+              trend forecasting, and implementing Integrated Payables and EDI services. I use data-driven approaches to enhance 
+              financial operations while crafting beautiful digital experiences with clean code and intuitive design.
             </p>
             <button className="btn" onClick={() => scrollToSection("about")}>
               <i className="uil uil-user"></i>More About me!
@@ -338,32 +310,38 @@ const PortfolioWebsite: React.FC = () => {
         <section className="about section" id="about">
           <h2 className="title">About me</h2>
           <div className="about-container container grid">
-            <Image src="/dammyhenry.png" alt="Dammy Henry" className="about-img" width={600} height={720} priority />
             <div>
-              <h3>Hi, I&apos;m Dammy Henry, based in Canada</h3>
-              <p>
-                I&apos;m a web developer with extensive knowledge and years of experience building digital products, blending web technologies with
-                UI and UX design finesse.
+              <h3 style={{ marginBottom: "1rem", color: "var(--title)", fontSize: "1.5rem" }}>Hi, I&apos;m Dammy Henry</h3>
+              <p style={{ maxWidth: "700px", margin: "0 auto", lineHeight: "1.8" }}>
+                Financial Analyst with extensive experience in financial analysis, trend forecasting, and implementing 
+                Integrated Payables and EDI services. I have a proven track record in influencing decisions and delivering 
+                detailed insights to support strategic objectives. I&apos;m adept at using data-driven approaches to enhance 
+                financial operations and drive business success. Based in Harrisburg, PA and open to roles in implementation, 
+                data analysis, and process improvement.
               </p>
               <div className="about-info">
                 {[
-                  { icon: "award", title: "Experience", sub: "10+ Years" },
-                  { icon: "suitcase-alt", title: "Completed", sub: "60+ Projects" },
-                  { icon: "headphones-alt", title: "Support", sub: "Online 24/7" },
+                  { icon: "award", title: "Experience", sub: "6+ Years" },
+                  { icon: "suitcase-alt", title: "Completed", sub: "20+ Projects" },
                 ].map((item) => (
-                  <div key={item.title} className="about-box">
+                  <div key={item.title} className="about-box glass-card">
                     <i className={`uil uil-${item.icon} about-icon`}></i>
                     <h3>{item.title}</h3>
                     <span>{item.sub}</span>
                   </div>
                 ))}
               </div>
-              <button className="btn" onClick={() => scrollToSection("contact")}>
-                <i className="uil uil-navigator"></i>Contact me
-              </button>
-              <Link href="/thoughts" className="btn">
-                <i className="uil uil-lightbulb-alt"></i>Thoughts
-              </Link>
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.5rem" }}>
+                <button className="btn" onClick={() => scrollToSection("contact")}>
+                  <i className="uil uil-navigator"></i>Contact me
+                </button>
+                <Link href="/thoughts" className="btn">
+                  <i className="uil uil-lightbulb-alt"></i>Thoughts
+                </Link>
+                <Link href="/resume" className="btn">
+                  <i className="uil uil-file-alt"></i>Resume
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -373,9 +351,9 @@ const PortfolioWebsite: React.FC = () => {
           <div className="skills-container container grid">
             <div>
               {[
-                { id: "frontend" as SkillCategory, icon: "brackets-curly", title: "Frontend Developer" },
-                { id: "design" as SkillCategory, icon: "swatchbook", title: "UI/UX Designer" },
-                { id: "backend" as SkillCategory, icon: "server-network", title: "Backend Developer" },
+                { id: "frontend" as SkillCategory, icon: "brackets-curly", title: "Frontend Developer", years: "2 years" },
+                { id: "design" as SkillCategory, icon: "swatchbook", title: "UI/UX Designer", years: "2 years" },
+                { id: "backend" as SkillCategory, icon: "server-network", title: "Backend Developer", years: "2 years" },
               ].map((skill) => (
                 <div
                   key={skill.id}
@@ -385,7 +363,7 @@ const PortfolioWebsite: React.FC = () => {
                   <i className={`uil uil-${skill.icon} skills-icon`}></i>
                   <div>
                     <h3>{skill.title}</h3>
-                    <span>More than 4 years</span>
+                    <span>{skill.years}</span>
                   </div>
                 </div>
               ))}
@@ -409,24 +387,29 @@ const PortfolioWebsite: React.FC = () => {
         <section className="work section" id="work">
           <h2 className="title">Recent Works</h2>
           <div className="work-filters">
-            {["all", "web", "app", "design"].map((filter) => (
+            {["all", "web", "app", "design", "crm"].map((filter) => (
               <button
                 key={filter}
                 className={`work-item glass-card ${activeFilter === filter ? "active" : ""}`}
                 onClick={() => setActiveFilter(filter as "all" | WorkCategory)}
               >
-                {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                {filter === "crm" ? "CRM" : filter.charAt(0).toUpperCase() + filter.slice(1)}
               </button>
             ))}
           </div>
           <div className="work-container container grid">
             {filteredWorks.map((work) => (
               <div key={work.id} className="work-card glass-card">
-                <Image src={work.img} alt={work.title} className="work-img" width={480} height={320} />
+                <img src={work.img} alt={work.title} className="work-img" width={480} height={320} />
                 <h3>{work.title}</h3>
-                <button className="work-btn" onClick={() => setPopup({ open: true, item: work })}>
-                  Demo <i className="uil uil-arrow-right"></i>
-                </button>
+                <a href={work.url} target="_blank" rel="noopener noreferrer" className="work-btn">
+                  View Project <i className="uil uil-arrow-right"></i>
+                </a>
+                {work.github && (
+                  <a href={work.github} target="_blank" rel="noopener noreferrer" className="work-btn" style={{ marginLeft: "1rem" }}>
+                    GitHub <i className="uil uil-github"></i>
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -439,7 +422,7 @@ const PortfolioWebsite: React.FC = () => {
             </button>
             {popup.item && (
               <>
-                <Image src={popup.item.img} alt={popup.item.title} width={640} height={400} style={{ width: "100%", borderRadius: ".5rem" }} />
+                <img src={popup.item.img} alt={popup.item.title} width={640} height={400} style={{ width: "100%", borderRadius: ".5rem" }} />
                 <h3 style={{ marginTop: "1.5rem", color: "var(--title)" }}>{popup.item.title}</h3>
                 <p style={{ marginTop: "0.75rem" }}>Project details and description would go here.</p>
               </>
@@ -483,64 +466,26 @@ const PortfolioWebsite: React.FC = () => {
           </div>
         </div>
 
-        <section className="testimonials section" id="testimonials">
-          <h2 className="title">Testimonials</h2>
-          <div className="container">
-            <div className="testimonial glass-card">
-              <p dangerouslySetInnerHTML={{ __html: testimonials[testimonial].desc }}></p>
-              <div className="testimonial-profile">
-                <Image
-                  src={testimonials[testimonial].img}
-                  alt={testimonials[testimonial].name}
-                  className="testimonial-img"
-                  width={70}
-                  height={70}
-                  priority
-                />
-                <div>
-                  <h4>{testimonials[testimonial].name}</h4>
-                  <span>{testimonials[testimonial].role}</span>
-                </div>
-              </div>
-            </div>
-            <div style={{ textAlign: "center" }}>
-              {testimonials.map((item, index) => (
-                <button
-                  key={item.name}
-                  onClick={() => setTestimonial(index)}
-                  style={{
-                    width: "12px",
-                    height: "12px",
-                    borderRadius: "50%",
-                    border: "none",
-                    margin: "0 4px",
-                    background: index === testimonial ? "var(--skin-solid)" : "rgba(255,255,255,0.3)",
-                    cursor: "pointer",
-                  }}
-                ></button>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="contact section" id="contact">
           <h2 className="title">Contact me</h2>
           <div className="contact-container container grid">
             <div>
               {[
-                { icon: "envelope-edit", title: "Email", data: "hello@dammyhenry.org" },
-                { icon: "whatsapp", title: "Whatsapp", data: "+1 (999) 888-777" },
-                { icon: "facebook-messenger", title: "Messenger", data: "dammyhenry" },
+                { icon: "envelope-edit", title: "Email", data: "dammy@dammyhenry.com", href: "mailto:dammy@dammyhenry.com" },
+                { icon: "linkedin", title: "LinkedIn", data: "linkedin.com/in/dammyhenry", href: "https://www.linkedin.com/in/dammyhenry" },
+                { icon: "github", title: "GitHub", data: "github.com/rudeboydamn", href: "https://github.com/rudeboydamn" },
               ].map((contact) => (
-                <div key={contact.title} className="contact-card glass-card">
-                  <i className={`uil uil-${contact.icon}`}></i>
-                  <h3>{contact.title}</h3>
-                  <span>{contact.data}</span>
-                </div>
+                <a key={contact.title} href={contact.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                  <div className="contact-card glass-card">
+                    <i className={`uil uil-${contact.icon}`} style={{ fontSize: "2rem", color: "var(--skin-solid)" }}></i>
+                    <h3 style={{ color: "var(--title)", marginTop: "0.5rem" }}>{contact.title}</h3>
+                    <span>{contact.data}</span>
+                  </div>
+                </a>
               ))}
             </div>
             <form className="glass-card" style={{ padding: "2rem", borderRadius: "25px" }}>
-              {["username", "email", "phone", "message"].map((field) => (
+              {["fullName", "email", "phone", "message"].map((field) => (
                 <div key={field} className="input-container">
                   {field === "message" ? (
                     <textarea
@@ -558,7 +503,7 @@ const PortfolioWebsite: React.FC = () => {
                       onBlur={(event) => setFocus({ ...focus, [field]: event.target.value !== "" })}
                     />
                   )}
-                  <label className="label">{field.charAt(0).toUpperCase() + field.slice(1)}</label>
+                  <label className="label">{field === "fullName" ? "Full Name" : field.charAt(0).toUpperCase() + field.slice(1)}</label>
                 </div>
               ))}
               <button type="submit" className="btn">
@@ -570,8 +515,8 @@ const PortfolioWebsite: React.FC = () => {
 
         <footer className="footer glass-card">
           <div className="container">
-            <h2>Dammy Henry</h2>
-            <p>Creative Developer</p>
+            <h2 style={{ color: "var(--title)" }}>Dammy Henry</h2>
+            <p>Financial Analyst & Web Developer</p>
             <div className="footer-links">
               {["services", "work", "contact"].map((link) => (
                 <a
@@ -586,6 +531,8 @@ const PortfolioWebsite: React.FC = () => {
                   {link}
                 </a>
               ))}
+              <Link href="/resume" className="footer-link">Resume</Link>
+              <Link href="/thoughts" className="footer-link">Thoughts</Link>
             </div>
             <p>&copy; {new Date().getFullYear()} Dammy Henry. All rights reserved.</p>
           </div>
