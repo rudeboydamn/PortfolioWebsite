@@ -108,13 +108,48 @@ const services: Service[] = [
 ];
 
 const PortfolioWebsite: React.FC = () => {
-  const [activeSkill, setActiveSkill] = useState<SkillCategory>("analyst");
-  const [modal, setModal] = useState<number | null>(null);
   const [sidebar, setSidebar] = useState(false);
   const [section, setSection] = useState("home");
+  const [activeSkill, setActiveSkill] = useState<SkillCategory>("analyst");
+  const [modal, setModal] = useState<number | null>(null);
   const [focus, setFocus] = useState<Record<string, boolean>>({});
+  const [headerClass, setHeaderClass] = useState("");
 
-  const activeService = modal !== null ? services[modal] : undefined;
+  // Header scroll effect
+  useEffect(() => {
+    let lastScroll = 0;
+    
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll <= 0) {
+        setHeaderClass("");
+        lastScroll = currentScroll;
+        return;
+      }
+      
+      if (currentScroll > lastScroll && !headerClass.includes("scroll-down")) {
+        setHeaderClass("scroll-down");
+      } else if (currentScroll < lastScroll && headerClass.includes("scroll-down")) {
+        setHeaderClass("scroll-up");
+      }
+      
+      lastScroll = currentScroll;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [headerClass]);
+
+  // Smooth scroll function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setSection(sectionId);
+    setSidebar(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -265,6 +300,16 @@ const PortfolioWebsite: React.FC = () => {
               <i className="uil uil-user"></i>More About me
             </button>
           </div>
+          <div 
+            className="interactive-hero"
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = ((e.clientX - rect.left) / rect.width) * 100;
+              const y = ((e.clientY - rect.top) / rect.height) * 100;
+              e.currentTarget.style.setProperty('--mx', `${x}%`);
+              e.currentTarget.style.setProperty('--my', `${y}%`);
+            }}
+          ></div>
         </section>
 
         <section className="about section" id="about">
