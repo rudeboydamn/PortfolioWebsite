@@ -27,13 +27,19 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
   };
 
   return (
-    <div className={`theme-toggle ${className}`}>
+    <div className={`old-fashioned-toggle ${className}`}>
       <button
-        className="theme-toggle-btn"
+        className={`toggle-switch ${theme === 'dark' ? 'active' : ''}`}
         onClick={toggleTheme}
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       >
-        <div className="theme-toggle-slider"></div>
+        <div className="toggle-lever">
+          <span className="lever-text light-text">☀️</span>
+          <span className="lever-text dark-text">🌙</span>
+        </div>
+        <div className="toggle-base">
+          <div className="base-plate"></div>
+        </div>
       </button>
     </div>
   );

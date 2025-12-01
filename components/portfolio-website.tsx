@@ -178,8 +178,7 @@ const PortfolioWebsite: React.FC = () => {
     .btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(102,126,234,0.4)}
     .btn i{font-size:1.1rem}
     .section{padding:5rem 0 2rem;position:relative}.title{text-align:center;font-size:2.5rem;margin-bottom:2rem;color:var(--title);font-weight:600}
-    .sidebar{position:fixed;width:100px;height:100vh;background:rgba(255,255,255,0.05);backdrop-filter:blur(25px);border-right:1px solid rgba(255,255,255,0.1);z-index:999;transition:.3s ease}
-    .nav-logo{position:absolute;top:1.8rem;left:50%;transform:translateX(-50%);width:50px;height:50px;background:var(--skin);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--title);font-weight:700;font-size:1.2rem;box-shadow:0 8px 25px rgba(102,126,234,0.4)}
+    .old-fashioned-toggle{position:fixed;top:2rem;right:2rem;z-index:1000}.toggle-switch{background:none;border:none;cursor:pointer;padding:0;width:80px;height:60px;position:relative;outline:none}.toggle-lever{position:absolute;top:0;width:35px;height:50px;background:#d4af37;border-radius:4px;border:2px solid #8b7355;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),background-color 0.3s ease;z-index:2;left:0}.toggle-lever:hover{box-shadow:0 4px 8px rgba(0,0,0,0.4);transform:scale(1.05)}.toggle-switch.active .toggle-lever{transform:translateX(35px);background:#4a5568;border-color:#2d3748}.lever-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:bold;transition:opacity 0.3s ease}.light-text{opacity:1;color:#ffd700}.dark-text{opacity:0;color:#e2e8f0}.toggle-switch.active .light-text{opacity:0}.toggle-switch.active .dark-text{opacity:1}.toggle-base{position:absolute;top:20px;left:0;width:70px;height:20px;background:#8b7355;border-radius:10px;border:2px solid #654321;box-shadow:inset 0 2px 4px rgba(0,0,0,0.3)}.base-plate{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,#a08050 0%,#8b7355 50%,#a08050 100%);border-radius:8px}
     .nav-menu{position:fixed;transform:rotate(-90deg) translateX(-100%);transform-origin:left top;width:100vh;top:50px}
     .nav-list{display:flex;flex-direction:row-reverse;margin:0 auto;list-style:none;justify-content:center}
     .nav-link{color:var(--text);text-decoration:none;padding:0 1.2rem;height:80px;line-height:80px;transition:all 0.3s ease;position:relative;font-weight:500;text-transform:capitalize;font-size:0.9rem}
@@ -195,8 +194,7 @@ const PortfolioWebsite: React.FC = () => {
     .home-title{font-size:3.5rem;color:var(--title);margin-bottom:.5rem;font-weight:700;background:linear-gradient(135deg, #667eea, #764ba2, #f093fb);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 3s ease-in-out infinite}
     @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
     .home-subtitle{font-size:1.5rem;margin-bottom:1.5rem;color:var(--text);font-weight:500;font-style:italic}
-    .about{padding:6rem 0}.about-container{grid-template-columns:300px 1fr;gap:4rem;align-items:start}
-    .about-img{width:100%;border-radius:25px;box-shadow:0 20px 40px rgba(0,0,0,0.2)}
+    .about{padding:6rem 0}.about-container{grid-template-columns:1fr 400px;gap:4rem;align-items:flex-start;max-width:1400px;margin:0 auto}.about-img{width:100%;border-radius:25px;box-shadow:0 20px 40px rgba(0,0,0,0.2);transition:transform 0.3s ease}.about-img:hover{transform:translateY(-10px)}
     .about-info{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:2rem 0}
     .about-box{padding:1.5rem;border-radius:15px;text-align:center}
     .about-icon{font-size:2rem;color:var(--skin-solid);margin-bottom:.5rem}
@@ -307,10 +305,7 @@ const PortfolioWebsite: React.FC = () => {
         <section className="about section" id="about">
           <h2 className="title">About me</h2>
           <div className="about-container container grid">
-            <div>
-              <Image src="/dammyhenry.png" alt="Dammy Henry" className="about-img" width={300} height={360} priority />
-            </div>
-            <div>
+            <div style={{ order: 2 }}>
               <p style={{ lineHeight: "1.8", marginBottom: "1rem" }}>
                 I&apos;m Dammy Henry, a Financial Analyst with extensive experience in financial analysis, trend forecasting, 
                 and implementing Integrated Payables and EDI services. I use data-driven approaches to enhance financial 
@@ -343,6 +338,9 @@ const PortfolioWebsite: React.FC = () => {
               <button className="btn" onClick={() => scrollToSection("contact")}>
                 <i className="uil uil-navigator"></i>Contact me
               </button>
+            </div>
+            <div style={{ order: 1, display: "flex", justifyContent: "center", alignItems: "flex-start" }}>
+              <Image src="/img/dammy.png" alt="Dammy Henry" className="about-img" width={350} height={420} priority />
             </div>
           </div>
         </section>

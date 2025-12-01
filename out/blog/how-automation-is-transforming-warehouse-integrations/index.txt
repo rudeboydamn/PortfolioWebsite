@@ -2,7 +2,7 @@
 2:I[9766,[],""]
 3:I[8924,[],""]
 4:I[1959,[],"ClientPageRoot"]
-5:I[3674,["619","static/chunks/619-c500ce38c82c3464.js","462","static/chunks/app/blog/how-automation-is-transforming-warehouse-integrations/page-1820a703536582ec.js"],"default"]
+5:I[3674,["619","static/chunks/619-c500ce38c82c3464.js","462","static/chunks/app/blog/how-automation-is-transforming-warehouse-integrations/page-f43f4db1f66fd2d0.js"],"default"]
 8:I[4431,[],"OutletBoundary"]
 a:I[5278,[],"AsyncMetadataOutlet"]
 c:I[4431,[],"ViewportBoundary"]
