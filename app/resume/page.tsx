@@ -2,18 +2,30 @@
 
 import React from 'react';
 import Link from 'next/link';
+import ThemeToggle from '../../components/theme-toggle';
 
 export default function ResumePage() {
   return (
     <div style={{ 
       minHeight: '100vh', 
-      background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)', 
+      background: 'var(--background)', 
       color: 'rgba(255,255,255,0.9)', 
       fontFamily: "'Poppins', sans-serif", 
       padding: '2rem' 
     }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+          --primary-color: #667eea;
+          --text-color: rgba(255,255,255,0.9);
+          --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        [data-theme="dark"] {
+          --primary-color: #60a5fa;
+          --background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
         .resume-container { max-width: 900px; margin: 0 auto; }
         .back-link { color: rgba(255,255,255,0.8); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; transition: color 0.3s; }
         .back-link:hover { color: white; }
@@ -43,6 +55,8 @@ export default function ResumePage() {
         <Link href="/" className="back-link">
           ← Back to Home
         </Link>
+        
+        <ThemeToggle />
         
         <header className="resume-header">
           <h1 className="resume-title">DAMMY HENRY, MBA</h1>

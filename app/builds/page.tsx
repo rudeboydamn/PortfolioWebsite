@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import ThemeToggle from '../../components/theme-toggle';
 
 type BuildCategory = {
   title: string;
@@ -55,13 +56,24 @@ export default function BuildsPage() {
   return (
     <div style={{ 
       minHeight: '100vh', 
-      background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)', 
+      background: 'var(--background)', 
       color: 'rgba(255,255,255,0.9)', 
       fontFamily: "'Poppins', sans-serif", 
       padding: '2rem' 
     }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+          --primary-color: #667eea;
+          --text-color: rgba(255,255,255,0.9);
+          --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        [data-theme="dark"] {
+          --primary-color: #60a5fa;
+          --background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
         .builds-container { max-width: 1000px; margin: 0 auto; }
         .back-link { color: rgba(255,255,255,0.8); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; transition: color 0.3s; }
         .back-link:hover { color: white; }
@@ -84,6 +96,8 @@ export default function BuildsPage() {
         <Link href="/" className="back-link">
           ← Back to Home
         </Link>
+        
+        <ThemeToggle />
         
         <h1 className="page-title">Builds</h1>
         <p className="page-subtitle">Projects, experiments, and creative builds</p>

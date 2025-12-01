@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import ThemeToggle from '../../components/theme-toggle';
 
 export default function GamesPage() {
   return (
@@ -9,15 +10,15 @@ export default function GamesPage() {
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
+        :root {
+          --primary-color: #7e22ce;
+          --text-color: #f1f5f9;
+          --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
         }
 
         body {
           font-family: 'Poppins', sans-serif;
-          background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+          background: var(--background);
           color: rgba(255, 255, 255, 0.9);
           min-height: 100vh;
           display: flex;
@@ -101,6 +102,8 @@ export default function GamesPage() {
       `}</style>
 
       <div className="games-container">
+        <ThemeToggle />
+        
         <div className="games-icon">🎮</div>
         <h1 className="games-title">Games</h1>
         <p className="games-subtitle">Coming Soon!</p>

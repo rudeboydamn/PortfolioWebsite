@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from 'next/link';
+import ThemeToggle from './theme-toggle';
 
 type SkillCategory = "analyst" | "edi" | "relations" | "frontend" | "design" | "backend";
 
@@ -218,6 +219,8 @@ const PortfolioWebsite: React.FC = () => {
       <div className="nav-toggle" onClick={() => setSidebar((prev) => !prev)}>
         <i className="uil uil-bars"></i>
       </div>
+
+      <ThemeToggle />
 
       <aside className="sidebar">
         <div className="nav-logo">D</div>
