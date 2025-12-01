@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import ThemeToggle from '../../components/theme-toggle';
 
 type BlogPost = {
   date: string;
@@ -128,7 +127,7 @@ export default function BlogPage() {
         .blog-intro { color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 1rem; font-size: 0.95rem; }
         .read-more { display: inline-flex; align-items: center; gap: 0.5rem; color: #667eea; text-decoration: none; font-weight: 500; transition: color 0.3s, transform 0.3s; }
         .read-more:hover { color: white; transform: translateX(5px); }
-        .stats { background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border-radius: 15px; padding: 2rem; margin-bottom: 3rem; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        .stats { background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border-radius: 15px; padding: 2rem; margin-top: 4rem; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
         .stats-number { font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 0.5rem; }
         .stats-label { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
         .recent-highlight { background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1)); border: 1px solid rgba(102,126,234,0.2); }
@@ -145,15 +144,8 @@ export default function BlogPage() {
           ← Back to Home
         </Link>
 
-        <ThemeToggle />
-
         <h1 className="page-title">Blog</h1>
         <p className="page-subtitle">Insights, ideas, and explorations on technology, business, and life.</p>
-
-        <div className="stats">
-          <div className="stats-number">{blogs.length}</div>
-          <div className="stats-label">Articles Published</div>
-        </div>
 
         <section className="recent-section">
           <h2 className="section-title">📝 Recent Blog Posts</h2>
@@ -187,6 +179,11 @@ export default function BlogPage() {
             ))}
           </div>
         </section>
+
+        <div className="stats">
+          <div className="stats-number">{blogs.length}</div>
+          <div className="stats-label">Articles Published</div>
+        </div>
       </div>
 
       <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
