@@ -114,6 +114,7 @@ const PortfolioWebsite: React.FC = () => {
   const [modal, setModal] = useState<number | null>(null);
   const [focus, setFocus] = useState<Record<string, boolean>>({});
   const [headerClass, setHeaderClass] = useState("");
+  const [activeService, setActiveService] = useState<Service | null>(null);
 
   // Header scroll effect
   useEffect(() => {
@@ -141,21 +142,11 @@ const PortfolioWebsite: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [headerClass]);
 
-  // Smooth scroll function
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setSection(sectionId);
-    setSidebar(false);
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll<HTMLElement>("section[id]");
       const scrollY = window.pageYOffset;
-      sections.forEach((item) => {
+      sections.forEach((item: HTMLElement) => {
         const height = item.clientHeight;
         const top = item.offsetTop - 50;
         const id = item.getAttribute("id");
@@ -170,6 +161,7 @@ const PortfolioWebsite: React.FC = () => {
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setSection(id);
     setSidebar(false);
   };
 
@@ -415,7 +407,10 @@ const PortfolioWebsite: React.FC = () => {
               <div key={service.title} className="service-card glass-card">
                 <i className={`uil uil-${service.icon} service-icon`}></i>
                 <h3 dangerouslySetInnerHTML={{ __html: service.title }} style={{ fontSize: "1.1rem" }}></h3>
-                <button className="btn" onClick={() => setModal(index)} style={{ marginTop: "1rem" }}>
+                <button className="btn" onClick={() => {
+                  setActiveService(service);
+                  setModal(index);
+                }} style={{ marginTop: "1rem" }}>
                   View More
                 </button>
               </div>
@@ -425,13 +420,16 @@ const PortfolioWebsite: React.FC = () => {
 
         <div className="modal" role="dialog" aria-modal="true">
           <div className="modal-content glass-card">
-            <button className="modal-close" onClick={() => setModal(null)}>&times;</button>
+            <button className="modal-close" onClick={() => {
+              setModal(null);
+              setActiveService(null);
+            }}>&times;</button>
             {activeService && (
               <>
                 <h3 style={{ marginBottom: "1rem" }}>{activeService.title.replace(/<br>/g, " ")}</h3>
                 <p style={{ marginBottom: "1rem" }}>I offer quality services to clients and companies.</p>
                 <ul style={{ paddingLeft: "1.25rem" }}>
-                  {activeService.items.map((item) => (
+                  {activeService.items.map((item: string) => (
                     <li key={item} style={{ marginBottom: ".5rem" }}>✓ {item}</li>
                   ))}
                 </ul>
