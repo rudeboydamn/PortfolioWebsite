@@ -186,7 +186,13 @@ const PortfolioWebsite: React.FC = () => {
     .nav-link::before{content:'';position:absolute;bottom:1.8rem;left:50%;width:0;height:2px;background:var(--skin-solid);transition:width 0.3s ease;transform:translateX(-50%)}
     .nav-link:hover,.nav-link.active{color:var(--title)}
     .nav-link:hover::before,.nav-link.active::before{width:20px}
-    .nav-toggle{position:fixed;top:2rem;right:1.5rem;width:50px;height:45px;background:var(--glass);backdrop-filter:blur(15px);color:var(--title);border:1px solid var(--glass-border);border-radius:15px;cursor:pointer;z-index:1000;display:none;align-items:center;justify-content:center}
+    .sidebar{position:fixed;left:0;top:0;height:100vh;width:100px;background:transparent;z-index:998}
+    .nav-logo{position:fixed;top:2rem;left:2rem;font-size:1.5rem;font-weight:700;color:var(--title);z-index:999}
+    .nav-toggle{position:fixed;top:2rem;right:1.5rem;width:60px;height:60px;background:var(--glass);backdrop-filter:blur(15px);color:var(--title);border:1px solid var(--glass-border);border-radius:15px;cursor:pointer;z-index:1000;display:none;align-items:center;justify-content:center;transition:all 0.3s ease}
+    .nav-toggle:hover{transform:scale(1.05);box-shadow:0 5px 15px rgba(0,0,0,0.2)}
+    .nav-toggle:focus{outline:none;box-shadow:0 0 0 3px var(--skin-solid)}
+    .nav-toggle:active{transform:scale(0.95)}
+    .nav-toggle i{font-size:1.5rem}
     .main{margin-left:100px;min-height:100vh;position:relative}
     .home{background:linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     .home::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%, rgba(120,119,198,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%);pointer-events:none}
@@ -234,15 +240,183 @@ const PortfolioWebsite: React.FC = () => {
     .footer-links{display:flex;justify-content:center;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
     .footer-link{color:var(--text);text-decoration:none;transition:all 0.3s ease;padding:0.5rem 1rem;border-radius:10px;cursor:pointer}
     .footer-link:hover{color:var(--title);background:rgba(255,255,255,0.1)}
-    @media(max-width:1024px){.sidebar{transform:translateX(${sidebar ? "0" : "-100%"})}.nav-toggle{display:flex}.main{margin-left:0}}
-    @media(max-width:768px){.main{margin-left:0}.sidebar{width:100%;transform:translateX(${sidebar ? "0" : "-100%"})}.nav-menu{transform:none;position:relative;width:100%;top:auto;height:100%;display:flex;justify-content:center}.nav-list{flex-direction:column;align-items:center;padding:2rem 0;justify-content:center}.nav-link{padding:1rem 0;line-height:1.5;height:auto}.about-container,.skills-container,.contact-container{grid-template-columns:1fr;text-align:center;gap:2rem}.home-title{font-size:2.5rem}.home-data{margin:1rem;padding:2rem}.about-info{grid-template-columns:1fr}}
+    @media(max-width:1024px){
+      .sidebar{transform:translateX(${sidebar ? "0" : "-100%"})}
+      .nav-toggle{display:flex}
+      .main{margin-left:0}
+    }
+    @media(max-width:768px){
+      .main{margin-left:0}
+      .sidebar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100vh;
+        background:rgba(30,60,114,0.98);
+        backdrop-filter:blur(20px);
+        -webkit-backdrop-filter:blur(20px);
+        transform:translateX(${sidebar ? "0" : "-100%"});
+        transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);
+        z-index:999;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+      }
+      .nav-menu{
+        transform:none;
+        position:relative;
+        width:100%;
+        top:auto;
+        height:auto;
+        display:flex;
+        justify-content:center;
+      }
+      .nav-list{
+        flex-direction:column;
+        align-items:center;
+        padding:2rem 0;
+        justify-content:center;
+        gap:0.5rem;
+      }
+      .nav-link{
+        padding:1.25rem 2rem;
+        line-height:1.5;
+        height:auto;
+        font-size:1.25rem;
+        display:block;
+        text-align:center;
+        border-radius:15px;
+        transition:all 0.3s ease;
+      }
+      .nav-link:hover,.nav-link.active{
+        background:rgba(255,255,255,0.1);
+        transform:scale(1.05);
+      }
+      .nav-link::before{display:none}
+      .nav-logo{
+        position:absolute;
+        top:2rem;
+        left:2rem;
+        font-size:2rem;
+        font-weight:700;
+        color:var(--title);
+      }
+      .nav-toggle{
+        position:fixed;
+        top:1rem;
+        right:1rem;
+        width:55px;
+        height:55px;
+        font-size:1.5rem;
+        z-index:1001;
+      }
+      .nav-toggle i{font-size:1.5rem}
+      .home{min-height:100vh;padding:1rem}
+      .home-data{
+        margin:1rem;
+        padding:1.5rem;
+        max-width:100%;
+        border-radius:20px;
+      }
+      .home-title{font-size:2rem;line-height:1.2}
+      .home-subtitle{font-size:1.1rem;margin-bottom:1rem}
+      .section{padding:3rem 0 2rem}
+      .title{font-size:1.8rem;margin-bottom:1.5rem}
+      .about{padding:3rem 0}
+      .about-container{
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:2rem;
+        padding:0 1rem;
+      }
+      .about-img{
+        max-width:250px;
+        margin:0 auto;
+      }
+      .about-info{grid-template-columns:1fr;gap:1rem}
+      .about-box{padding:1rem}
+      .skills-container{
+        grid-template-columns:1fr;
+        gap:2rem;
+        padding:0 1rem;
+      }
+      .skills-header{
+        padding:1rem;
+        justify-content:center;
+      }
+      .skills-header.active{transform:none}
+      .services-container{
+        grid-template-columns:1fr;
+        gap:1.5rem;
+        padding:0 1rem;
+      }
+      .service-card{padding:1.5rem}
+      .contact-container{
+        grid-template-columns:1fr;
+        gap:2rem;
+        padding:0 1rem;
+      }
+      .contact-card{padding:1rem}
+      .input{padding:0.875rem 1rem;font-size:0.95rem}
+      .btn{
+        padding:0.75rem 1.25rem;
+        font-size:0.9rem;
+        width:100%;
+        justify-content:center;
+        margin:0.5rem 0;
+      }
+      .footer{padding:2rem 1rem;border-radius:20px 20px 0 0}
+      .footer-links{gap:0.5rem}
+      .footer-link{padding:0.5rem 0.75rem;font-size:0.9rem}
+      .modal-content{
+        margin:1rem;
+        padding:1.5rem;
+        max-width:calc(100vw - 2rem);
+        max-height:calc(100vh - 2rem);
+        overflow-y:auto;
+      }
+      .old-fashioned-toggle{
+        top:1rem;
+        right:5rem;
+        transform:scale(0.8);
+      }
+      .work-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:0.5rem;
+        text-align:left;
+      }
+    }
+    @media(max-width:480px){
+      .home-title{font-size:1.75rem}
+      .home-subtitle{font-size:1rem}
+      .home-data{padding:1.25rem}
+      .title{font-size:1.5rem}
+      .nav-link{font-size:1.1rem;padding:1rem 1.5rem}
+      .about-img{max-width:200px}
+      .skills-header h3{font-size:0.9rem}
+      .service-card{padding:1.25rem}
+      .service-icon{font-size:2rem}
+      .contact-card{padding:0.875rem}
+      .glass-card{border-radius:15px}
+      .btn{padding:0.625rem 1rem;font-size:0.85rem}
+    }
   `;
 
   return (
     <>
       <style>{dynamicStyles}</style>
 
-      <div className="nav-toggle" onClick={() => setSidebar((prev) => !prev)}>
+      <div 
+        className="nav-toggle" 
+        onClick={() => setSidebar((prev) => !prev)} 
+        aria-expanded={sidebar} 
+        aria-label="Toggle navigation menu"
+        role="button"
+        tabIndex={0}
+      >
         <i className="uil uil-bars"></i>
       </div>
 
@@ -275,9 +449,28 @@ const PortfolioWebsite: React.FC = () => {
             ))}
           </ul>
         </nav>
-        <div className="nav-close" onClick={() => setSidebar(false)} style={{ position: "absolute", top: "1rem", right: "1.25rem", cursor: "pointer", display: sidebar ? "block" : "none" }}>
+        <button 
+          className="nav-close" 
+          onClick={() => setSidebar(false)} 
+          aria-label="Close navigation menu"
+          style={{ 
+            position: "absolute", 
+            top: "1.5rem", 
+            right: "1.5rem", 
+            cursor: "pointer", 
+            display: sidebar ? "flex" : "none",
+            width: "50px",
+            height: "50px",
+            background: "rgba(255,255,255,0.1)",
+            border: "1px solid rgba(255,255,255,0.2)",
+            borderRadius: "15px",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "all 0.3s ease"
+          }}
+        >
           <i className="uil uil-times" style={{ fontSize: "1.8rem", color: "var(--title)" }}></i>
-        </div>
+        </button>
       </aside>
 
       <main className="main">
