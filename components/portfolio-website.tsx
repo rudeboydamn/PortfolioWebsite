@@ -361,7 +361,7 @@ const PortfolioWebsite: React.FC = () => {
               <button className="btn" onClick={() => scrollToSection("contact")}>
                 <i className="uil uil-navigator"></i>Contact me
               </button>
-              <Link href="/Thoughts" className="btn">
+              <Link href="/thoughts" className="btn">
                 <i className="uil uil-lightbulb-alt"></i>Thoughts
               </Link>
             </div>
