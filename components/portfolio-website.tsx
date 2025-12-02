@@ -478,7 +478,7 @@ const PortfolioWebsite: React.FC = () => {
           <ThemeToggle />
           <div className="home-data">
             <h1 className="home-title">Hi, I&apos;m Dammy</h1>
-            <h3 className="home-subtitle">Your meticulous analyst</h3>
+            <h3 className="home-subtitle">Financial Analyst &amp; Web Developer</h3>
             <button className="btn" onClick={() => scrollToSection("about")}>
               <i className="uil uil-user"></i>More About me
             </button>
@@ -666,7 +666,7 @@ const PortfolioWebsite: React.FC = () => {
         <footer className="footer glass-card">
           <div className="container">
             <h2 style={{ color: "var(--title)", fontSize: "1.5rem" }}>Dammy Henry</h2>
-            <p style={{ fontSize: "0.95rem" }}>Your meticulous analyst</p>
+            <p style={{ fontSize: "0.95rem" }}>Financial Analyst &amp; Web Developer</p>
             <div className="footer-links">
               <a className="footer-link" onClick={() => scrollToSection("services")}>Services</a>
               <Link href="/builds" className="footer-link">Builds</Link>
