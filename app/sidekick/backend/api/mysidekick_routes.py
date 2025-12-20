@@ -102,6 +102,36 @@ async def get_conversation_history(session_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@router.get("/search-engines")
+async def get_available_search_engines():
+    """
+    Get list of available search engines based on configured API keys
+    """
+    try:
+        engines = mysidekick_service.get_available_search_engines()
+        return {"engines": engines}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class SwitchSearchEngineRequest(BaseModel):
+    engine: str
+
+
+@router.post("/search-engines/switch")
+async def switch_search_engine(request: SwitchSearchEngineRequest):
+    """
+    Switch to a different search engine
+    """
+    try:
+        mysidekick_service.switch_search_engine(request.engine)
+        return {"success": True, "message": f"Switched to {request.engine} search engine"}
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @router.websocket("/ws/{session_id}")
 async def websocket_endpoint(websocket: WebSocket, session_id: str):
     """

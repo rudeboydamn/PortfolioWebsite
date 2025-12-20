@@ -13,7 +13,15 @@ sys.path.insert(0, str(parent_dir))
 
 from knowledge_storm.collaborative_storm.engine import CollaborativeStormLMConfigs
 from knowledge_storm.lm import LitellmModel
-from knowledge_storm.rm import YouRM, BingSearch
+from knowledge_storm.rm import (
+    YouRM, 
+    BingSearch, 
+    GoogleSearch, 
+    TavilySearchRM, 
+    BraveRM, 
+    DuckDuckGoSearchRM, 
+    SerperRM
+)
 
 
 class MySidekickService:
@@ -38,21 +46,77 @@ class MySidekickService:
     def _setup_retrieval_module(self):
         """Setup retrieval module based on environment configuration"""
         search_engine = os.getenv("DEFAULT_SEARCH_ENGINE", "you").lower()
+        k = int(os.getenv("SEARCH_RESULTS_COUNT", "5"))
         
         if search_engine == "you":
             api_key = os.getenv("YOU_API_KEY")
             if not api_key:
                 raise ValueError("YOU_API_KEY not found in environment")
-            return YouRM(ydc_api_key=api_key, k=5)
+            return YouRM(ydc_api_key=api_key, k=k)
         
         elif search_engine == "bing":
             api_key = os.getenv("BING_API_KEY")
             if not api_key:
                 raise ValueError("BING_API_KEY not found in environment")
-            return BingSearch(bing_search_api_key=api_key, k=5)
+            return BingSearch(bing_search_api_key=api_key, k=k)
+        
+        elif search_engine == "google":
+            api_key = os.getenv("GOOGLE_SEARCH_API_KEY")
+            cse_id = os.getenv("GOOGLE_CSE_ID")
+            if not api_key or not cse_id:
+                raise ValueError("GOOGLE_SEARCH_API_KEY and GOOGLE_CSE_ID required")
+            return GoogleSearch(google_search_api_key=api_key, google_cse_id=cse_id, k=k)
+        
+        elif search_engine == "tavily":
+            api_key = os.getenv("TAVILY_API_KEY")
+            if not api_key:
+                raise ValueError("TAVILY_API_KEY not found in environment")
+            return TavilySearchRM(tavily_search_api_key=api_key, k=k)
+        
+        elif search_engine == "brave":
+            api_key = os.getenv("BRAVE_API_KEY")
+            if not api_key:
+                raise ValueError("BRAVE_API_KEY not found in environment")
+            return BraveRM(brave_search_api_key=api_key, k=k)
+        
+        elif search_engine == "duckduckgo":
+            return DuckDuckGoSearchRM(k=k)
+        
+        elif search_engine == "serper":
+            api_key = os.getenv("SERPER_API_KEY")
+            if not api_key:
+                raise ValueError("SERPER_API_KEY not found in environment")
+            return SerperRM(serper_search_api_key=api_key, k=k)
         
         else:
-            raise ValueError(f"Unsupported search engine: {search_engine}")
+            raise ValueError(f"Unsupported search engine: {search_engine}. Supported: you, bing, google, tavily, brave, duckduckgo, serper")
+    
+    def get_available_search_engines(self) -> list:
+        """Return list of available search engines based on configured API keys"""
+        available = []
+        
+        if os.getenv("YOU_API_KEY"):
+            available.append({"id": "you", "name": "You.com", "description": "AI-powered search with trusted sources"})
+        if os.getenv("BING_API_KEY"):
+            available.append({"id": "bing", "name": "Bing", "description": "Microsoft's comprehensive web search"})
+        if os.getenv("GOOGLE_SEARCH_API_KEY") and os.getenv("GOOGLE_CSE_ID"):
+            available.append({"id": "google", "name": "Google", "description": "Google Custom Search Engine"})
+        if os.getenv("TAVILY_API_KEY"):
+            available.append({"id": "tavily", "name": "Tavily", "description": "AI-optimized research search"})
+        if os.getenv("BRAVE_API_KEY"):
+            available.append({"id": "brave", "name": "Brave", "description": "Privacy-focused web search"})
+        if os.getenv("SERPER_API_KEY"):
+            available.append({"id": "serper", "name": "Serper", "description": "Google Search API alternative"})
+        
+        # DuckDuckGo doesn't require API key
+        available.append({"id": "duckduckgo", "name": "DuckDuckGo", "description": "Privacy-respecting search (no API key needed)"})
+        
+        return available
+    
+    def switch_search_engine(self, engine: str):
+        """Switch to a different search engine at runtime"""
+        os.environ["DEFAULT_SEARCH_ENGINE"] = engine
+        self.rm = self._setup_retrieval_module()
     
     def create_session(self, topic: str, user_name: str = "User") -> str:
         """Create a new collaborative session"""

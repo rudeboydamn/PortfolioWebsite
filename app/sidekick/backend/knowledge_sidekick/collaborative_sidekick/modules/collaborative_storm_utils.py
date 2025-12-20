@@ -37,6 +37,7 @@ def format_search_results(
     searched_results: List[Information],
     info_max_num_words: int = 1000,
     mode: str = "brief",
+    include_source_details: bool = False,
 ) -> Tuple[str, Dict[int, Information]]:
     """
     Constructs a string from a list of search results with a specified word limit and returns a mapping of indices to Information.
@@ -46,6 +47,7 @@ def format_search_results(
         info_max_num_words (int, optional): Maximum number of words allowed in the output string. Defaults to 1000.
         mode (str, optional): Mode of summarization. 'brief' takes only the first snippet of each Information.
                                 'extensive' adds snippets iteratively until the word limit is reached. Defaults to 'brief'.
+        include_source_details (bool, optional): Whether to include source title and URL in the output. Defaults to False.
 
     Returns:
         Tuple[str, Dict[int, Information]]:
@@ -77,10 +79,79 @@ def format_search_results(
     output = []
     index_mapping = {}
     for idx, info in enumerate(extracted_snippet_queue):
-        output.append(f"[{idx + 1}]: {info.snippets[0]}")
+        if include_source_details:
+            source_header = f"[{idx + 1}] \"{info.title}\" ({info.url})"
+            output.append(f"{source_header}\n{info.snippets[0]}")
+        else:
+            output.append(f"[{idx + 1}]: {info.snippets[0]}")
         index_mapping[idx + 1] = info
     assert -1 not in index_mapping
     return "\n".join(output), index_mapping
+
+
+def format_citation_with_details(
+    citation_index: int,
+    info: Information,
+    style: str = "inline"
+) -> str:
+    """
+    Format a citation with source details.
+
+    Args:
+        citation_index (int): The citation index number.
+        info (Information): The Information object containing source details.
+        style (str): Citation style - 'inline', 'footnote', or 'full'.
+
+    Returns:
+        str: Formatted citation string.
+    """
+    if style == "inline":
+        return f"[{citation_index}]"
+    elif style == "footnote":
+        return f"[{citation_index}: {info.title}]"
+    elif style == "full":
+        return f"[{citation_index}] {info.title} - {info.url}"
+    else:
+        return f"[{citation_index}]"
+
+
+def generate_citation_block(
+    cited_info: Dict[int, Information],
+    style: str = "numbered"
+) -> str:
+    """
+    Generate a formatted citation/references block.
+
+    Args:
+        cited_info (Dict[int, Information]): Dictionary mapping citation indices to Information objects.
+        style (str): Style of the citation block - 'numbered', 'bulleted', or 'academic'.
+
+    Returns:
+        str: Formatted citation block string.
+    """
+    if not cited_info:
+        return ""
+    
+    citations = []
+    sorted_indices = sorted(cited_info.keys())
+    
+    for idx in sorted_indices:
+        info = cited_info[idx]
+        title = info.title if info.title else "Untitled"
+        url = info.url if info.url else ""
+        description = info.description[:100] + "..." if info.description and len(info.description) > 100 else (info.description or "")
+        
+        if style == "numbered":
+            citations.append(f"[{idx}] {title}\n    URL: {url}")
+        elif style == "bulleted":
+            citations.append(f"• [{idx}] {title} ({url})")
+        elif style == "academic":
+            citations.append(f"[{idx}] {title}. Retrieved from {url}")
+        else:
+            citations.append(f"[{idx}] {title} - {url}")
+    
+    header = "\n---\n**Sources:**\n" if style != "academic" else "\n---\n**References:**\n"
+    return header + "\n".join(citations)
 
 
 def extract_cited_storm_info(
