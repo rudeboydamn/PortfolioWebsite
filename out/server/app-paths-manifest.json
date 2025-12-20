@@ -1,0 +1,6 @@
+{
+  "/sidekick/generate/page": "app/sidekick/generate/page.js",
+  "/page": "app/page.js",
+  "/sidekick/page": "app/sidekick/page.js",
+  "/builds/page": "app/builds/page.js"
+}
