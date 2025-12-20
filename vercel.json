@@ -1,4 +1,11 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "out"
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "rewrites": [
+    {
+      "source": "/sidekick/(.*)",
+      "destination": "/sidekick/$1"
+    }
+  ]
 }
