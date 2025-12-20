@@ -1,9 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -11,11 +9,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Ensure static export works with dynamic routes
+  // Ensure proper routing
   trailingSlash: true,
-  // Disable server-side rendering for static export
-  distDir: 'out',
-  // Enable static HTML export
+  // Use standard distDir for Vercel
+  distDir: '.next',
+  // Enable static HTML export for Vercel
   generateBuildId: async () => 'dammy-henry-portfolio',
   // Add basePath if needed
   // basePath: process.env.NODE_ENV === 'production' ? '' : '',
