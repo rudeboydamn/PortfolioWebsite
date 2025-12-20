@@ -1,0 +1,54 @@
+/* Custom styles for Sidekick application */
+
+/* Smooth scrolling for conversation */
+#conversation {
+    scroll-behavior: smooth;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Fade in animation for articles */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.article-card {
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Citation hover effects */
+.citation {
+    cursor: pointer;
+    border-bottom: 1px dotted #667eea;
+    transition: all 0.2s;
+}
+
+.citation:hover {
+    color: #667eea;
+    border-bottom-style: solid;
+}
+
+/* Mind map node styling */
+.mindmap-node {
+    transition: all 0.3s ease;
+}
+
+.mindmap-node:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

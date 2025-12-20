@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}Sidekick - Generate Article{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto" x-data="sidekickApp()">
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">Sidekick Article Generator</h1>
+        <p class="text-gray-600">Generate comprehensive, Wikipedia-style articles with citations</p>
+    </div>
+
+    <!-- Article Generation Form -->
+    <div class="bg-white rounded-xl shadow-md p-8 mb-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Start New Article</h2>
+        
+        <form id="generate-form" 
+              hx-post="/api/sidekick/generate" 
+              hx-trigger="submit"
+              hx-target="#generation-status"
+              hx-swap="innerHTML"
+              @htmx:after-request="handleGenerationStart($event)">
+            
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="topic">
+                    Article Topic *
+                </label>
+                <input 
+                    type="text" 
+                    id="topic" 
+                    name="topic"
+                    x-model="topic"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    placeholder="e.g., Quantum Computing, Ancient Rome, Machine Learning"
+                    required>
+            </div>
+
+            <!-- Advanced Options -->
+            <details class="mb-6">
+                <summary class="cursor-pointer text-gray-700 font-semibold mb-4">
+                    Advanced Options
+                </summary>
+                <div class="grid md:grid-cols-2 gap-4 mt-4">
+                    <div>
+                        <label class="block text-gray-700 text-sm mb-2">
+                            Max Conversation Turns
+                        </label>
+                        <input type="number" name="max_conv_turn" value="3" min="1" max="10"
+                               class="w-full px-4 py-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm mb-2">
+                            Max Perspectives
+                        </label>
+                        <input type="number" name="max_perspective" value="3" min="1" max="10"
+                               class="w-full px-4 py-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm mb-2">
+                            Search Results per Query
+                        </label>
+                        <input type="number" name="search_top_k" value="5" min="1" max="20"
+                               class="w-full px-4 py-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm mb-2">
+                            Max Search Queries
+                        </label>
+                        <input type="number" name="max_search_queries" value="3" min="1" max="10"
+                               class="w-full px-4 py-2 border rounded-lg">
+                    </div>
+                </div>
+            </details>
+
+            <button 
+                type="submit"
+                class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition">
+                <span class="htmx-indicator">
+                    <svg class="animate-spin h-5 w-5 inline mr-2" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </span>
+                Generate Article
+            </button>
+        </form>
+    </div>
+
+    <!-- Generation Status -->
+    <div id="generation-status"></div>
+
+    <!-- Progress Tracker Template -->
+    <template x-if="currentArticleId">
+        <div class="bg-white rounded-xl shadow-md p-8 mb-8">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                Generating: <span x-text="topic"></span>
+            </h3>
+            
+            <div class="mb-4">
+                <div class="flex justify-between text-sm text-gray-600 mb-2">
+                    <span x-text="currentStage"></span>
+                    <span x-text="progress + '%'"></span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div class="progress-bar bg-purple-600 h-3 rounded-full" 
+                         :style="'width: ' + progress + '%'"></div>
+                </div>
+            </div>
+
+            <div class="space-y-2 text-sm text-gray-600">
+                <p>✓ Researching topic from multiple perspectives</p>
+                <p>✓ Generating comprehensive outline</p>
+                <p x-show="progress >= 60">✓ Writing article sections</p>
+                <p x-show="progress >= 90">✓ Polishing and adding citations</p>
+            </div>
+        </div>
+    </template>
+
+    <!-- Articles List -->
+    <div class="bg-white rounded-xl shadow-md p-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Generated Articles</h2>
+        
+        <div id="articles-list"
+             hx-get="/api/sidekick/articles"
+             hx-trigger="load, every 5s"
+             hx-swap="innerHTML">
+            <div class="text-center text-gray-500 py-8">
+                Loading articles...
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function sidekickApp() {
+    return {
+        topic: '',
+        currentArticleId: null,
+        progress: 0,
+        currentStage: 'Initializing...',
+        
+        handleGenerationStart(event) {
+            if (event.detail.xhr.status === 200) {
+                const response = JSON.parse(event.detail.xhr.responseText);
+                this.currentArticleId = response.article_id;
+                this.startPolling();
+            }
+        },
+        
+        startPolling() {
+            const pollInterval = setInterval(() => {
+                fetch(`/api/sidekick/status/${this.currentArticleId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        this.progress = data.progress || 0;
+                        this.currentStage = data.current_stage || 'Processing...';
+                        
+                        if (data.status === 'completed' || data.status === 'failed') {
+                            clearInterval(pollInterval);
+                            this.currentArticleId = null;
+                            // Refresh articles list
+                            htmx.trigger('#articles-list', 'load');
+                        }
+                    });
+            }, 2000);
+        }
+    }
+}
+</script>
+{% endblock %}

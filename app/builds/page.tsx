@@ -14,6 +14,13 @@ type BuildCategory = {
 
 const builds: BuildCategory[] = [
   {
+    title: "Sidekick",
+    icon: "🤖",
+    description: "AI-powered knowledge generation with Wikipedia-style articles and collaborative research",
+    status: "available",
+    href: "/sidekick",
+  },
+  {
     title: "Games",
     icon: "🎮",
     description: "Interactive games and entertainment experiences",
