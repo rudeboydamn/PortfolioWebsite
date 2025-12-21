@@ -14,6 +14,13 @@ type BuildCategory = {
 
 const builds: BuildCategory[] = [
   {
+    title: "HelpMate",
+    icon: "⚡",
+    description: "Modern project management with HTMX - Issues, Cycles, Modules, Pages, Analytics & more",
+    status: "available",
+    href: "https://helpmate-tau.vercel.app",
+  },
+  {
     title: "Sidekick",
     icon: "🤖",
     description: "AI-powered knowledge generation with Wikipedia-style articles and collaborative research",
@@ -49,12 +56,6 @@ const builds: BuildCategory[] = [
     title: "Data Dashboards",
     icon: "📊",
     description: "Interactive data visualization and reporting tools",
-    status: "coming-soon",
-  },
-  {
-    title: "Web Templates",
-    icon: "🌐",
-    description: "Reusable web design templates and components",
     status: "coming-soon",
   },
 ];

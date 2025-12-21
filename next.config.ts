@@ -13,12 +13,8 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   // Use standard distDir for Vercel
   distDir: '.next',
-  // Enable static HTML export for Vercel
-  generateBuildId: async () => 'dammy-henry-portfolio',
-  // Add basePath if needed
-  // basePath: process.env.NODE_ENV === 'production' ? '' : '',
-  // Add assetPrefix if needed
-  // assetPrefix: process.env.NODE_ENV === 'production' ? 'https://dammyhenry.com' : '',
+  // Enable unique build IDs
+  generateBuildId: async () => `build-${Date.now()}`,
 };
 
 // Check if we're building for production
