@@ -499,7 +499,7 @@ const PortfolioWebsite: React.FC = () => {
           <h2 className="title">About me</h2>
           <div className="about-container container grid">
             <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start" }}>
-              <Image src="/img/d-icon.svg" alt="Dammy Henry" className="about-img" width={350} height={420} priority style={{ maxWidth: "100%", height: "auto" }} />
+              <Image src="/img/dammyhenry.png" alt="Dammy Henry" className="about-img" width={350} height={420} priority style={{ maxWidth: "100%", height: "auto" }} />
             </div>
             <div>
               <p style={{ lineHeight: "1.8", marginBottom: "1rem" }}>

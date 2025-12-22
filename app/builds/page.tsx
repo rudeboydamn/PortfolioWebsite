@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import ThemeToggle from '../../components/theme-toggle';
 
@@ -21,13 +21,6 @@ const builds: BuildCategory[] = [
     href: "https://helpmate-tau.vercel.app",
   },
   {
-    title: "Sidekick",
-    icon: "🤖",
-    description: "AI-powered knowledge generation with Wikipedia-style articles and collaborative research",
-    status: "available",
-    href: "/sidekick",
-  },
-  {
     title: "Games",
     icon: "🎮",
     description: "Interactive games and entertainment experiences",
@@ -41,18 +34,6 @@ const builds: BuildCategory[] = [
     status: "coming-soon",
   },
   {
-    title: "CRM Logics",
-    icon: "💼",
-    description: "Customer relationship management solutions and automations",
-    status: "coming-soon",
-  },
-  {
-    title: "Automation Scripts",
-    icon: "⚙️",
-    description: "RPA and workflow automation tools",
-    status: "coming-soon",
-  },
-  {
     title: "Data Dashboards",
     icon: "📊",
     description: "Interactive data visualization and reporting tools",
@@ -61,6 +42,17 @@ const builds: BuildCategory[] = [
 ];
 
 export default function BuildsPage() {
+  const [showHelpmateWarning, setShowHelpmateWarning] = useState(false);
+
+  const handleHelpmateClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowHelpmateWarning(true);
+  };
+
+  const confirmRedirect = () => {
+    window.location.href = "https://helpmate-tau.vercel.app";
+  };
+
   return (
     <div style={{ 
       minHeight: '100vh', 
@@ -113,12 +105,21 @@ export default function BuildsPage() {
         <div className="builds-grid">
           {builds.map((build) => (
             build.status === 'available' && build.href ? (
-              <Link key={build.title} href={build.href} className="build-card">
-                <div className="build-icon">{build.icon}</div>
-                <h3 className="build-title">{build.title}</h3>
-                <p className="build-desc">{build.description}</p>
-                <span className="build-status status-available">Explore →</span>
-              </Link>
+              build.title === 'HelpMate' ? (
+                <a key={build.title} href={build.href} onClick={handleHelpmateClick} className="build-card">
+                  <div className="build-icon">{build.icon}</div>
+                  <h3 className="build-title">{build.title}</h3>
+                  <p className="build-desc">{build.description}</p>
+                  <span className="build-status status-available">Explore →</span>
+                </a>
+              ) : (
+                <Link key={build.title} href={build.href} className="build-card">
+                  <div className="build-icon">{build.icon}</div>
+                  <h3 className="build-title">{build.title}</h3>
+                  <p className="build-desc">{build.description}</p>
+                  <span className="build-status status-available">Explore →</span>
+                </Link>
+              )
             ) : (
               <div key={build.title} className={`build-card ${build.status === 'coming-soon' ? 'coming-soon' : ''}`}>
                 <div className="build-icon">{build.icon}</div>
@@ -129,6 +130,74 @@ export default function BuildsPage() {
             )
           ))}
         </div>
+
+        {/* HelpMate Redirect Warning Modal */}
+        {showHelpmateWarning && (
+          <div style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.8)',
+            backdropFilter: 'blur(10px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: '1rem'
+          }}>
+            <div style={{
+              background: 'rgba(255,255,255,0.1)',
+              backdropFilter: 'blur(20px)',
+              borderRadius: '25px',
+              padding: '2.5rem',
+              maxWidth: '450px',
+              border: '1px solid rgba(255,255,255,0.2)',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚠️</div>
+              <h3 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.5rem' }}>
+                Leaving dammyhenry.com
+              </h3>
+              <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+                You are about to be redirected to the HelpMate project app. Once you leave, there is no direct way to return to this site.
+              </p>
+              <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '2rem', fontSize: '0.9rem' }}>
+                Use your browser&apos;s back button or navigate to dammyhenry.com to return.
+              </p>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => setShowHelpmateWarning(false)}
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    borderRadius: '50px',
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    background: 'transparent',
+                    color: 'white',
+                    cursor: 'pointer',
+                    fontWeight: 500,
+                    transition: 'all 0.3s'
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmRedirect}
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    borderRadius: '50px',
+                    border: 'none',
+                    background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                    color: 'white',
+                    cursor: 'pointer',
+                    fontWeight: 500,
+                    transition: 'all 0.3s'
+                  }}
+                >
+                  Continue to HelpMate →
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       
       <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
