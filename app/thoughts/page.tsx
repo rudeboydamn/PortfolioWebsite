@@ -20,6 +20,12 @@ type ContentSection = {
 
 const blogs: BlogPost[] = [
   {
+    date: 'January 9, 2026',
+    title: 'From Tedious Tasks to Strategic Genius: How AI is Supercharging EDI for SMBs',
+    intro: 'AI is emerging as the ultimate force multiplier for SMBs, transforming EDI from a cost-center necessity into a strategic engine for growth.',
+    url: '/blog/ai-supercharging-edi-smbs',
+  },
+  {
     date: 'November 30, 2025',
     title: 'Why Visibility Is the New Currency in Supply Chain Tech',
     intro: 'Data wins.',

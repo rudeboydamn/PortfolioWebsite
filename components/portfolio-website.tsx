@@ -578,6 +578,13 @@ const PortfolioWebsite: React.FC = () => {
                 ))}
               </div>
               <h4 style={{ marginTop: "2rem", marginBottom: "1rem", color: "var(--title)" }}>Recent Projects</h4>
+              <Link href="/implementations" className="work-card glass-card" style={{ marginBottom: "1rem", background: "linear-gradient(135deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15))", borderColor: "rgba(102,126,234,0.3)" }}>
+                <div>
+                  <h4>Implementation projects</h4>
+                  <span>Enterprise EDI & Payment Solutions</span>
+                </div>
+                <i className="uil uil-arrow-right"></i>
+              </Link>
               {works.map((work) => (
                 <a key={work.id} href={work.url} target="_blank" rel="noopener noreferrer" className="work-card glass-card">
                   <div>
@@ -587,13 +594,6 @@ const PortfolioWebsite: React.FC = () => {
                   <i className="uil uil-external-link-alt"></i>
                 </a>
               ))}
-              <Link href="/implementations" className="work-card glass-card" style={{ marginTop: "1rem", background: "linear-gradient(135deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15))", borderColor: "rgba(102,126,234,0.3)" }}>
-                <div>
-                  <h4>Business Implementation Projects</h4>
-                  <span>Enterprise EDI & Payment Solutions</span>
-                </div>
-                <i className="uil uil-arrow-right"></i>
-              </Link>
             </div>
           </div>
         </section>
