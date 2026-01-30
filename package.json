@@ -10,11 +10,11 @@
     "migrate": "tsx scripts/migrate-blog-to-thoughts.ts"
   },
   "dependencies": {
-    "@types/nodemailer": "^6.4.16",
     "@vercel/postgres": "^0.10.0",
     "bcryptjs": "^2.4.3",
     "next": "^16.1.0",
     "next-auth": "^5.0.0-beta.25",
+    "nodemailer": "^6.9.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "vercel": "^48.8.0"
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.16",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vercel/static-build": "^1.0.0",
