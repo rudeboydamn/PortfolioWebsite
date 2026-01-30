@@ -352,29 +352,29 @@ export default function ThoughtsPage() {
           </div>
         </div>
 
-        {session && (
-          <div className="share-box">
-            <form onSubmit={handlePostThought}>
-              <input
-                type="text"
-                placeholder="What's your thought about?"
-                value={postTitle}
-                onChange={(e) => setPostTitle(e.target.value)}
-                required
-              />
-              <textarea
-                placeholder="Share your thoughts..."
-                value={postContent}
-                onChange={(e) => setPostContent(e.target.value)}
-                rows={4}
-                required
-              />
-              <button type="submit" disabled={!postTitle.trim() || !postContent.trim()}>
-                Share Thought
-              </button>
-            </form>
-          </div>
-        )}
+        <div className="share-box">
+          <form onSubmit={handlePostThought}>
+            <input
+              type="text"
+              placeholder="What's your thought about?"
+              value={postTitle}
+              onChange={(e) => setPostTitle(e.target.value)}
+              onClick={() => !session && setShowAuthModal(true)}
+              required
+            />
+            <textarea
+              placeholder={session ? "Share your thoughts..." : "Login to share your thoughts..."}
+              value={postContent}
+              onChange={(e) => setPostContent(e.target.value)}
+              onClick={() => !session && setShowAuthModal(true)}
+              rows={4}
+              required
+            />
+            <button type="submit" disabled={!session || !postTitle.trim() || !postContent.trim()}>
+              {session ? 'Share Thought' : 'Login to Share'}
+            </button>
+          </form>
+        </div>
 
         <div className="thoughts-feed">
           {loading ? (
@@ -444,18 +444,19 @@ export default function ThoughtsPage() {
                       </div>
                     ))}
                     
-                    {session && (
-                      <div className="comment-input">
-                        <input
-                          type="text"
-                          placeholder="Write a comment..."
-                          value={commentInput[thought.id] || ''}
-                          onChange={(e) => setCommentInput({ ...commentInput, [thought.id]: e.target.value })}
-                          onKeyPress={(e) => e.key === 'Enter' && handleComment(thought.id)}
-                        />
-                        <button onClick={() => handleComment(thought.id)}>Post</button>
-                      </div>
-                    )}
+                    <div className="comment-input">
+                      <input
+                        type="text"
+                        placeholder={session ? "Write a comment..." : "Login to comment..."}
+                        value={commentInput[thought.id] || ''}
+                        onChange={(e) => setCommentInput({ ...commentInput, [thought.id]: e.target.value })}
+                        onClick={() => !session && setShowAuthModal(true)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleComment(thought.id)}
+                      />
+                      <button onClick={() => session ? handleComment(thought.id) : setShowAuthModal(true)}>
+                        {session ? 'Post' : 'Login'}
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
