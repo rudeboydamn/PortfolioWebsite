@@ -6,23 +6,28 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "tsx scripts/migrate-blog-to-thoughts.ts"
   },
   "dependencies": {
-    "@types/nodemailer": "^7.0.3",
+    "@types/nodemailer": "^6.4.16",
+    "@vercel/postgres": "^0.10.0",
+    "bcryptjs": "^2.4.3",
     "next": "^16.1.0",
-    "nodemailer": "^7.0.10",
+    "next-auth": "^5.0.0-beta.25",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "vercel": "^48.8.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vercel/static-build": "^1.0.0",
     "eslint": "^9",
     "eslint-config-next": "^16.1.0",
+    "tsx": "^4.7.0",
     "typescript": "^5"
   },
   "engines": {
