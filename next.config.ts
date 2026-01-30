@@ -9,12 +9,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Ensure proper routing
-  trailingSlash: true,
-  // Use standard distDir for Vercel
-  distDir: '.next',
-  // Enable unique build IDs
-  generateBuildId: async () => `build-${Date.now()}`,
 };
 
 // Check if we're building for production
