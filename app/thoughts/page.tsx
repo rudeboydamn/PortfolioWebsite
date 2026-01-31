@@ -44,6 +44,8 @@ export default function ThoughtsPage() {
   const [comments, setComments] = useState<Record<number, Comment[]>>({});
   const [commentInput, setCommentInput] = useState<Record<number, string>>({});
   const [editingThought, setEditingThought] = useState<number | null>(null);
+  const [shareMenuOpen, setShareMenuOpen] = useState<number | null>(null);
+  const [copiedId, setCopiedId] = useState<number | null>(null);
   
   const [signupData, setSignupData] = useState({
     name: '',
@@ -180,6 +182,34 @@ export default function ThoughtsPage() {
       window.history.replaceState({}, '', '/thoughts');
     }
   }, []);
+
+  const handleShare = async (thoughtId: number, thought: Thought, platform: string) => {
+    const shareUrl = `${window.location.origin}/thoughts/${thoughtId}`;
+    const shareText = `${thought.title} - by ${thought.user_name || 'Anonymous'}`;
+    const encodedUrl = encodeURIComponent(shareUrl);
+    const encodedText = encodeURIComponent(shareText);
+
+    switch (platform) {
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedText}`, '_blank');
+        break;
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`, '_blank');
+        break;
+      case 'linkedin':
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`, '_blank');
+        break;
+      case 'whatsapp':
+        window.open(`https://wa.me/?text=${encodedText}%20${encodedUrl}`, '_blank');
+        break;
+      case 'copy':
+        await navigator.clipboard.writeText(shareUrl);
+        setCopiedId(thoughtId);
+        setTimeout(() => setCopiedId(null), 2000);
+        break;
+    }
+    setShareMenuOpen(null);
+  };
 
   const handlePostThought = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -341,6 +371,10 @@ export default function ThoughtsPage() {
         .action-btn:hover { background: rgba(255,255,255,0.05); color: white; }
         .action-btn.liked { color: #ff6b6b; }
         
+        .share-dropdown { position: absolute; bottom: 100%; left: 0; margin-bottom: 0.5rem; background: rgba(30,30,40,0.95); backdrop-filter: blur(10px); border-radius: 12px; padding: 0.5rem; min-width: 140px; border: 1px solid rgba(255,255,255,0.15); z-index: 100; display: flex; flex-direction: column; gap: 0.25rem; }
+        .share-dropdown button { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.75rem; border-radius: 8px; background: transparent; border: none; color: white; cursor: pointer; font-size: 0.85rem; transition: background 0.2s; text-align: left; white-space: nowrap; }
+        .share-dropdown button:hover { background: rgba(255,255,255,0.1); }
+        
         .comments-section { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); }
         .comment { background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 15px; margin-bottom: 0.75rem; }
         .comment-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
@@ -488,6 +522,25 @@ export default function ThoughtsPage() {
                   >
                     💬 {thought.comment_count || 0}
                   </button>
+                  <div style={{ position: 'relative' }}>
+                    <button 
+                      className="action-btn share-action-btn"
+                      onClick={() => setShareMenuOpen(shareMenuOpen === thought.id ? null : thought.id)}
+                    >
+                      🔗 Share
+                    </button>
+                    {shareMenuOpen === thought.id && (
+                      <div className="share-dropdown">
+                        <button onClick={() => handleShare(thought.id, thought, 'twitter')}>𝕏 Twitter</button>
+                        <button onClick={() => handleShare(thought.id, thought, 'facebook')}>f Facebook</button>
+                        <button onClick={() => handleShare(thought.id, thought, 'linkedin')}>in LinkedIn</button>
+                        <button onClick={() => handleShare(thought.id, thought, 'whatsapp')}>💬 WhatsApp</button>
+                        <button onClick={() => handleShare(thought.id, thought, 'copy')}>
+                          {copiedId === thought.id ? '✓ Copied!' : '📋 Copy Link'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
                 
                 {expandedThought === thought.id && (

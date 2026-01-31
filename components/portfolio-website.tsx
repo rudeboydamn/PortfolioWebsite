@@ -678,7 +678,6 @@ const PortfolioWebsite: React.FC = () => {
               <a className="footer-link" onClick={() => scrollToSection("services")}>Services</a>
               <Link href="/builds" className="footer-link">Builds</Link>
               <a className="footer-link" onClick={() => scrollToSection("contact")}>Contact</a>
-              <Link href="/resume" className="footer-link">Resume</Link>
               <Link href="/thoughts" className="footer-link">Thoughts</Link>
             </div>
             <p style={{ fontSize: "0.85rem", marginTop: "1rem" }}>&copy; {new Date().getFullYear()} Dammy Henry. All rights reserved.</p>
