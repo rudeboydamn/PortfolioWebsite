@@ -32,7 +32,11 @@ export default function ThoughtsPage() {
   const { data: session, status } = useSession();
   const [thoughts, setThoughts] = useState<Thought[]>([]);
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [authMode, setAuthMode] = useState<'login' | 'signup' | 'forgot' | 'reset'>('login');
+  const [forgotEmail, setForgotEmail] = useState('');
+  const [resetToken, setResetToken] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [authMessage, setAuthMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [postTitle, setPostTitle] = useState('');
   const [postContent, setPostContent] = useState('');
@@ -120,6 +124,62 @@ export default function ThoughtsPage() {
   const handleGoogleSignIn = () => {
     signIn('google', { callbackUrl: '/thoughts' });
   };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAuthMessage('');
+    try {
+      const res = await fetch('/api/auth/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: forgotEmail }),
+      });
+      const data = await res.json();
+      setAuthMessage(data.message || 'Check your email for reset instructions.');
+      setForgotEmail('');
+    } catch (error) {
+      setAuthMessage('An error occurred. Please try again.');
+    }
+  };
+
+  const handleResetPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAuthMessage('');
+    try {
+      const res = await fetch('/api/auth/reset-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: resetToken, password: newPassword }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setAuthMessage('Password reset successfully! You can now login.');
+        setNewPassword('');
+        setResetToken('');
+        setTimeout(() => {
+          setAuthMode('login');
+          setAuthMessage('');
+        }, 2000);
+      } else {
+        setAuthMessage(data.error || 'Failed to reset password.');
+      }
+    } catch (error) {
+      setAuthMessage('An error occurred. Please try again.');
+    }
+  };
+
+  // Check for reset token in URL
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('reset');
+    if (token) {
+      setResetToken(token);
+      setAuthMode('reset');
+      setShowAuthModal(true);
+      // Clean up URL
+      window.history.replaceState({}, '', '/thoughts');
+    }
+  }, []);
 
   const handlePostThought = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -472,22 +532,85 @@ export default function ThoughtsPage() {
               <h2 className="modal-title">Welcome</h2>
               <p className="modal-subtitle">Join the conversation</p>
               
-              <div className="auth-tabs">
-                <button 
-                  className={`auth-tab ${authMode === 'login' ? 'active' : ''}`}
-                  onClick={() => setAuthMode('login')}
-                >
-                  Login
-                </button>
-                <button 
-                  className={`auth-tab ${authMode === 'signup' ? 'active' : ''}`}
-                  onClick={() => setAuthMode('signup')}
-                >
-                  Sign Up
-                </button>
-              </div>
+              {authMode !== 'forgot' && authMode !== 'reset' && (
+                <div className="auth-tabs">
+                  <button 
+                    className={`auth-tab ${authMode === 'login' ? 'active' : ''}`}
+                    onClick={() => { setAuthMode('login'); setAuthMessage(''); }}
+                  >
+                    Login
+                  </button>
+                  <button 
+                    className={`auth-tab ${authMode === 'signup' ? 'active' : ''}`}
+                    onClick={() => { setAuthMode('signup'); setAuthMessage(''); }}
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              )}
 
-              {authMode === 'signup' ? (
+              {authMessage && (
+                <div style={{ 
+                  background: 'rgba(102,126,234,0.2)', 
+                  padding: '1rem', 
+                  borderRadius: '10px', 
+                  marginBottom: '1rem',
+                  color: 'rgba(255,255,255,0.9)',
+                  textAlign: 'center'
+                }}>
+                  {authMessage}
+                </div>
+              )}
+
+              {authMode === 'forgot' ? (
+                <form onSubmit={handleForgotPassword}>
+                  <h3 style={{ color: 'white', marginBottom: '1rem', textAlign: 'center' }}>Reset Password</h3>
+                  <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', textAlign: 'center', fontSize: '0.9rem' }}>
+                    Enter your email and we&apos;ll send you a link to reset your password.
+                  </p>
+                  <div className="form-group">
+                    <label>Email</label>
+                    <input
+                      type="email"
+                      placeholder="your@email.com"
+                      value={forgotEmail}
+                      onChange={(e) => setForgotEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="submit-btn">Send Reset Link</button>
+                  <button 
+                    type="button" 
+                    onClick={() => { setAuthMode('login'); setAuthMessage(''); }}
+                    style={{ 
+                      width: '100%', 
+                      background: 'transparent', 
+                      border: 'none', 
+                      color: 'rgba(255,255,255,0.7)', 
+                      marginTop: '1rem', 
+                      cursor: 'pointer' 
+                    }}
+                  >
+                    ← Back to Login
+                  </button>
+                </form>
+              ) : authMode === 'reset' ? (
+                <form onSubmit={handleResetPassword}>
+                  <h3 style={{ color: 'white', marginBottom: '1rem', textAlign: 'center' }}>Set New Password</h3>
+                  <div className="form-group">
+                    <label>New Password</label>
+                    <input
+                      type="password"
+                      placeholder="Min. 6 characters"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      required
+                      minLength={6}
+                    />
+                  </div>
+                  <button type="submit" className="submit-btn">Reset Password</button>
+                </form>
+              ) : authMode === 'signup' ? (
                 <form onSubmit={handleSignup}>
                   <div className="form-group">
                     <label>Name</label>
@@ -545,9 +668,26 @@ export default function ThoughtsPage() {
                     />
                   </div>
                   <button type="submit" className="submit-btn">Login</button>
+                  <button 
+                    type="button" 
+                    onClick={() => { setAuthMode('forgot'); setAuthMessage(''); }}
+                    style={{ 
+                      width: '100%', 
+                      background: 'transparent', 
+                      border: 'none', 
+                      color: 'rgba(255,255,255,0.6)', 
+                      marginTop: '1rem', 
+                      cursor: 'pointer',
+                      fontSize: '0.9rem'
+                    }}
+                  >
+                    Forgot Password?
+                  </button>
                 </form>
               )}
 
+              {(authMode === 'login' || authMode === 'signup') && (
+                <>
               <div className="divider">
                 <span>or</span>
               </div>
@@ -561,6 +701,8 @@ export default function ThoughtsPage() {
                 </svg>
                 Continue with Google
               </button>
+                </>
+              )}
             </div>
           </div>
         )}

@@ -43,6 +43,14 @@ export interface Like {
   created_at: Date;
 }
 
+export interface PasswordReset {
+  id: number;
+  user_id: number;
+  token: string;
+  expires_at: Date;
+  created_at: Date;
+}
+
 export const db = {
   async initializeSchema() {
     await sql`
@@ -96,6 +104,16 @@ export const db = {
     await sql`CREATE INDEX IF NOT EXISTS idx_likes_user_id ON likes(user_id);`;
     await sql`CREATE INDEX IF NOT EXISTS idx_comments_thought_id ON comments(thought_id);`;
     await sql`CREATE INDEX IF NOT EXISTS idx_comments_created_at ON comments(created_at DESC);`;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS password_resets (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        token VARCHAR(255) UNIQUE NOT NULL,
+        expires_at TIMESTAMP NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
   },
 
   async getUserByEmail(email: string): Promise<User | null> {
@@ -262,5 +280,37 @@ export const db = {
       ? await sql`DELETE FROM comments WHERE id = ${id} RETURNING id`
       : await sql`DELETE FROM comments WHERE id = ${id} AND user_id = ${userId} RETURNING id`;
     return (result.rowCount ?? 0) > 0;
+  },
+
+  async createPasswordResetToken(userId: number, token: string): Promise<void> {
+    // Delete any existing tokens for this user
+    await sql`DELETE FROM password_resets WHERE user_id = ${userId}`;
+    // Create new token that expires in 1 hour
+    const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
+    await sql`
+      INSERT INTO password_resets (user_id, token, expires_at)
+      VALUES (${userId}, ${token}, ${expiresAt.toISOString()})
+    `;
+  },
+
+  async verifyPasswordResetToken(token: string): Promise<{ userId: number } | null> {
+    const result = await sql`
+      SELECT user_id FROM password_resets 
+      WHERE token = ${token} AND expires_at > NOW()
+      LIMIT 1
+    `;
+    if (result.rows.length === 0) return null;
+    return { userId: result.rows[0].user_id };
+  },
+
+  async deletePasswordResetToken(token: string): Promise<void> {
+    await sql`DELETE FROM password_resets WHERE token = ${token}`;
+  },
+
+  async updateUserPassword(userId: number, hashedPassword: string): Promise<void> {
+    await sql`
+      UPDATE users SET password = ${hashedPassword}, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ${userId}
+    `;
   },
 };
