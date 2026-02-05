@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import ThemeToggle from '../../components/theme-toggle';
 
@@ -26,6 +27,13 @@ const builds: BuildCategory[] = [
     description: "Interactive games and entertainment experiences",
     status: "available",
     href: "/games",
+  },
+  {
+    title: "SteadFast iOS App",
+    icon: "🧘",
+    description: "A fasting & meditation iOS app where users care for a blob companion that grows with their consistency. Built with Swift.",
+    status: "available",
+    href: "https://github.com/rudeboydamn/SteadFast",
   },
   {
     title: "3D Printer Builds",
@@ -85,6 +93,7 @@ export default function BuildsPage() {
         .build-card.coming-soon { opacity: 0.7; cursor: default; }
         .build-card.coming-soon:hover { transform: none; }
         .build-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .build-icon-img { width: 64px; height: 64px; border-radius: 16px; object-fit: cover; margin-bottom: 1rem; }
         .build-title { font-size: 1.3rem; color: white; margin-bottom: 0.5rem; }
         .build-desc { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.6; }
         .build-status { display: inline-block; margin-top: 1rem; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
@@ -111,6 +120,13 @@ export default function BuildsPage() {
                   <h3 className="build-title">{build.title}</h3>
                   <p className="build-desc">{build.description}</p>
                   <span className="build-status status-available">Explore →</span>
+                </a>
+              ) : build.title === 'SteadFast iOS App' ? (
+                <a key={build.title} href={build.href} target="_blank" rel="noopener noreferrer" className="build-card">
+                  <Image src="/img/stead.jpg" alt="SteadFast App" width={64} height={64} className="build-icon-img" />
+                  <h3 className="build-title">{build.title}</h3>
+                  <p className="build-desc">{build.description}</p>
+                  <span className="build-status status-available" style={{ fontSize: '0.75rem' }}>View on GitHub (Private Repo) →</span>
                 </a>
               ) : (
                 <Link key={build.title} href={build.href} className="build-card">
