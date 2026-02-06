@@ -99,11 +99,30 @@ export default function BuildsPage() {
         .build-status { display: inline-block; margin-top: 1rem; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
         .status-available { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
         .status-coming { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .old-fashioned-toggle{position:absolute;top:2rem;right:2rem;z-index:100}.toggle-switch{background:none;border:none;cursor:pointer;padding:0;width:80px;height:60px;position:relative;outline:none}.toggle-lever{position:absolute;top:0;width:35px;height:50px;background:#d4af37;border-radius:4px;border:2px solid #8b7355;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),background-color 0.3s ease;z-index:2;left:0}.toggle-lever:hover{box-shadow:0 4px 8px rgba(0,0,0,0.4);transform:scale(1.05)}.toggle-switch.active .toggle-lever{transform:translateX(35px);background:#4a5568;border-color:#2d3748}.lever-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:bold;transition:opacity 0.3s ease}.light-text{opacity:1;color:#ffd700}.dark-text{opacity:0;color:#e2e8f0}.toggle-switch.active .light-text{opacity:0}.toggle-switch.active .dark-text{opacity:1}.toggle-base{position:absolute;top:20px;left:0;width:70px;height:20px;background:#8b7355;border-radius:10px;border:2px solid #654321;box-shadow:inset 0 2px 4px rgba(0,0,0,0.3)}.base-plate{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,#a08050 0%,#8b7355 50%,#a08050 100%);border-radius:8px}
+        .builds-footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .builds-footer a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; }
+        .builds-footer a:hover { color: white; }
+        @media (max-width: 768px) {
+          .builds-container { padding: 0; }
+          .page-title { font-size: 1.8rem; }
+          .page-subtitle { font-size: 0.95rem; margin-bottom: 2rem; }
+          .builds-grid { grid-template-columns: 1fr; gap: 1rem; }
+          .build-card { padding: 1.5rem; }
+          .build-icon { font-size: 2.5rem; }
+          .build-title { font-size: 1.1rem; }
+          .build-desc { font-size: 0.9rem; }
+          .old-fashioned-toggle { top: 1rem; right: 1rem; transform: scale(0.8); }
+        }
+        @media (max-width: 480px) {
+          .build-card { padding: 1.25rem; border-radius: 15px; }
+          .page-title { font-size: 1.5rem; }
+        }
       `}</style>
       
       <div className="builds-container">
-        <Link href="/#services" className="back-link">
-          ← Back to Services
+        <Link href="/" className="back-link">
+          ← Back to Home
         </Link>
         
         <ThemeToggle />
@@ -145,6 +164,10 @@ export default function BuildsPage() {
               </div>
             )
           ))}
+        </div>
+
+        <div className="builds-footer">
+          <p><Link href="/">← dammyhenry.com</Link></p>
         </div>
 
         {/* HelpMate Redirect Warning Modal */}

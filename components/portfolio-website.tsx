@@ -185,6 +185,10 @@ const PortfolioWebsite: React.FC = () => {
   const [expandedImpl, setExpandedImpl] = useState<number | null>(null);
   const [implFilter, setImplFilter] = useState<string>("all");
   const [steadfastImg, setSteadfastImg] = useState(0);
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
+  const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const filteredImpl = implFilter === "all" ? implProjects : implProjects.filter(p => p.category === implFilter);
   const steadfastImages = ["/img/st1.PNG", "/img/st2.PNG", "/img/st3.PNG", "/img/st4.PNG", "/img/st5.PNG"];
@@ -236,6 +240,31 @@ const PortfolioWebsite: React.FC = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setSection(id);
     setSidebar(false);
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setContactStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: contactName, email: contactEmail, message: contactMessage }),
+      });
+      if (res.ok) {
+        setContactStatus("sent");
+        setContactName("");
+        setContactEmail("");
+        setContactMessage("");
+        setTimeout(() => setContactStatus("idle"), 5000);
+      } else {
+        setContactStatus("error");
+        setTimeout(() => setContactStatus("idle"), 4000);
+      }
+    } catch {
+      setContactStatus("error");
+      setTimeout(() => setContactStatus("idle"), 4000);
+    }
   };
 
   const dynamicStyles = `
@@ -308,6 +337,10 @@ const PortfolioWebsite: React.FC = () => {
     .input:focus{outline:none;border-color:var(--skin-solid);background:rgba(255,255,255,0.08)}
     .label{position:absolute;top:50%;left:1.5rem;transform:translateY(-50%);color:var(--text);pointer-events:none;transition:all 0.3s ease;padding:0 0.5rem}
     .input:focus + .label,.input:not(:placeholder-shown) + .label{top:0;font-size:.85rem;color:var(--skin-solid);transform:translateY(-50%);background:rgba(30,60,114,0.9)}
+    [data-theme="dark"] .input:focus + .label,[data-theme="dark"] .input:not(:placeholder-shown) + .label{background:rgba(15,23,42,0.95)}
+    .contact-banner{padding:1rem 1.5rem;border-radius:15px;text-align:center;font-weight:500;margin-bottom:1.5rem;animation:fadeInUp 0.4s ease}
+    .contact-banner.success{background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);color:#4ade80}
+    .contact-banner.error{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#f87171}
     textarea.input{min-height:120px;resize:vertical}
     .footer{border-radius:30px 30px 0 0;padding:3rem 0;text-align:center;margin-top:3rem}
     .footer-links{display:flex;justify-content:center;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
@@ -493,7 +526,10 @@ const PortfolioWebsite: React.FC = () => {
       .impl-impact-grid{grid-template-columns:1fr}
       .impl-project-icon{font-size:1.5rem;padding:0.5rem}
       .steadfast-showcase{padding:1rem!important}
+      .steadfast-images img{width:100px!important;height:200px!important}
+      .steadfast-images>div{flex-shrink:0}
       .about-info{grid-template-columns:repeat(2,1fr)}
+      .contact-banner{font-size:0.9rem!important;padding:0.75rem 1rem!important}
     }
     @media(max-width:480px){
       .home-title{font-size:1.75rem}
@@ -888,18 +924,33 @@ const PortfolioWebsite: React.FC = () => {
                 </a>
               ))}
             </div>
-            <form className="glass-card" style={{ padding: "2rem", borderRadius: "25px" }}>
-              {["fullName", "email", "message"].map((field) => (
-                <div key={field} className="input-container">
-                  {field === "message" ? (
-                    <textarea className="input" placeholder=" " onFocus={() => setFocus({ ...focus, [field]: true })} onBlur={(e) => setFocus({ ...focus, [field]: e.target.value !== "" })}></textarea>
-                  ) : (
-                    <input type={field === "email" ? "email" : "text"} className="input" placeholder=" " onFocus={() => setFocus({ ...focus, [field]: true })} onBlur={(e) => setFocus({ ...focus, [field]: e.target.value !== "" })} />
-                  )}
-                  <label className="label">{field === "fullName" ? "Full Name" : field.charAt(0).toUpperCase() + field.slice(1)}</label>
+            <form className="glass-card" style={{ padding: "2rem", borderRadius: "25px" }} onSubmit={handleContactSubmit}>
+              {contactStatus === "sent" && (
+                <div className="contact-banner success">
+                  ✓ Message sent successfully! I&apos;ll get back to you soon.
                 </div>
-              ))}
-              <button type="submit" className="btn"><i className="uil uil-navigator"></i>Send Message</button>
+              )}
+              {contactStatus === "error" && (
+                <div className="contact-banner error">
+                  Something went wrong. Please try again or email me directly.
+                </div>
+              )}
+              <div className="input-container">
+                <input type="text" className="input" placeholder=" " value={contactName} onChange={(e) => setContactName(e.target.value)} required />
+                <label className="label">Full Name</label>
+              </div>
+              <div className="input-container">
+                <input type="email" className="input" placeholder=" " value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} required />
+                <label className="label">Email</label>
+              </div>
+              <div className="input-container">
+                <textarea className="input" placeholder=" " value={contactMessage} onChange={(e) => setContactMessage(e.target.value)} required></textarea>
+                <label className="label">Message</label>
+              </div>
+              <button type="submit" className="btn" disabled={contactStatus === "sending"}>
+                <i className="uil uil-navigator"></i>
+                {contactStatus === "sending" ? "Sending..." : "Send Message"}
+              </button>
             </form>
           </div>
         </section>
@@ -911,6 +962,7 @@ const PortfolioWebsite: React.FC = () => {
             <div className="footer-links">
               <a className="footer-link" onClick={() => scrollToSection("services")}>Services</a>
               <Link href="/builds" className="footer-link">Builds</Link>
+              <Link href="/implementations" className="footer-link">Enterprise Projects</Link>
               <a className="footer-link" onClick={() => scrollToSection("contact")}>Contact</a>
               <Link href="/thoughts" className="footer-link">Thoughts</Link>
             </div>

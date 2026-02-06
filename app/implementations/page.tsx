@@ -506,6 +506,11 @@ export default function ImplementationsPage() {
           color: var(--text-muted);
         }
 
+        .old-fashioned-toggle{position:absolute;top:2rem;right:2rem;z-index:100}.toggle-switch{background:none;border:none;cursor:pointer;padding:0;width:80px;height:60px;position:relative;outline:none}.toggle-lever{position:absolute;top:0;width:35px;height:50px;background:#d4af37;border-radius:4px;border:2px solid #8b7355;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),background-color 0.3s ease;z-index:2;left:0}.toggle-lever:hover{box-shadow:0 4px 8px rgba(0,0,0,0.4);transform:scale(1.05)}.toggle-switch.active .toggle-lever{transform:translateX(35px);background:#4a5568;border-color:#2d3748}.lever-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:bold;transition:opacity 0.3s ease}.light-text{opacity:1;color:#ffd700}.dark-text{opacity:0;color:#e2e8f0}.toggle-switch.active .light-text{opacity:0}.toggle-switch.active .dark-text{opacity:1}.toggle-base{position:absolute;top:20px;left:0;width:70px;height:20px;background:#8b7355;border-radius:10px;border:2px solid #654321;box-shadow:inset 0 2px 4px rgba(0,0,0,0.3)}.base-plate{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,#a08050 0%,#8b7355 50%,#a08050 100%);border-radius:8px}
+        .impl-footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .impl-footer a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; }
+        .impl-footer a:hover { color: white; }
+
         @media (max-width: 768px) {
           .projects-grid {
             grid-template-columns: 1fr;
@@ -532,12 +537,13 @@ export default function ImplementationsPage() {
             padding: 0.4rem 1rem;
             font-size: 0.8rem;
           }
+          .old-fashioned-toggle { top: 1rem; right: 1rem; transform: scale(0.8); }
         }
       `}</style>
       
       <div className="implementations-container">
-        <Link href="/#experience" className="back-link">
-          ← Back to Experience
+        <Link href="/" className="back-link">
+          ← Back to Home
         </Link>
         
         <ThemeToggle />
@@ -641,6 +647,10 @@ export default function ImplementationsPage() {
               </button>
             </div>
           ))}
+        </div>
+
+        <div className="impl-footer">
+          <p><Link href="/">← dammyhenry.com</Link></p>
         </div>
       </div>
       
