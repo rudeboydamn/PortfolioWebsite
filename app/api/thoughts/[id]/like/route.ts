@@ -10,14 +10,10 @@ export async function POST(
     const { id } = await params;
     const session = await auth();
 
-    if (!session?.user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
-    }
+    // Use real user ID if logged in, otherwise use anonymous user ID (0)
+    const userId = session?.user?.id ?? 0;
 
-    const result = await db.toggleLike(session.user.id, parseInt(id));
+    const result = await db.toggleLike(userId, parseInt(id));
 
     return NextResponse.json({
       message: result.liked ? 'Thought liked' : 'Like removed',

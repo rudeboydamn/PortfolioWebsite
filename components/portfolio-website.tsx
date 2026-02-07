@@ -295,7 +295,7 @@ const PortfolioWebsite: React.FC = () => {
     .nav-toggle:focus{outline:none;box-shadow:0 0 0 3px var(--skin-solid)}
     .nav-toggle:active{transform:scale(0.95)}
     .nav-toggle i{font-size:1.5rem}
-    .main{margin-left:100px;min-height:100vh;position:relative}
+    .main{margin-left:100px;min-height:100vh;position:relative;overflow-x:hidden}
     .home{background:linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     .home::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%, rgba(120,119,198,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%);pointer-events:none}
     .home-data{max-width:700px;padding:3rem;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:30px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.2);animation:fadeInUp 1s ease;text-align:center;margin:2rem}
@@ -469,12 +469,17 @@ const PortfolioWebsite: React.FC = () => {
         grid-template-columns:1fr;
         gap:2rem;
         padding:0 1rem;
+        overflow-x:hidden;
       }
       .skills-header{
-        padding:1rem;
-        justify-content:center;
+        padding:0.75rem 1rem;
+        justify-content:flex-start;
       }
       .skills-header.active{transform:none}
+      .skills-header h3{font-size:0.9rem;white-space:nowrap}
+      .skills-icon{font-size:1.5rem;margin-right:0.75rem}
+      .skills-data{padding:0.5rem}
+      .skills-titles h3{font-size:0.85rem}
       .services-container{
         grid-template-columns:1fr;
         gap:1.5rem;
@@ -525,9 +530,13 @@ const PortfolioWebsite: React.FC = () => {
       .impl-project-card{padding:1.25rem}
       .impl-impact-grid{grid-template-columns:1fr}
       .impl-project-icon{font-size:1.5rem;padding:0.5rem}
-      .steadfast-showcase{padding:1rem!important}
-      .steadfast-images img{width:100px!important;height:200px!important}
+      .steadfast-showcase{padding:1rem!important;overflow:hidden}
+      .steadfast-images{gap:0.5rem!important}
+      .steadfast-images img{width:80px!important;height:160px!important}
       .steadfast-images>div{flex-shrink:0}
+      .steadfast-showcase h4{font-size:0.95rem!important}
+      .steadfast-showcase span{font-size:0.75rem!important}
+      .steadfast-showcase p{font-size:0.75rem!important}
       .about-info{grid-template-columns:repeat(2,1fr)}
       .contact-banner{font-size:0.9rem!important;padding:0.75rem 1rem!important}
     }
@@ -538,7 +547,14 @@ const PortfolioWebsite: React.FC = () => {
       .title{font-size:1.5rem}
       .nav-link{font-size:1.1rem;padding:1rem 1.5rem}
       .about-img{max-width:200px}
-      .skills-header h3{font-size:0.9rem}
+      .skills-container{padding:0 0.5rem}
+      .skills-header{padding:0.6rem 0.75rem}
+      .skills-header h3{font-size:0.8rem}
+      .skills-icon{font-size:1.3rem;margin-right:0.5rem}
+      .skills-header span{font-size:0.75rem}
+      .steadfast-images img{width:65px!important;height:130px!important}
+      .work-card h4{font-size:0.9rem}
+      .work-card span{font-size:0.75rem}
       .service-card{padding:1.25rem}
       .service-icon{font-size:2rem}
       .contact-card{padding:0.875rem}

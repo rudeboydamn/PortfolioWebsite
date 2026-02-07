@@ -114,12 +114,13 @@ export default function ThoughtsPage() {
       if (result?.ok) {
         setShowAuthModal(false);
         setLoginData({ email: '', password: '' });
+        setAuthMessage('');
       } else {
-        alert('Invalid credentials');
+        setAuthMessage('Incorrect email or password. Please try again or reset your password.');
       }
     } catch (error) {
       console.error('Login error:', error);
-      alert('An error occurred during login');
+      setAuthMessage('An error occurred during login. Please try again.');
     }
   };
 
@@ -238,13 +239,12 @@ export default function ThoughtsPage() {
   };
 
   const handleLike = async (thoughtId: number) => {
-    if (!session) {
-      setShowAuthModal(true);
-      return;
-    }
-
     try {
-      await fetch(`/api/thoughts/${thoughtId}/like`, { method: 'POST' });
+      await fetch(`/api/thoughts/${thoughtId}/like`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ anonymous: !session }),
+      });
       fetchThoughts();
     } catch (error) {
       console.error('Error liking thought:', error);
@@ -275,11 +275,6 @@ export default function ThoughtsPage() {
   };
 
   const handleComment = async (thoughtId: number) => {
-    if (!session) {
-      setShowAuthModal(true);
-      return;
-    }
-
     const content = commentInput[thoughtId]?.trim();
     if (!content) return;
 
@@ -287,7 +282,7 @@ export default function ThoughtsPage() {
       const res = await fetch(`/api/thoughts/${thoughtId}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content }),
+        body: JSON.stringify({ content, anonymous: !session }),
       });
 
       if (res.ok) {
@@ -405,7 +400,7 @@ export default function ThoughtsPage() {
         .google-btn { width: 100%; background: white; color: #333; padding: 1rem; border: none; border-radius: 50px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
         .google-btn:hover { background: #f0f0f0; }
         .close-modal { position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 1.5rem; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .old-fashioned-toggle{position:absolute;top:2rem;right:2rem;z-index:100}.toggle-switch{background:none;border:none;cursor:pointer;padding:0;width:80px;height:60px;position:relative;outline:none}.toggle-lever{position:absolute;top:0;width:35px;height:50px;background:#d4af37;border-radius:4px;border:2px solid #8b7355;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),background-color 0.3s ease;z-index:2;left:0}.toggle-lever:hover{box-shadow:0 4px 8px rgba(0,0,0,0.4);transform:scale(1.05)}.toggle-switch.active .toggle-lever{transform:translateX(35px);background:#4a5568;border-color:#2d3748}.lever-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:bold;transition:opacity 0.3s ease}.light-text{opacity:1;color:#ffd700}.dark-text{opacity:0;color:#e2e8f0}.toggle-switch.active .light-text{opacity:0}.toggle-switch.active .dark-text{opacity:1}.toggle-base{position:absolute;top:20px;left:0;width:70px;height:20px;background:#8b7355;border-radius:10px;border:2px solid #654321;box-shadow:inset 0 2px 4px rgba(0,0,0,0.3)}.base-plate{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,#a08050 0%,#8b7355 50%,#a08050 100%);border-radius:8px}
+        .old-fashioned-toggle{position:fixed;top:2rem;right:2rem;z-index:100}.toggle-switch{background:none;border:none;cursor:pointer;padding:0;width:80px;height:60px;position:relative;outline:none}.toggle-lever{position:absolute;top:0;width:35px;height:50px;background:#d4af37;border-radius:4px;border:2px solid #8b7355;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),background-color 0.3s ease;z-index:2;left:0}.toggle-lever:hover{box-shadow:0 4px 8px rgba(0,0,0,0.4);transform:scale(1.05)}.toggle-switch.active .toggle-lever{transform:translateX(35px);background:#4a5568;border-color:#2d3748}.lever-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:bold;transition:opacity 0.3s ease}.light-text{opacity:1;color:#ffd700}.dark-text{opacity:0;color:#e2e8f0}.toggle-switch.active .light-text{opacity:0}.toggle-switch.active .dark-text{opacity:1}.toggle-base{position:absolute;top:20px;left:0;width:70px;height:20px;background:#8b7355;border-radius:10px;border:2px solid #654321;box-shadow:inset 0 2px 4px rgba(0,0,0,0.3)}.base-plate{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,#a08050 0%,#8b7355 50%,#a08050 100%);border-radius:8px}
         .thoughts-footer { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
         .thoughts-footer a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; }
         .thoughts-footer a:hover { color: white; }
@@ -416,13 +411,13 @@ export default function ThoughtsPage() {
           .page-title { font-size: 2rem; }
           .share-box { padding: 1.5rem; }
           .thought-card { padding: 1.5rem; }
-          .old-fashioned-toggle { top: 1rem; right: 1rem; transform: scale(0.8); }
+          .old-fashioned-toggle { position: fixed; top: 1rem; right: 1rem; transform: scale(0.8); }
         }
       `}</style>
 
       <div className="thoughts-container">
-        <Link href="/" className="back-link">
-          ← Back to Home
+        <Link href="/#services" className="back-link">
+          ← Back to Services
         </Link>
         
         <ThemeToggle />
@@ -565,14 +560,13 @@ export default function ThoughtsPage() {
                     <div className="comment-input">
                       <input
                         type="text"
-                        placeholder={session ? "Write a comment..." : "Login to comment..."}
+                        placeholder="Write a comment..."
                         value={commentInput[thought.id] || ''}
                         onChange={(e) => setCommentInput({ ...commentInput, [thought.id]: e.target.value })}
-                        onClick={() => !session && setShowAuthModal(true)}
                         onKeyPress={(e) => e.key === 'Enter' && handleComment(thought.id)}
                       />
-                      <button onClick={() => session ? handleComment(thought.id) : setShowAuthModal(true)}>
-                        {session ? 'Post' : 'Login'}
+                      <button onClick={() => handleComment(thought.id)}>
+                        Post
                       </button>
                     </div>
                   </div>
@@ -609,12 +603,19 @@ export default function ThoughtsPage() {
 
               {authMessage && (
                 <div style={{ 
-                  background: 'rgba(102,126,234,0.2)', 
+                  background: authMessage.toLowerCase().includes('incorrect') || authMessage.toLowerCase().includes('error') || authMessage.toLowerCase().includes('failed')
+                    ? 'rgba(239,68,68,0.2)' 
+                    : 'rgba(102,126,234,0.2)', 
                   padding: '1rem', 
                   borderRadius: '10px', 
                   marginBottom: '1rem',
-                  color: 'rgba(255,255,255,0.9)',
-                  textAlign: 'center'
+                  color: authMessage.toLowerCase().includes('incorrect') || authMessage.toLowerCase().includes('error') || authMessage.toLowerCase().includes('failed')
+                    ? '#f87171'
+                    : 'rgba(255,255,255,0.9)',
+                  textAlign: 'center',
+                  border: authMessage.toLowerCase().includes('incorrect') || authMessage.toLowerCase().includes('error') || authMessage.toLowerCase().includes('failed')
+                    ? '1px solid rgba(239,68,68,0.3)'
+                    : '1px solid rgba(102,126,234,0.3)'
                 }}>
                   {authMessage}
                 </div>

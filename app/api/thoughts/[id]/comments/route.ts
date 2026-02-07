@@ -28,13 +28,6 @@ export async function POST(
     const { id } = await params;
     const session = await auth();
 
-    if (!session?.user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
-    }
-
     const { content } = await request.json();
 
     if (!content || content.trim() === '') {
@@ -44,8 +37,11 @@ export async function POST(
       );
     }
 
+    // Use real user ID if logged in, otherwise use anonymous user ID (0)
+    const userId = session?.user?.id ?? 0;
+
     const comment = await db.createComment(
-      session.user.id,
+      userId,
       parseInt(id),
       content
     );

@@ -121,8 +121,8 @@ export default function BuildsPage() {
       `}</style>
       
       <div className="builds-container">
-        <Link href="/" className="back-link">
-          ← Back to Home
+        <Link href="/#services" className="back-link">
+          ← Back to Services
         </Link>
         
         <ThemeToggle />
