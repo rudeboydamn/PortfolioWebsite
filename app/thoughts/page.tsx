@@ -432,12 +432,22 @@ export default function ThoughtsPage() {
         .thoughts-footer a:hover { color: white; }
         
         @media (max-width: 768px) {
-          .thoughts-container { padding: 0 1rem; }
+          .thoughts-container { padding: 0 1rem; width: 100%; box-sizing: border-box; }
           .header-section { flex-direction: column; gap: 1rem; }
           .page-title { font-size: 2rem; }
-          .share-box { padding: 1.5rem; }
-          .thought-card { padding: 1.5rem; }
+          .share-box { padding: 1.25rem; margin-left: auto; margin-right: auto; width: 100%; max-width: 100%; box-sizing: border-box; }
+          .share-box form { width: 100%; }
+          .share-box textarea, .share-box input { width: 100%; box-sizing: border-box; }
+          .share-box button { width: 100%; }
+          .thought-card { padding: 1.5rem; margin-left: auto; margin-right: auto; width: 100%; box-sizing: border-box; }
           .old-fashioned-toggle { position: fixed; top: 1rem; right: 1rem; transform: scale(0.8); }
+        }
+        @media (max-width: 480px) {
+          .thoughts-container { padding: 0 0.75rem; }
+          .share-box { padding: 1rem; }
+          .share-box input { font-size: 1rem; }
+          .thought-card { padding: 1rem; }
+          .page-title { font-size: 1.6rem; }
         }
       `}</style>
 
