@@ -39,11 +39,11 @@ type ImplProject = {
 
 const skills: Record<SkillCategory, Skill[]> = {
   data: [
+    { n: "SQL / Power BI / DAX", p: 95 },
     { n: "Python / Pandas", p: 92 },
-    { n: "SQL / ETL", p: 95 },
-    { n: "Data Warehousing", p: 88 },
-    { n: "Apache Airflow", p: 85 },
-    { n: "dbt / Data Modeling", p: 90 },
+    { n: "Data Warehousing", p: 90 },
+    { n: "ETL Pipelines", p: 92 },
+    { n: "dbt / Data Modeling", p: 88 },
   ],
   edi: [
     { n: "EDI X12", p: 90 },
@@ -281,7 +281,28 @@ const PortfolioWebsite: React.FC = () => {
     .btn i{font-size:1.1rem}
     .section{padding:5rem 0 2rem;position:relative}.title{text-align:center;font-size:2.5rem;margin-bottom:2rem;color:var(--title);font-weight:600}
     .old-fashioned-toggle{position:absolute;top:2rem;right:2rem;z-index:100}.toggle-switch{background:none;border:none;cursor:pointer;padding:0;width:80px;height:60px;position:relative;outline:none}.toggle-lever{position:absolute;top:0;width:35px;height:50px;background:#d4af37;border-radius:4px;border:2px solid #8b7355;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),background-color 0.3s ease;z-index:2;left:0}.toggle-lever:hover{box-shadow:0 4px 8px rgba(0,0,0,0.4);transform:scale(1.05)}.toggle-switch.active .toggle-lever{transform:translateX(35px);background:#4a5568;border-color:#2d3748}.lever-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:bold;transition:opacity 0.3s ease}.light-text{opacity:1;color:#ffd700}.dark-text{opacity:0;color:#e2e8f0}.toggle-switch.active .light-text{opacity:0}.toggle-switch.active .dark-text{opacity:1}.toggle-base{position:absolute;top:20px;left:0;width:70px;height:20px;background:#8b7355;border-radius:10px;border:2px solid #654321;box-shadow:inset 0 2px 4px rgba(0,0,0,0.3)}.base-plate{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,#a08050 0%,#8b7355 50%,#a08050 100%);border-radius:8px}
-    [data-theme="dark"] body{background:#000000!important}[data-theme="dark"] .home{background:#000000!important}[data-theme="dark"] body::before{display:none}[data-theme="dark"] .home::before{display:none}
+    /* Light Theme */
+    [data-theme="light"] { --skin:linear-gradient(135deg, #555555 0%, #333333 100%);--skin-solid:#444444;--title:rgba(0,0,0,0.95);--text:rgba(0,0,0,0.8);--body:linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);--glass:rgba(0,0,0,0.03);--glass-border:rgba(0,0,0,0.1);--shadow:rgba(0,0,0,0.1) }
+    [data-theme="light"] body{background:var(--body);color:var(--text)}
+    [data-theme="light"] body::before{background:radial-gradient(circle at 20% 50%, rgba(200,200,200,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(180,180,180,0.08) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(160,160,160,0.05) 0%, transparent 50%)}
+    [data-theme="light"] .home{background:linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%)}
+    [data-theme="light"] .home::before{background:radial-gradient(circle at 20% 50%, rgba(200,200,200,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(180,180,180,0.08) 0%, transparent 50%)}
+    [data-theme="light"] .glass-card{background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.1);box-shadow:0 15px 35px rgba(0,0,0,0.08)}
+    [data-theme="light"] .nav-link{color:rgba(0,0,0,0.7)}
+    [data-theme="light"] .nav-link:hover,[data-theme="light"] .nav-link.active{color:rgba(0,0,0,0.95)}
+    [data-theme="light"] .home-title{background:linear-gradient(135deg, #000000, #444444);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    [data-theme="light"] .work-card,[data-theme="light"] .service-card,[data-theme="light"] .about-box,[data-theme="light"] .contact-card,[data-theme="light"] .skills-header{background:rgba(0,0,0,0.03)}
+    [data-theme="light"] .input,[data-theme="light"] .share-box textarea,[data-theme="light"] .share-box input{background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.1);color:rgba(0,0,0,0.9)}
+    [data-theme="light"] .btn{box-shadow:0 5px 15px rgba(0,0,0,0.15)}
+    [data-theme="light"] .btn:hover{box-shadow:0 10px 25px rgba(0,0,0,0.25)}
+    [data-theme="light"] .nav-toggle{background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.1)}
+    
+    /* Dark Theme */
+    [data-theme="dark"] { --skin:linear-gradient(135deg, #333333 0%, #111111 100%);--skin-solid:#444444;--title:rgba(255,255,255,0.95);--text:rgba(255,255,255,0.8);--body:linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);--glass:rgba(255,255,255,0.05);--glass-border:rgba(255,255,255,0.1);--shadow:rgba(0,0,0,0.5) }
+    [data-theme="dark"] body{background:var(--body);color:var(--text)}
+    [data-theme="dark"] body::before{display:none}
+    [data-theme="dark"] .home{background:#0a0a0a}
+    [data-theme="dark"] .home::before{display:none}
     .nav-menu{position:fixed;transform:rotate(-90deg) translateX(-100%);transform-origin:left top;width:100vh;top:50px}
     .nav-list{display:flex;flex-direction:row-reverse;margin:0 auto;list-style:none;justify-content:center}
     .nav-link{color:var(--text);text-decoration:none;padding:0 1.2rem;height:80px;line-height:80px;transition:all 0.3s ease;position:relative;font-weight:500;text-transform:capitalize;font-size:0.9rem}

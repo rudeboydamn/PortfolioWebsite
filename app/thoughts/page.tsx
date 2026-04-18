@@ -325,8 +325,34 @@ export default function ThoughtsPage() {
           --background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
         }
 
+        [data-theme="light"] {
+          --primary-color: #555555;
+          --text-color: rgba(0,0,0,0.9);
+          --background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+        }
+        [data-theme="light"] .back-link { color: rgba(0,0,0,0.7); }
+        [data-theme="light"] .back-link:hover { color: black; }
+        [data-theme="light"] .page-title { background: linear-gradient(135deg, #000000, #444444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        [data-theme="light"] .page-subtitle { color: rgba(0,0,0,0.6); }
+        [data-theme="light"] .share-box { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); }
+        [data-theme="light"] .share-box textarea, [data-theme="light"] .share-box input { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); color: rgba(0,0,0,0.9); }
+        [data-theme="light"] .share-box textarea::placeholder, [data-theme="light"] .share-box input::placeholder { color: rgba(0,0,0,0.4); }
+        [data-theme="light"] .thought-card { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); }
+        [data-theme="light"] .thought-name { color: rgba(0,0,0,0.95); }
+        [data-theme="light"] .thought-date { color: rgba(0,0,0,0.5); }
+        [data-theme="light"] .thought-title { color: rgba(0,0,0,0.95); }
+        [data-theme="light"] .thought-content { color: rgba(0,0,0,0.75); }
+        [data-theme="light"] .thought-footer { border-top: 1px solid rgba(0,0,0,0.1); }
+        [data-theme="light"] .action-btn { color: rgba(0,0,0,0.6); }
+        [data-theme="light"] .action-btn:hover { background: rgba(0,0,0,0.05); color: black; }
+        [data-theme="light"] .logout-button { background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: rgba(0,0,0,0.9); }
+        [data-theme="light"] .action-btn-sm { background: rgba(0,0,0,0.05); color: rgba(0,0,0,0.8); }
+        [data-theme="light"] .thoughts-footer { border-top: 1px solid rgba(0,0,0,0.1); }
+        [data-theme="light"] .thoughts-footer a { color: rgba(0,0,0,0.6); }
+
         [data-theme="dark"] {
           --primary-color: #777777;
+          --text-color: rgba(255,255,255,0.9);
           --background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
         }
 

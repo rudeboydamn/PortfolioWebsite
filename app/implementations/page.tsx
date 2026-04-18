@@ -205,6 +205,37 @@ export default function ImplementationsPage() {
           --glass-border: rgba(255,255,255,0.1);
         }
 
+        [data-theme="light"] {
+          --primary-color: #555555;
+          --primary-gradient: linear-gradient(135deg, #444444, #222222);
+          --text-color: rgba(0,0,0,0.9);
+          --text-muted: rgba(0,0,0,0.6);
+          --background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+          --glass-bg: rgba(0,0,0,0.03);
+          --glass-border: rgba(0,0,0,0.1);
+        }
+        [data-theme="light"] .back-link { color: rgba(0,0,0,0.7); background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); }
+        [data-theme="light"] .back-link:hover { color: black; background: rgba(0,0,0,0.05); }
+        [data-theme="light"] .page-title { background: linear-gradient(135deg, #000000, #444444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        [data-theme="light"] .page-subtitle { color: rgba(0,0,0,0.6); }
+        [data-theme="light"] .filter-btn { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); color: rgba(0,0,0,0.7); }
+        [data-theme="light"] .filter-btn.active { background: rgba(0,0,0,0.1); color: rgba(0,0,0,0.95); }
+        [data-theme="light"] .project-card { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); }
+        [data-theme="light"] .project-card:hover { border-color: rgba(0,0,0,0.2); }
+        [data-theme="light"] .project-title { color: rgba(0,0,0,0.95); }
+        [data-theme="light"] .project-category { background: rgba(0,0,0,0.05); color: rgba(0,0,0,0.6); }
+        [data-theme="light"] .project-client { color: rgba(0,0,0,0.5); }
+        [data-theme="light"] .project-challenge { color: rgba(0,0,0,0.7); }
+        [data-theme="light"] .section-title { color: rgba(0,0,0,0.95); }
+        [data-theme="light"] .impact-item { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); }
+        [data-theme="light"] .impact-metric { color: rgba(0,0,0,0.95); }
+        [data-theme="light"] .impact-desc { color: rgba(0,0,0,0.6); }
+        [data-theme="light"] .stat-number { background: linear-gradient(135deg, #000000, #444444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        [data-theme="light"] .stat-label { color: rgba(0,0,0,0.6); }
+        [data-theme="light"] .project-tech { background: rgba(0,0,0,0.05); color: rgba(0,0,0,0.7); border: 1px solid rgba(0,0,0,0.1); }
+        [data-theme="light"] .implementations-footer { border-top: 1px solid rgba(0,0,0,0.1); }
+        [data-theme="light"] .implementations-footer a { color: rgba(0,0,0,0.6); }
+
         [data-theme="dark"] {
           --primary-color: #777777;
           --background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
