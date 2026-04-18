@@ -320,24 +320,24 @@ export default function ThoughtsPage() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         :root {
-          --primary-color: #667eea;
+          --primary-color: #555555;
           --text-color: rgba(255,255,255,0.9);
-          --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+          --background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
         }
 
         [data-theme="dark"] {
-          --primary-color: #60a5fa;
-          --background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          --primary-color: #777777;
+          --background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
         }
 
         .thoughts-container { max-width: 800px; margin: 0 auto; position: relative; }
         .back-link { color: rgba(255,255,255,0.8); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; transition: color 0.3s; }
         .back-link:hover { color: white; }
         .header-section { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; }
-        .page-title { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-title { font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(135deg, #ffffff, #aaaaaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .page-subtitle { color: rgba(255,255,255,0.7); margin-bottom: 1rem; line-height: 1.6; }
         .auth-button { background: var(--primary-color); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 50px; cursor: pointer; font-weight: 500; transition: all 0.3s; }
-        .auth-button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102,126,234,0.4); }
+        .auth-button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
         .logout-button { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9); padding: 0.6rem 1.2rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s; }
         .logout-button:hover { background: rgba(255,255,255,0.15); }
         
@@ -346,13 +346,13 @@ export default function ThoughtsPage() {
         .share-box input { font-weight: 600; font-size: 1.1rem; }
         .share-box textarea::placeholder, .share-box input::placeholder { color: rgba(255,255,255,0.5); }
         .share-box button { background: var(--primary-color); color: white; padding: 0.75rem 2rem; border: none; border-radius: 50px; cursor: pointer; font-weight: 500; }
-        .share-box button:hover { background: #764ba2; }
+        .share-box button:hover { background: #333333; }
         .share-box button:disabled { opacity: 0.5; cursor: not-allowed; }
         
         .thought-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border-radius: 20px; padding: 2rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
         .thought-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
         .thought-author { display: flex; align-items: center; gap: 0.75rem; }
-        .thought-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; }
+        .thought-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #444444, #222222); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; }
         .thought-meta { display: flex; flex-direction: column; }
         .thought-name { font-weight: 600; color: white; }
         .thought-date { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
@@ -382,18 +382,18 @@ export default function ThoughtsPage() {
         .comment-input button { background: var(--primary-color); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 25px; cursor: pointer; }
         
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
-        .modal-content { background: rgba(30,60,114,0.95); backdrop-filter: blur(20px); border-radius: 25px; padding: 3rem; max-width: 450px; width: 100%; border: 1px solid rgba(255,255,255,0.1); }
+        .modal-content { background: rgba(15,15,15,0.98); backdrop-filter: blur(20px); border-radius: 25px; padding: 3rem; max-width: 450px; width: 100%; border: 1px solid rgba(255,255,255,0.1); }
         .modal-title { font-size: 2rem; color: white; margin-bottom: 0.5rem; text-align: center; }
         .modal-subtitle { color: rgba(255,255,255,0.7); text-align: center; margin-bottom: 2rem; }
         .auth-tabs { display: flex; gap: 1rem; margin-bottom: 2rem; }
         .auth-tab { flex: 1; padding: 0.75rem; background: rgba(255,255,255,0.05); border: none; color: rgba(255,255,255,0.7); border-radius: 10px; cursor: pointer; transition: all 0.3s; }
-        .auth-tab.active { background: var(--primary-color); color: white; }
+        .auth-tab.active { background: #444444; color: white; }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; color: rgba(255,255,255,0.8); margin-bottom: 0.5rem; font-size: 0.9rem; }
         .form-group input { width: 100%; padding: 0.875rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; font-family: 'Poppins', sans-serif; }
         .form-group input::placeholder { color: rgba(255,255,255,0.4); }
-        .submit-btn { width: 100%; background: var(--primary-color); color: white; padding: 1rem; border: none; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 1rem; margin-top: 1rem; }
-        .submit-btn:hover { background: #764ba2; }
+        .submit-btn { width: 100%; background: #444444; color: white; padding: 1rem; border: none; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 1rem; margin-top: 1rem; }
+        .submit-btn:hover { background: #333333; }
         .divider { display: flex; align-items: center; margin: 1.5rem 0; color: rgba(255,255,255,0.5); }
         .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
         .divider span { padding: 0 1rem; }
@@ -605,7 +605,7 @@ export default function ThoughtsPage() {
                 <div style={{ 
                   background: authMessage.toLowerCase().includes('incorrect') || authMessage.toLowerCase().includes('error') || authMessage.toLowerCase().includes('failed')
                     ? 'rgba(239,68,68,0.2)' 
-                    : 'rgba(102,126,234,0.2)', 
+                    : 'rgba(80,80,80,0.2)', 
                   padding: '1rem', 
                   borderRadius: '10px', 
                   marginBottom: '1rem',
@@ -615,7 +615,7 @@ export default function ThoughtsPage() {
                   textAlign: 'center',
                   border: authMessage.toLowerCase().includes('incorrect') || authMessage.toLowerCase().includes('error') || authMessage.toLowerCase().includes('failed')
                     ? '1px solid rgba(239,68,68,0.3)'
-                    : '1px solid rgba(102,126,234,0.3)'
+                    : '1px solid rgba(100,100,100,0.3)'
                 }}>
                   {authMessage}
                 </div>

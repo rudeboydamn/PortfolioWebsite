@@ -196,18 +196,18 @@ export default function ImplementationsPage() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         :root {
-          --primary-color: #667eea;
-          --primary-gradient: linear-gradient(135deg, #667eea, #764ba2);
+          --primary-color: #555555;
+          --primary-gradient: linear-gradient(135deg, #444444, #222222);
           --text-color: rgba(255,255,255,0.9);
           --text-muted: rgba(255,255,255,0.7);
-          --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+          --background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
           --glass-bg: rgba(255,255,255,0.05);
           --glass-border: rgba(255,255,255,0.1);
         }
 
         [data-theme="dark"] {
-          --primary-color: #60a5fa;
-          --background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          --primary-color: #777777;
+          --background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
         }
 
         body {
@@ -312,7 +312,7 @@ export default function ImplementationsPage() {
         .project-card:hover { 
           transform: translateY(-8px); 
           box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-          border-color: rgba(102, 126, 234, 0.3);
+          border-color: rgba(100, 100, 100, 0.3);
         }
 
         .project-card.expanded {
@@ -357,10 +357,10 @@ export default function ImplementationsPage() {
         .project-category {
           display: inline-block;
           padding: 0.25rem 0.75rem;
-          background: rgba(102, 126, 234, 0.2);
+          background: rgba(80, 80, 80, 0.2);
           border-radius: 20px;
           font-size: 0.75rem;
-          color: var(--primary-color);
+          color: #aaaaaa;
         }
 
         .project-challenge { 
@@ -421,10 +421,10 @@ export default function ImplementationsPage() {
         }
 
         .impact-item {
-          background: rgba(102, 126, 234, 0.1);
+          background: rgba(60, 60, 60, 0.1);
           padding: 1rem;
           border-radius: 12px;
-          border: 1px solid rgba(102, 126, 234, 0.2);
+          border: 1px solid rgba(80, 80, 80, 0.2);
         }
 
         .impact-metric {
