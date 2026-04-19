@@ -297,13 +297,13 @@ export default function ImplementationsPage() {
         }
 
         .filter-btn:hover {
-          background: rgba(255,255,255,0.1);
-          color: white;
+          background: rgba(255,255,255,0.15);
+          color: #ffffff;
         }
 
         .filter-btn.active {
-          background: var(--primary-gradient);
-          color: white;
+          background: linear-gradient(135deg, #333, #111);
+          color: #ffffff;
           border-color: transparent;
         }
 
@@ -528,10 +528,11 @@ export default function ImplementationsPage() {
         [data-theme="light"] .back-link { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); }
         [data-theme="light"] .back-link:hover { background: rgba(0,0,0,0.04); }
         [data-theme="light"] .impact-item { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); }
-        [data-theme="light"] .filter-btn { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); }
-        [data-theme="light"] .filter-btn:hover { background: rgba(0,0,0,0.04); }
-        [data-theme="light"] .expand-btn { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); }
-        [data-theme="light"] .expand-btn:hover { background: rgba(0,0,0,0.06); }
+        [data-theme="light"] .filter-btn { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); color: rgba(0,0,0,0.7); }
+        [data-theme="light"] .filter-btn:hover { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.9); }
+        [data-theme="light"] .filter-btn.active { background: linear-gradient(135deg, #222, #000); color: #ffffff; }
+        [data-theme="light"] .expand-btn { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); color: rgba(0,0,0,0.7); }
+        [data-theme="light"] .expand-btn:hover { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.9); }
 
         .impl-footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(128,128,128,0.12); }
         .impl-footer a { color: var(--text-color); opacity: 0.6; text-decoration: none; transition: all 0.3s; }

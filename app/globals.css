@@ -394,6 +394,81 @@ h5 { font-size: var(--text-lg); }
 h6 { font-size: var(--text-base); }
 
 /* ========================================
+   BUTTON STYLES - High Contrast
+   ======================================== */
+
+/* Primary Button - Dark background, white text (high contrast) */
+.portfolio-btn,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #333333 0%, #111111 100%);
+  color: #ffffff !important;
+  padding: 0.875rem 1.75rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.portfolio-btn:hover,
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #444444 0%, #222222 100%);
+}
+
+.portfolio-btn:active,
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.portfolio-btn:disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Light theme - buttons stay dark with white text for contrast */
+[data-theme="light"] .portfolio-btn,
+[data-theme="light"] .btn {
+  background: linear-gradient(135deg, #222222 0%, #000000 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .portfolio-btn:hover,
+[data-theme="light"] .btn:hover {
+  background: linear-gradient(135deg, #333333 0%, #111111 100%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* Secondary/Button variants */
+.portfolio-btn-secondary {
+  background: transparent;
+  border: 2px solid var(--text-primary);
+  color: var(--text-primary) !important;
+  box-shadow: none;
+}
+
+.portfolio-btn-secondary:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary) !important;
+}
+
+/* Submit button variant (full width) */
+.submit-btn {
+  width: 100%;
+}
+
+/* ========================================
    PRINT STYLES
    ======================================== */
 @media print {

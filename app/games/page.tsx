@@ -53,6 +53,10 @@ export default function GamesPage() {
         [data-theme="light"] .games-title {
           color: rgba(0,0,0,0.95);
         }
+        [data-theme="light"] .back-btn {
+          background: linear-gradient(135deg, #333, #111);
+          color: #ffffff;
+        }
 
         .games-subtitle {
           font-size: 1.8rem;
