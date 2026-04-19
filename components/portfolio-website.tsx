@@ -297,8 +297,8 @@ const PortfolioWebsite: React.FC = () => {
     [data-theme="light"] .home-subtitle{color:rgba(0,0,0,0.55)}
     [data-theme="light"] .work-card,[data-theme="light"] .service-card,[data-theme="light"] .about-box,[data-theme="light"] .contact-card{background:rgba(255,255,255,0.6)}
     [data-theme="light"] .skills-header{background:rgba(255,255,255,0.5)}
-    [data-theme="light"] .skills-header.active{background:var(--skin);color:white}
-    [data-theme="light"] .skills-header.active h3,[data-theme="light"] .skills-header.active span{color:white}
+    [data-theme="light"] .skills-header.active{background:var(--skin);color:#ffffff !important}
+    [data-theme="light"] .skills-header.active h3,[data-theme="light"] .skills-header.active span{color:#ffffff !important}
     [data-theme="light"] .skills-bar{background:rgba(0,0,0,0.08)}
     [data-theme="light"] .skills-data:hover{background:rgba(0,0,0,0.03)}
     [data-theme="light"] .input,[data-theme="light"] .share-box textarea,[data-theme="light"] .share-box input{background:rgba(255,255,255,0.8);border:1px solid rgba(0,0,0,0.1);color:rgba(0,0,0,0.9)}

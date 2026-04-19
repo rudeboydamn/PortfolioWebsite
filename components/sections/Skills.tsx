@@ -125,12 +125,12 @@ export function Skills() {
         }
         
         .skills-header.active .skills-icon {
-          color: white;
+          color: #ffffff !important;
         }
         
         .skills-header.active .skill-title,
         .skills-header.active .skill-years {
-          color: white;
+          color: #ffffff !important;
         }
         
         .skills-icon {

@@ -104,6 +104,7 @@ export function Services({ onOpenService }: ServicesProps) {
         
         .service-btn {
           margin-top: auto;
+          color: #ffffff !important;
         }
         
         @media (max-width: 768px) {
