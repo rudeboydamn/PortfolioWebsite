@@ -49,7 +49,7 @@ export async function POST(request: Request) {
         <h2>Password Reset Request</h2>
         <p>Hi ${user.name},</p>
         <p>You requested to reset your password. Click the link below to reset it:</p>
-        <p><a href="${resetUrl}" style="background: #667eea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">Reset Password</a></p>
+        <p><a href="${resetUrl}" style="background: #444; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">Reset Password</a></p>
         <p>This link will expire in 1 hour.</p>
         <p>If you didn't request this, you can safely ignore this email.</p>
         <br>

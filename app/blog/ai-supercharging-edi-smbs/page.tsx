@@ -8,8 +8,8 @@ export default function AiSuperchargingEdiSmbsPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'var(--background)',
-      color: 'rgba(255,255,255,0.9)',
+      background: 'var(--bg-primary)',
+      color: 'var(--text-secondary)',
       fontFamily: "'Poppins', sans-serif",
       padding: '2rem'
     }}>
@@ -17,16 +17,26 @@ export default function AiSuperchargingEdiSmbsPage() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         :root {
-          --primary-color: #667eea;
+          --primary-color: #555555;
           --title: rgba(255,255,255,0.95);
           --text: rgba(255,255,255,0.8);
-          --skin-solid: #667eea;
-          --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+          --skin-solid: #555555;
+          --background: #0a0a0a;
+        }
+
+        [data-theme="light"] {
+          --primary-color: #444444;
+          --title: rgba(0,0,0,0.95);
+          --text: rgba(0,0,0,0.75);
+          --skin-solid: #444444;
+          --background: #f8f8f8;
         }
 
         [data-theme="dark"] {
-          --primary-color: #60a5fa;
-          --background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          --primary-color: #555555;
+          --title: rgba(255,255,255,0.95);
+          --text: rgba(255,255,255,0.8);
+          --background: #0a0a0a;
         }
       `}</style>
 
@@ -37,7 +47,7 @@ export default function AiSuperchargingEdiSmbsPage() {
       <Link href="/thoughts" style={{
         display: 'inline-block',
         marginBottom: '2rem',
-        color: 'var(--skin-solid)',
+        color: 'var(--accent)',
         textDecoration: 'none',
         fontSize: '1.1rem',
         fontWeight: '500'
@@ -55,8 +65,8 @@ export default function AiSuperchargingEdiSmbsPage() {
             fontSize: '2.5rem',
             fontWeight: '700',
             marginBottom: '0.5rem',
-            color: 'var(--title)',
-            background: 'linear-gradient(135deg, #667eea, #764ba2)',
+            color: 'var(--text-primary)',
+            background: 'var(--accent-solid)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
@@ -85,7 +95,7 @@ export default function AiSuperchargingEdiSmbsPage() {
             fontSize: '1.8rem',
             fontWeight: '600',
             marginBottom: '1rem',
-            color: 'var(--title)'
+            color: 'var(--text-primary)'
           }}>
             1. Taming the Onboarding and Mapping Monster
           </h2>
@@ -110,7 +120,7 @@ export default function AiSuperchargingEdiSmbsPage() {
             fontSize: '1.8rem',
             fontWeight: '600',
             marginBottom: '1rem',
-            color: 'var(--title)'
+            color: 'var(--text-primary)'
           }}>
             2. From Reactive to Proactive: Smarter Error Handling
           </h2>
@@ -127,7 +137,7 @@ export default function AiSuperchargingEdiSmbsPage() {
             fontSize: '1.8rem',
             fontWeight: '600',
             marginBottom: '1rem',
-            color: 'var(--title)'
+            color: 'var(--text-primary)'
           }}>
             3. The Hidden Goldmine: Predictive Analytics from Transaction Data
           </h2>
@@ -149,7 +159,7 @@ export default function AiSuperchargingEdiSmbsPage() {
             fontSize: '1.8rem',
             fontWeight: '600',
             marginBottom: '1rem',
-            color: 'var(--title)'
+            color: 'var(--text-primary)'
           }}>
             Getting Started: Practical Steps for SMBs
           </h2>
@@ -177,7 +187,7 @@ export default function AiSuperchargingEdiSmbsPage() {
             fontSize: '1.8rem',
             fontWeight: '600',
             marginBottom: '1rem',
-            color: 'var(--title)'
+            color: 'var(--text-primary)'
           }}>
             The Bottom Line
           </h2>
@@ -196,9 +206,9 @@ export default function AiSuperchargingEdiSmbsPage() {
       }}>
         <p>© 2026 Dammy Henry. All rights reserved.</p>
         <div style={{ marginTop: '1rem' }}>
-          <a href="mailto:dammy@dammyhenry.com" style={{ color: 'var(--skin-solid)', textDecoration: 'none', marginRight: '1rem' }}>Email</a>
-          <a href="https://www.linkedin.com/in/dammyhenry" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--skin-solid)', textDecoration: 'none', marginRight: '1rem' }}>LinkedIn</a>
-          <a href="https://github.com/rudeboydamn" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--skin-solid)', textDecoration: 'none' }}>GitHub</a>
+          <a href="mailto:dammy@dammyhenry.com" style={{ color: 'var(--accent)', textDecoration: 'none', marginRight: '1rem' }}>Email</a>
+          <a href="https://www.linkedin.com/in/dammyhenry" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'none', marginRight: '1rem' }}>LinkedIn</a>
+          <a href="https://github.com/rudeboydamn" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'none' }}>GitHub</a>
         </div>
       </footer>
     </div>

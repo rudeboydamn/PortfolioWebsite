@@ -121,7 +121,7 @@ export default function ThoughtPage() {
         gap: '1rem',
       }}>
         <h1>Thought not found</h1>
-        <Link href="/thoughts" style={{ color: '#667eea', textDecoration: 'none' }}>
+        <Link href="/thoughts" style={{ color: 'var(--accent)', textDecoration: 'none' }}>
           ← Back to Thoughts
         </Link>
       </div>
@@ -141,7 +141,7 @@ export default function ThoughtPage() {
         
         .thought-container { max-width: 800px; margin: 0 auto; }
         .back-link { 
-          color: var(--skin-solid, #667eea); 
+          color: var(--skin-solid, var(--accent)); 
           text-decoration: none; 
           display: inline-flex; 
           align-items: center; 
@@ -177,7 +177,7 @@ export default function ThoughtPage() {
           width: 50px;
           height: 50px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #667eea, #764ba2);
+          background: var(--accent);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -192,7 +192,7 @@ export default function ThoughtPage() {
           font-size: 2rem;
           font-weight: 700;
           margin-bottom: 1rem;
-          background: linear-gradient(135deg, #667eea, #764ba2);
+          background: var(--accent);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -215,7 +215,7 @@ export default function ThoughtPage() {
         }
         
         .share-btn {
-          background: linear-gradient(135deg, #667eea, #764ba2);
+          background: var(--accent);
           border: none;
           color: white;
           padding: 0.75rem 1.5rem;
@@ -349,7 +349,7 @@ export default function ThoughtPage() {
 
         <div style={{ textAlign: 'center', marginTop: '2rem' }}>
           <Link href="/thoughts" style={{
-            color: '#667eea',
+            color: 'var(--accent)',
             textDecoration: 'none',
             fontWeight: 500,
           }}>

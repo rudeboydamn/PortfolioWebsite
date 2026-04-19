@@ -1,12 +1,59 @@
 :root {
+  color-scheme: dark light;
+  --bg-primary: #0a0a0a;
+  --text-primary: rgba(255,255,255,0.95);
+  --text-secondary: rgba(255,255,255,0.8);
+  --accent: #555555;
+  --accent-solid: linear-gradient(135deg, #555, #333);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-primary: #f8f8f8;
+  --text-primary: rgba(0,0,0,0.95);
+  --text-secondary: rgba(0,0,0,0.75);
+  --accent: #444444;
+  --accent-solid: linear-gradient(135deg, #111, #555);
+}
+
+[data-theme="dark"] {
   color-scheme: dark;
+  --bg-primary: #0a0a0a;
+  --text-primary: rgba(255,255,255,0.95);
+  --text-secondary: rgba(255,255,255,0.8);
+  --accent: #555555;
+  --accent-solid: linear-gradient(135deg, #555, #333);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   font-family: var(--font, "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 a {
   color: inherit;
+}
+
+::selection {
+  background: rgba(85, 85, 85, 0.3);
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }

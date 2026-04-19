@@ -8,8 +8,8 @@ export default function TheNewEraOfPartnerOnboardingPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'var(--background)',
-      color: 'rgba(255,255,255,0.9)',
+      background: 'var(--bg-primary)',
+      color: 'var(--text-secondary)',
       fontFamily: "'Poppins', sans-serif",
       padding: '2rem'
     }}>
@@ -20,7 +20,7 @@ export default function TheNewEraOfPartnerOnboardingPage() {
       <Link href="/thoughts" style={{
         display: 'inline-block',
         marginBottom: '2rem',
-        color: 'var(--skin-solid)',
+        color: 'var(--accent)',
         textDecoration: 'none',
         fontSize: '1.1rem',
         fontWeight: '500'
@@ -38,8 +38,8 @@ export default function TheNewEraOfPartnerOnboardingPage() {
             fontSize: '2.5rem',
             fontWeight: '700',
             marginBottom: '0.5rem',
-            color: 'var(--title)',
-            background: 'linear-gradient(135deg, #667eea, #764ba2)',
+            color: 'var(--text-primary)',
+            background: 'var(--accent-solid)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
@@ -73,9 +73,9 @@ export default function TheNewEraOfPartnerOnboardingPage() {
       }}>
         <p>© 2025 Dammy Henry. All rights reserved.</p>
         <div style={{ marginTop: '1rem' }}>
-          <a href="mailto:dammy@dammyhenry.com" style={{ color: 'var(--skin-solid)', textDecoration: 'none', marginRight: '1rem' }}>Email</a>
-          <a href="https://www.linkedin.com/in/dammyhenry" target="_blank" rel="noopener" style={{ color: 'var(--skin-solid)', textDecoration: 'none', marginRight: '1rem' }}>LinkedIn</a>
-          <a href="https://github.com/rudeboydamn" target="_blank" rel="noopener" style={{ color: 'var(--skin-solid)', textDecoration: 'none' }}>GitHub</a>
+          <a href="mailto:dammy@dammyhenry.com" style={{ color: 'var(--accent)', textDecoration: 'none', marginRight: '1rem' }}>Email</a>
+          <a href="https://www.linkedin.com/in/dammyhenry" target="_blank" rel="noopener" style={{ color: 'var(--accent)', textDecoration: 'none', marginRight: '1rem' }}>LinkedIn</a>
+          <a href="https://github.com/rudeboydamn" target="_blank" rel="noopener" style={{ color: 'var(--accent)', textDecoration: 'none' }}>GitHub</a>
         </div>
       </footer>
     </div>

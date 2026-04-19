@@ -188,7 +188,7 @@ export default function ImplementationsPage() {
     <div style={{ 
       minHeight: '100vh', 
       background: 'var(--background)', 
-      color: 'rgba(255,255,255,0.9)', 
+      color: 'var(--text-color)', 
       fontFamily: "'Poppins', sans-serif", 
       padding: '2rem' 
     }}>
@@ -196,18 +196,33 @@ export default function ImplementationsPage() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         :root {
-          --primary-color: #667eea;
-          --primary-gradient: linear-gradient(135deg, #667eea, #764ba2);
+          --primary-color: #555555;
+          --primary-gradient: linear-gradient(135deg, #555, #333);
           --text-color: rgba(255,255,255,0.9);
-          --text-muted: rgba(255,255,255,0.7);
-          --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-          --glass-bg: rgba(255,255,255,0.05);
-          --glass-border: rgba(255,255,255,0.1);
+          --text-muted: rgba(255,255,255,0.65);
+          --background: #0a0a0a;
+          --glass-bg: rgba(128,128,128,0.06);
+          --glass-border: rgba(128,128,128,0.12);
+        }
+
+        [data-theme="light"] {
+          --primary-color: #444444;
+          --primary-gradient: linear-gradient(135deg, #555, #333);
+          --text-color: rgba(0,0,0,0.8);
+          --text-muted: rgba(0,0,0,0.55);
+          --background: #f8f8f8;
+          --glass-bg: rgba(255,255,255,0.6);
+          --glass-border: rgba(0,0,0,0.06);
         }
 
         [data-theme="dark"] {
-          --primary-color: #60a5fa;
-          --background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          --primary-color: #555555;
+          --primary-gradient: linear-gradient(135deg, #555, #333);
+          --text-color: rgba(255,255,255,0.9);
+          --text-muted: rgba(255,255,255,0.65);
+          --background: #0a0a0a;
+          --glass-bg: rgba(128,128,128,0.06);
+          --glass-border: rgba(128,128,128,0.12);
         }
 
         body {
@@ -234,8 +249,8 @@ export default function ImplementationsPage() {
           border: 1px solid var(--glass-border);
         }
         .back-link:hover { 
-          color: white; 
-          background: rgba(255,255,255,0.1);
+          color: var(--text-color); 
+          opacity: 1;
           transform: translateX(-5px);
         }
 
@@ -247,9 +262,8 @@ export default function ImplementationsPage() {
         .page-title { 
           font-size: 2.5rem; 
           margin-bottom: 0.5rem; 
-          background: var(--primary-gradient); 
-          -webkit-background-clip: text; 
-          -webkit-text-fill-color: transparent; 
+          color: var(--text-color);
+          font-weight: 700;
         }
 
         .page-subtitle { 
@@ -311,8 +325,8 @@ export default function ImplementationsPage() {
 
         .project-card:hover { 
           transform: translateY(-8px); 
-          box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-          border-color: rgba(102, 126, 234, 0.3);
+          box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+          border-color: rgba(128,128,128,0.2);
         }
 
         .project-card.expanded {
@@ -340,7 +354,7 @@ export default function ImplementationsPage() {
 
         .project-client { 
           font-size: 0.85rem; 
-          color: var(--primary-color);
+          color: var(--text-muted);
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.5px;
@@ -349,7 +363,7 @@ export default function ImplementationsPage() {
 
         .project-title { 
           font-size: 1.2rem; 
-          color: white; 
+          color: var(--text-color); 
           margin-bottom: 0.5rem;
           line-height: 1.3;
         }
@@ -357,10 +371,10 @@ export default function ImplementationsPage() {
         .project-category {
           display: inline-block;
           padding: 0.25rem 0.75rem;
-          background: rgba(102, 126, 234, 0.2);
+          background: rgba(128,128,128,0.12);
           border-radius: 20px;
           font-size: 0.75rem;
-          color: var(--primary-color);
+          color: var(--text-muted);
         }
 
         .project-challenge { 
@@ -376,7 +390,7 @@ export default function ImplementationsPage() {
 
         .section-title {
           font-size: 0.9rem;
-          color: white;
+          color: var(--text-color);
           margin-bottom: 0.75rem;
           font-weight: 600;
           display: flex;
@@ -421,15 +435,15 @@ export default function ImplementationsPage() {
         }
 
         .impact-item {
-          background: rgba(102, 126, 234, 0.1);
+          background: rgba(128,128,128,0.08);
           padding: 1rem;
           border-radius: 12px;
-          border: 1px solid rgba(102, 126, 234, 0.2);
+          border: 1px solid rgba(128,128,128,0.12);
         }
 
         .impact-metric {
           font-size: 1rem;
-          color: white;
+          color: var(--text-color);
           font-weight: 600;
           margin-bottom: 0.25rem;
         }
@@ -474,8 +488,8 @@ export default function ImplementationsPage() {
         }
 
         .expand-btn:hover {
-          background: rgba(255,255,255,0.1);
-          color: white;
+          background: rgba(128,128,128,0.12);
+          color: var(--text-color);
         }
 
         .stats-bar {
@@ -507,9 +521,21 @@ export default function ImplementationsPage() {
         }
 
         .old-fashioned-toggle{position:absolute;top:2rem;right:2rem;z-index:100}.toggle-switch{background:none;border:none;cursor:pointer;padding:0;width:80px;height:60px;position:relative;outline:none}.toggle-lever{position:absolute;top:0;width:35px;height:50px;background:#d4af37;border-radius:4px;border:2px solid #8b7355;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),background-color 0.3s ease;z-index:2;left:0}.toggle-lever:hover{box-shadow:0 4px 8px rgba(0,0,0,0.4);transform:scale(1.05)}.toggle-switch.active .toggle-lever{transform:translateX(35px);background:#4a5568;border-color:#2d3748}.lever-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:bold;transition:opacity 0.3s ease}.light-text{opacity:1;color:#ffd700}.dark-text{opacity:0;color:#e2e8f0}.toggle-switch.active .light-text{opacity:0}.toggle-switch.active .dark-text{opacity:1}.toggle-base{position:absolute;top:20px;left:0;width:70px;height:20px;background:#8b7355;border-radius:10px;border:2px solid #654321;box-shadow:inset 0 2px 4px rgba(0,0,0,0.3)}.base-plate{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,#a08050 0%,#8b7355 50%,#a08050 100%);border-radius:8px}
-        .impl-footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
-        .impl-footer a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; }
-        .impl-footer a:hover { color: white; }
+        /* Light theme overrides */
+        [data-theme="light"] .project-card { background: rgba(255,255,255,0.6); }
+        [data-theme="light"] .project-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+        [data-theme="light"] .stats-bar { background: rgba(255,255,255,0.5); }
+        [data-theme="light"] .back-link { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); }
+        [data-theme="light"] .back-link:hover { background: rgba(0,0,0,0.04); }
+        [data-theme="light"] .impact-item { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); }
+        [data-theme="light"] .filter-btn { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); }
+        [data-theme="light"] .filter-btn:hover { background: rgba(0,0,0,0.04); }
+        [data-theme="light"] .expand-btn { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); }
+        [data-theme="light"] .expand-btn:hover { background: rgba(0,0,0,0.06); }
+
+        .impl-footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(128,128,128,0.12); }
+        .impl-footer a { color: var(--text-color); opacity: 0.6; text-decoration: none; transition: all 0.3s; }
+        .impl-footer a:hover { opacity: 1; }
 
         @media (max-width: 768px) {
           .projects-grid {
