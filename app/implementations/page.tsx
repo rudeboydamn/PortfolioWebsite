@@ -297,14 +297,14 @@ export default function ImplementationsPage() {
         }
 
         .filter-btn:hover {
-          background: rgba(255,255,255,0.15);
-          color: #ffffff;
+          background: linear-gradient(135deg, #444, #222);
+          color: #ffffff !important;
         }
 
         .filter-btn.active {
-          background: linear-gradient(135deg, #333, #111);
-          color: #ffffff;
-          border-color: transparent;
+          background: linear-gradient(135deg, #222, #000) !important;
+          color: #ffffff !important;
+          border-color: transparent !important;
         }
 
         .projects-grid { 
@@ -528,9 +528,9 @@ export default function ImplementationsPage() {
         [data-theme="light"] .back-link { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); }
         [data-theme="light"] .back-link:hover { background: rgba(0,0,0,0.04); }
         [data-theme="light"] .impact-item { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); }
-        [data-theme="light"] .filter-btn { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); color: rgba(0,0,0,0.7); }
-        [data-theme="light"] .filter-btn:hover { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.9); }
-        [data-theme="light"] .filter-btn.active { background: linear-gradient(135deg, #222, #000); color: #ffffff; }
+        [data-theme="light"] .filter-btn { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); color: rgba(0,0,0,0.8) !important; }
+        [data-theme="light"] .filter-btn:hover { background: linear-gradient(135deg, #333, #111) !important; color: #ffffff !important; }
+        [data-theme="light"] .filter-btn.active { background: linear-gradient(135deg, #222, #000) !important; color: #ffffff !important; border-color: transparent !important; }
         [data-theme="light"] .expand-btn { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); color: rgba(0,0,0,0.7); }
         [data-theme="light"] .expand-btn:hover { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.9); }
 

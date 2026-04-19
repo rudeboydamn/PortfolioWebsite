@@ -318,7 +318,7 @@ const PortfolioWebsite: React.FC = () => {
     [data-theme="light"] .impl-stat-number{background:linear-gradient(135deg, #111111, #555555);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     [data-theme="light"] .impl-filter-btn{background:rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.08);color:rgba(0,0,0,0.6)}
     [data-theme="light"] .impl-filter-btn:hover{background:rgba(0,0,0,0.04);color:rgba(0,0,0,0.9)}
-    [data-theme="light"] .impl-filter-btn.active{background:var(--skin);color:white;border-color:transparent}
+    [data-theme="light"] .impl-filter-btn.active{background:linear-gradient(135deg, #222, #000) !important;color:#ffffff !important;border-color:transparent !important}
     [data-theme="light"] .impl-expand-btn{background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.08);color:rgba(0,0,0,0.6)}
     [data-theme="light"] .impl-expand-btn:hover{background:rgba(0,0,0,0.06);color:rgba(0,0,0,0.9)}
     [data-theme="light"] .impl-project-icon{background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.06)}
@@ -362,9 +362,10 @@ const PortfolioWebsite: React.FC = () => {
     .about-icon{font-size:2rem;color:var(--skin-solid);margin-bottom:.5rem}
     .skills-container{grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
     .skills-header{display:flex;align-items:center;padding:1.2rem;border-radius:15px;cursor:pointer;margin-bottom:1rem;transition:all 0.3s ease}
-    .skills-header.active{background:var(--skin);transform:translateX(10px);box-shadow:0 10px 25px rgba(0,0,0,0.3)}
+    .skills-header.active{background:linear-gradient(135deg, #333, #111) !important;transform:translateX(10px);box-shadow:0 10px 25px rgba(0,0,0,0.3)}
     .skills-icon{font-size:2rem;color:var(--skin-solid);margin-right:1rem;transition:all 0.3s ease}
-    .skills-header.active .skills-icon{color:white}
+    .skills-header.active .skills-icon{color:#ffffff !important}
+    .skills-header.active h3,.skills-header.active span{color:#ffffff !important}
     .skills-content{animation:slideIn 0.5s ease}
     @keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     .skills-data{margin-bottom:1.5rem;padding:0.75rem;border-radius:10px;transition:all 0.3s ease}

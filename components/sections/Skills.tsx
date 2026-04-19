@@ -119,7 +119,7 @@ export function Skills() {
         }
         
         .skills-header.active {
-          background: var(--accent-gradient);
+          background: linear-gradient(135deg, #333, #111) !important;
           transform: translateX(10px);
           box-shadow: var(--shadow-lg);
         }
@@ -130,6 +130,16 @@ export function Skills() {
         
         .skills-header.active .skill-title,
         .skills-header.active .skill-years {
+          color: #ffffff !important;
+        }
+        
+        [data-theme="light"] .skills-header.active {
+          background: linear-gradient(135deg, #333, #111) !important;
+        }
+        
+        [data-theme="light"] .skills-header.active .skill-title,
+        [data-theme="light"] .skills-header.active .skill-years,
+        [data-theme="light"] .skills-header.active .skills-icon {
           color: #ffffff !important;
         }
         
