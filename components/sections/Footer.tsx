@@ -16,7 +16,7 @@ export function Footer({ onScrollToServices, onScrollToContact }: FooterProps) {
       <div className="container">
         <AnimatedSection>
           <h2 className="footer-name">Dammy Henry</h2>
-          <p className="footer-role">Data Engineer</p>
+          <p className="footer-role">Sr. Business Analyst & Data Engineer</p>
           
           <nav className="footer-links">
             <button 

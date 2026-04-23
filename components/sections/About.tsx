@@ -19,7 +19,7 @@ export function About({ onScrollToContact }: AboutProps) {
           <div className="about-image-wrapper">
             <Image 
               src="/img/dammyhenry.png" 
-              alt="Dammy Henry - Data Engineer" 
+              alt="Dammy Henry - Sr. Business Analyst & Data Engineer" 
               className="about-img" 
               width={350} 
               height={420} 
@@ -35,15 +35,16 @@ export function About({ onScrollToContact }: AboutProps) {
         <AnimatedSection animation="slideInRight" delay={0.2}>
           <div className="about-content">
             <p className="about-text">
-              I&apos;m Dammy Henry, a Data Engineer with extensive experience in building ETL pipelines, designing data 
-              warehouses, and implementing analytics infrastructure. I transform raw data into actionable insights 
-              that drive strategic business decisions and operational efficiency.
+              I&apos;m Dammy Henry — a Senior Business Analyst and Data Engineer with 12+ years of experience across 
+              financial services, healthcare, and enterprise technology. I bridge the gap between business needs and 
+              data solutions: leading requirements, aligning stakeholders, and building the ETL pipelines, data 
+              warehouses, and analytics infrastructure that turn strategy into measurable outcomes.
             </p>
             <p className="about-text">
-              Over the years, I have worked across banking, healthcare, transit, and insurance to lead implementations, 
-              analyze complex datasets, and build stakeholder-aligned solutions. I also dabble in iOS App development 
-              and write Swift code—building applications that blend creativity with functionality. I enjoy solving 
-              ambiguous problems, collaborating cross-functionally, and creating clarity with clean reporting and documentation.
+              Across banking, healthcare, transit, and insurance I have led enterprise EDI integrations, driven 
+              requirements analysis, and delivered $137K+ in documented cost savings across seven clients in a single 
+              quarter. I also build iOS apps in Swift and design web experiences — combining analytical depth with a 
+              builder&apos;s instinct.
             </p>
             
             <h4 className="what-i-do-title">What I do</h4>

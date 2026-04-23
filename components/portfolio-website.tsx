@@ -697,7 +697,7 @@ const PortfolioWebsite: React.FC = () => {
           <ThemeToggle />
           <div className="home-data">
             <h1 className="home-title">Hi, I&apos;m Dammy</h1>
-            <h3 className="home-subtitle">Data Engineer</h3>
+            <h3 className="home-subtitle">Sr. Business Analyst & Data Engineer</h3>
             <button className="btn" onClick={() => scrollToSection("about")}>
               <i className="uil uil-user"></i>More About me
             </button>
@@ -722,10 +722,10 @@ const PortfolioWebsite: React.FC = () => {
             </div>
             <div>
               <p style={{ lineHeight: "1.8", marginBottom: "1rem" }}>
-                I&apos;m Dammy Henry — a Data Engineer with 12+ years of experience spanning financial services, 
-                healthcare, and enterprise technology. I specialize in SQL, Power BI, DAX, and ETL pipeline 
-                design, transforming raw data into the reporting and analytics infrastructure that drives 
-                real business decisions.
+                I&apos;m Dammy Henry — a Senior Business Analyst and Data Engineer with 12+ years of experience 
+                spanning financial services, healthcare, and enterprise technology. I bridge the gap between 
+                business strategy and data execution: leading requirements, aligning stakeholders, and building 
+                the ETL pipelines and analytics infrastructure that drive real decisions.
               </p>
               <p style={{ lineHeight: "1.8", marginBottom: "1.5rem" }}>
                 My background in business analysis gives me an edge: I don&apos;t just build pipelines — I understand 
@@ -869,7 +869,7 @@ const PortfolioWebsite: React.FC = () => {
           <div className="skills-container container grid">
             <div>
               {[
-                { id: "data" as SkillCategory, icon: "database", title: "Data Engineer", years: "8+ years" },
+                { id: "data" as SkillCategory, icon: "database", title: "Sr. BA & Data Engineer", years: "8+ years" },
                 { id: "edi" as SkillCategory, icon: "exchange", title: "EDI Implementer", years: "2+ years" },
                 { id: "relations" as SkillCategory, icon: "users-alt", title: "Client Relations", years: "10+ years" },
                 { id: "frontend" as SkillCategory, icon: "brackets-curly", title: "Frontend Developer", years: "2 years" },
@@ -1031,7 +1031,7 @@ const PortfolioWebsite: React.FC = () => {
         <footer className="footer glass-card">
           <div className="container">
             <h2 style={{ color: "var(--title)", fontSize: "1.5rem" }}>Dammy Henry</h2>
-            <p style={{ fontSize: "0.95rem" }}>Data Engineer</p>
+            <p style={{ fontSize: "0.95rem" }}>Sr. Business Analyst & Data Engineer</p>
             <div className="footer-links">
               <a className="footer-link" onClick={() => scrollToSection("services")}>Services</a>
               <Link href="/builds" className="footer-link">Builds</Link>

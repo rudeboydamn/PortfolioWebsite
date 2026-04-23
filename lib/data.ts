@@ -146,7 +146,7 @@ export const navItems: NavItem[] = [
 ];
 
 export const skillCategories = [
-  { id: "data" as SkillCategory, icon: "database", title: "Data Engineer", years: "8+ years" },
+  { id: "data" as SkillCategory, icon: "database", title: "Sr. BA & Data Engineer", years: "8+ years" },
   { id: "edi" as SkillCategory, icon: "exchange", title: "EDI Implementer", years: "2+ years" },
   { id: "relations" as SkillCategory, icon: "users-alt", title: "Client Relations", years: "10+ years" },
   { id: "frontend" as SkillCategory, icon: "brackets-curly", title: "Frontend Developer", years: "2 years" },

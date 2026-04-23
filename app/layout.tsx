@@ -3,12 +3,14 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Dammy Henry - Data Engineer & Analytics Professional',
+    default: 'Dammy Henry - Sr. Business Analyst & Data Engineer',
     template: '%s | Dammy Henry',
   },
   description:
-    'Data Engineer specializing in ETL pipelines, data warehousing, Power BI dashboards, and analytics infrastructure. 12+ years transforming raw data into actionable business insights.',
+    'Senior Business Analyst & Data Engineer with 12+ years across financial services, healthcare, and enterprise tech. Specializing in requirements analysis, ETL pipelines, data warehousing, and Power BI dashboards.',
   keywords: [
+    'Senior Business Analyst',
+    'Business Analyst',
     'Data Engineer',
     'Data Engineering',
     'ETL Pipelines',
@@ -40,8 +42,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Dammy Henry - Data Engineer & Analytics Professional',
-    description: 'Data Engineer & Web Developer specializing in ETL pipelines, Power BI dashboards, data warehousing, and analytics infrastructure.',
+    title: 'Dammy Henry - Sr. Business Analyst & Data Engineer',
+    description: 'Senior Business Analyst & Data Engineer specializing in requirements analysis, ETL pipelines, Power BI dashboards, and data warehousing. 12+ years of enterprise experience.',
     url: 'https://dammyhenry.com',
     siteName: 'Dammy Henry Portfolio',
     locale: 'en_US',
@@ -51,14 +53,14 @@ export const metadata: Metadata = {
         url: '/img/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Dammy Henry - Data Engineer',
+        alt: 'Dammy Henry - Sr. Business Analyst & Data Engineer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dammy Henry - Data Engineer & Analytics Professional',
-    description: 'Data Engineer specializing in ETL, Power BI, and data warehousing. 12+ years experience.',
+    title: 'Dammy Henry - Sr. Business Analyst & Data Engineer',
+    description: 'Senior Business Analyst & Data Engineer. Requirements analysis, ETL pipelines, Power BI, and data warehousing. 12+ years experience.',
     creator: '@dammyhenry',
     images: ['/img/twitter-image.jpg'],
   },
@@ -95,14 +97,17 @@ const personSchema = {
   name: 'Dammy Henry',
   url: 'https://dammyhenry.com',
   image: 'https://dammyhenry.com/img/dammyhenry.png',
-  jobTitle: 'Data Engineer & Web Developer',
+  jobTitle: 'Senior Business Analyst & Data Engineer',
   description:
-    'Data Engineer & Web Developer specializing in ETL pipelines, Power BI dashboards, data warehousing, and building scalable data solutions.',
+    'Senior Business Analyst & Data Engineer specializing in requirements analysis, ETL pipelines, Power BI dashboards, data warehousing, and building scalable data solutions.',
   sameAs: [
     'https://www.linkedin.com/in/dammyhenry',
     'https://github.com/rudeboydamn',
   ],
   knowsAbout: [
+    'Business Analysis',
+    'Requirements Analysis',
+    'Stakeholder Management',
     'Data Engineering',
     'ETL Pipelines',
     'Power BI',
@@ -129,21 +134,23 @@ const websiteSchema = {
     name: 'Dammy Henry',
   },
   description:
-    'Portfolio of Dammy Henry - Data Engineer specializing in ETL pipelines, Power BI, and data warehousing.',
+    'Portfolio of Dammy Henry - Senior Business Analyst & Data Engineer specializing in requirements analysis, ETL pipelines, Power BI, and data warehousing.',
 };
 
 const professionalServiceSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'Dammy Henry - Data Engineering Services',
+  name: 'Dammy Henry - Business Analysis & Data Engineering Services',
   description:
-    'Data engineering, analytics, and business intelligence consulting services.',
+    'Senior Business Analysis, data engineering, analytics, and business intelligence consulting services.',
   url: 'https://dammyhenry.com',
   provider: {
     '@type': 'Person',
     name: 'Dammy Henry',
   },
   serviceType: [
+    'Business Analysis',
+    'Requirements Analysis',
     'Data Engineering',
     'ETL Development',
     'Power BI Dashboards',

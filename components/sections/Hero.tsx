@@ -13,7 +13,7 @@ export function Hero({ onScrollToAbout }: HeroProps) {
       <ThemeToggle />
       <AnimatedSection animation="fadeInUp" className="home-data">
         <h1 className="home-title">Hi, I&apos;m Dammy</h1>
-        <h3 className="home-subtitle">Data Engineer</h3>
+        <h3 className="home-subtitle">Sr. Business Analyst & Data Engineer</h3>
         <button 
           className="portfolio-btn" 
           onClick={onScrollToAbout}
