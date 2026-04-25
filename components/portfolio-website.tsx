@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from 'next/link';
-import ThemeToggle from './theme-toggle';
+import { useTheme } from '../app/providers';
 
 type SkillCategory = "data" | "edi" | "relations" | "frontend" | "design" | "backend";
 
@@ -177,6 +177,7 @@ const implCategories = ["all", ...Array.from(new Set(implProjects.map(p => p.cat
 const PortfolioWebsite: React.FC = () => {
   const [sidebar, setSidebar] = useState(false);
   const [section, setSection] = useState("home");
+  const { theme, toggleTheme } = useTheme();
   const [activeSkill, setActiveSkill] = useState<SkillCategory>("data");
   const [modal, setModal] = useState<number | null>(null);
   const [focus, setFocus] = useState<Record<string, boolean>>({});
@@ -694,7 +695,19 @@ const PortfolioWebsite: React.FC = () => {
 
       <main className="main">
         <section className="home" id="home">
-          <ThemeToggle />
+          <div className="old-fashioned-toggle">
+            <button
+              className={`toggle-switch ${theme === 'dark' ? 'active' : ''}`}
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              <div className="toggle-base"></div>
+              <div className="toggle-lever">
+                <span className="lever-text light-text">☀️</span>
+                <span className="lever-text dark-text">🌙</span>
+              </div>
+            </button>
+          </div>
           <div className="home-data">
             <h1 className="home-title">Hi, I&apos;m Dammy</h1>
             <h3 className="home-subtitle">Sr. Business Analyst & Data Engineer</h3>
