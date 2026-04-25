@@ -56,14 +56,14 @@ export function Hero({ onScrollToAbout }: HeroProps) {
           left: 0;
           width: 100%;
           height: 100%;
-          background: radial-gradient(circle at 20% 50%, rgba(80,80,80,0.15) 0%, transparent 50%), 
-                      radial-gradient(circle at 80% 20%, rgba(60,60,60,0.1) 0%, transparent 50%);
+          background: radial-gradient(circle at 20% 50%, rgba(20,184,166,0.08) 0%, transparent 50%), 
+                      radial-gradient(circle at 80% 20%, rgba(13,148,136,0.06) 0%, transparent 50%);
           pointer-events: none;
         }
         
         [data-theme="light"] .home::before {
-          background: radial-gradient(circle at 20% 50%, rgba(200,200,200,0.1) 0%, transparent 50%), 
-                      radial-gradient(circle at 80% 20%, rgba(180,180,180,0.08) 0%, transparent 50%);
+          background: radial-gradient(circle at 20% 50%, rgba(13,148,136,0.06) 0%, transparent 50%), 
+                      radial-gradient(circle at 80% 20%, rgba(20,184,166,0.04) 0%, transparent 50%);
         }
         
         .home-data {
@@ -86,7 +86,7 @@ export function Hero({ onScrollToAbout }: HeroProps) {
           color: var(--text-primary);
           margin-bottom: 0.5rem;
           font-weight: 700;
-          background: linear-gradient(135deg, #ffffff, #cccccc, #888888);
+          background: linear-gradient(135deg, #ffffff, #b2dfdb, #14b8a6);
           background-size: 200% 200%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -94,7 +94,7 @@ export function Hero({ onScrollToAbout }: HeroProps) {
         }
         
         [data-theme="light"] .home-title {
-          background: linear-gradient(135deg, #000000, #444444);
+          background: linear-gradient(135deg, #111111, #0d9488);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }

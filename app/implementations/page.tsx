@@ -196,8 +196,8 @@ export default function ImplementationsPage() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         :root {
-          --primary-color: #555555;
-          --primary-gradient: linear-gradient(135deg, #555, #333);
+          --primary-color: #14b8a6;
+          --primary-gradient: linear-gradient(135deg, #14b8a6, #0d9488);
           --text-color: rgba(255,255,255,0.9);
           --text-muted: rgba(255,255,255,0.65);
           --background: #0a0a0a;
@@ -206,8 +206,8 @@ export default function ImplementationsPage() {
         }
 
         [data-theme="light"] {
-          --primary-color: #444444;
-          --primary-gradient: linear-gradient(135deg, #555, #333);
+          --primary-color: #0d9488;
+          --primary-gradient: linear-gradient(135deg, #0d9488, #0f766e);
           --text-color: rgba(0,0,0,0.8);
           --text-muted: rgba(0,0,0,0.55);
           --background: #f8f8f8;
@@ -216,8 +216,8 @@ export default function ImplementationsPage() {
         }
 
         [data-theme="dark"] {
-          --primary-color: #555555;
-          --primary-gradient: linear-gradient(135deg, #555, #333);
+          --primary-color: #14b8a6;
+          --primary-gradient: linear-gradient(135deg, #14b8a6, #0d9488);
           --text-color: rgba(255,255,255,0.9);
           --text-muted: rgba(255,255,255,0.65);
           --background: #0a0a0a;
@@ -297,12 +297,12 @@ export default function ImplementationsPage() {
         }
 
         .filter-btn:hover {
-          background: linear-gradient(135deg, #444, #222);
+          background: linear-gradient(135deg, #14b8a6, #0d9488);
           color: #ffffff !important;
         }
 
         .filter-btn.active {
-          background: linear-gradient(135deg, #222, #000) !important;
+          background: linear-gradient(135deg, #0d9488, #0f766e) !important;
           color: #ffffff !important;
           border-color: transparent !important;
         }
@@ -529,8 +529,8 @@ export default function ImplementationsPage() {
         [data-theme="light"] .back-link:hover { background: rgba(0,0,0,0.04); }
         [data-theme="light"] .impact-item { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); }
         [data-theme="light"] .filter-btn { background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.06); color: rgba(0,0,0,0.8) !important; }
-        [data-theme="light"] .filter-btn:hover { background: linear-gradient(135deg, #333, #111) !important; color: #ffffff !important; }
-        [data-theme="light"] .filter-btn.active { background: linear-gradient(135deg, #222, #000) !important; color: #ffffff !important; border-color: transparent !important; }
+        [data-theme="light"] .filter-btn:hover { background: linear-gradient(135deg, #14b8a6, #0d9488) !important; color: #ffffff !important; }
+        [data-theme="light"] .filter-btn.active { background: linear-gradient(135deg, #0d9488, #0f766e) !important; color: #ffffff !important; border-color: transparent !important; }
         [data-theme="light"] .expand-btn { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); color: rgba(0,0,0,0.7); }
         [data-theme="light"] .expand-btn:hover { background: rgba(0,0,0,0.08); color: rgba(0,0,0,0.9); }
 

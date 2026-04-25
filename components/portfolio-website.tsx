@@ -269,21 +269,21 @@ const PortfolioWebsite: React.FC = () => {
 
   const dynamicStyles = `
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    :root{--skin:linear-gradient(135deg, #333333 0%, #111111 100%);--skin-solid:#444444;--title:rgba(255,255,255,0.95);--text:rgba(255,255,255,0.8);--body:linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);--glass:rgba(255,255,255,0.05);--glass-border:rgba(255,255,255,0.1);--shadow:rgba(0,0,0,0.5);--font:'Poppins',sans-serif}
+    :root{--skin:linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);--skin-solid:#14b8a6;--title:rgba(255,255,255,0.95);--text:rgba(255,255,255,0.8);--body:linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);--glass:rgba(255,255,255,0.05);--glass-border:rgba(255,255,255,0.1);--shadow:rgba(0,0,0,0.5);--font:'Poppins',sans-serif}
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:var(--font);background:var(--body);color:var(--text);min-height:100vh;overflow-x:hidden}
     body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%, rgba(80,80,80,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(60,60,60,0.1) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(100,100,100,0.08) 0%, transparent 50%);pointer-events:none;z-index:-1}
     .container{max-width:1200px;margin:0 auto;padding:0 1rem}.grid{display:grid}.flex{display:flex}
     .glass-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2);transition:all 0.4s cubic-bezier(0.23,1,0.320,1)}
     .glass-card:hover{transform:translateY(-5px);box-shadow:0 25px 50px rgba(0,0,0,0.2)}
-    .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--skin);color:var(--title);padding:.75rem 1.4rem;border:none;border-radius:50px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden;font-weight:500;text-decoration:none;margin-right:0.5rem;margin-top:0.5rem}
-    .btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,0.4)}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--skin);color:#ffffff;padding:.75rem 1.4rem;border:none;border-radius:50px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden;font-weight:500;text-decoration:none;margin-right:0.5rem;margin-top:0.5rem}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(20,184,166,0.35)}
     .btn i{font-size:1.1rem}
     .section{padding:5rem 0 2rem;position:relative}.title{text-align:center;font-size:2.5rem;margin-bottom:2rem;color:var(--title);font-weight:600}
     .old-fashioned-toggle{position:absolute;top:2rem;right:2rem;z-index:100}.toggle-switch{background:none;border:none;cursor:pointer;padding:0;width:80px;height:60px;position:relative;outline:none}.toggle-lever{position:absolute;top:0;width:35px;height:50px;background:#d4af37;border-radius:4px;border:2px solid #8b7355;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),background-color 0.3s ease;z-index:2;left:0}.toggle-lever:hover{box-shadow:0 4px 8px rgba(0,0,0,0.4);transform:scale(1.05)}.toggle-switch.active .toggle-lever{transform:translateX(35px);background:#4a5568;border-color:#2d3748}.lever-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:bold;transition:opacity 0.3s ease}.light-text{opacity:1;color:#ffd700}.dark-text{opacity:0;color:#e2e8f0}.toggle-switch.active .light-text{opacity:0}.toggle-switch.active .dark-text{opacity:1}.toggle-base{position:absolute;top:20px;left:0;width:70px;height:20px;background:#8b7355;border-radius:10px;border:2px solid #654321;box-shadow:inset 0 2px 4px rgba(0,0,0,0.3)}.base-plate{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,#a08050 0%,#8b7355 50%,#a08050 100%);border-radius:8px}
     html{scroll-behavior:smooth}
     /* Light Theme */
-    [data-theme="light"] { --skin:linear-gradient(135deg, #555555 0%, #333333 100%);--skin-solid:#444444;--title:rgba(0,0,0,0.95);--text:rgba(0,0,0,0.75);--body:#f8f8f8;--glass:rgba(0,0,0,0.03);--glass-border:rgba(0,0,0,0.08);--shadow:rgba(0,0,0,0.08);--label-bg:#f8f8f8 }
+    [data-theme="light"] { --skin:linear-gradient(135deg, #0d9488 0%, #0f766e 100%);--skin-solid:#0d9488;--title:rgba(0,0,0,0.95);--text:rgba(0,0,0,0.75);--body:#f8f8f8;--glass:rgba(0,0,0,0.03);--glass-border:rgba(0,0,0,0.08);--shadow:rgba(0,0,0,0.08);--label-bg:#f8f8f8 }
     [data-theme="light"] body{background:var(--body);color:var(--text)}
     [data-theme="light"] body::before{background:none}
     [data-theme="light"] .home{background:#f8f8f8}
@@ -293,7 +293,7 @@ const PortfolioWebsite: React.FC = () => {
     [data-theme="light"] .glass-card:hover{box-shadow:0 16px 40px rgba(0,0,0,0.1)}
     [data-theme="light"] .nav-link{color:rgba(0,0,0,0.6)}
     [data-theme="light"] .nav-link:hover,[data-theme="light"] .nav-link.active{color:rgba(0,0,0,0.95)}
-    [data-theme="light"] .home-title{background:linear-gradient(135deg, #111111, #555555);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    [data-theme="light"] .home-title{background:linear-gradient(135deg, #111111, #0d9488);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     [data-theme="light"] .home-subtitle{color:rgba(0,0,0,0.55)}
     [data-theme="light"] .work-card,[data-theme="light"] .service-card,[data-theme="light"] .about-box,[data-theme="light"] .contact-card{background:rgba(255,255,255,0.6)}
     [data-theme="light"] .skills-header{background:rgba(255,255,255,0.5)}
@@ -303,8 +303,8 @@ const PortfolioWebsite: React.FC = () => {
     [data-theme="light"] .skills-data:hover{background:rgba(0,0,0,0.03)}
     [data-theme="light"] .input,[data-theme="light"] .share-box textarea,[data-theme="light"] .share-box input{background:rgba(255,255,255,0.8);border:1px solid rgba(0,0,0,0.1);color:rgba(0,0,0,0.9)}
     [data-theme="light"] .input:focus{border-color:var(--skin-solid);background:white}
-    [data-theme="light"] .btn{color:white;box-shadow:0 4px 12px rgba(0,0,0,0.12)}
-    [data-theme="light"] .btn:hover{box-shadow:0 8px 20px rgba(0,0,0,0.18)}
+    [data-theme="light"] .btn{color:white;box-shadow:0 4px 12px rgba(13,148,136,0.2)}
+    [data-theme="light"] .btn:hover{box-shadow:0 8px 20px rgba(20,184,166,0.3)}
     [data-theme="light"] .nav-toggle{background:rgba(255,255,255,0.8);border:1px solid rgba(0,0,0,0.08);color:rgba(0,0,0,0.8)}
     [data-theme="light"] .sidebar{background:rgba(255,255,255,0.98)!important}
     [data-theme="light"] .nav-close{background:rgba(0,0,0,0.05)!important;border:1px solid rgba(0,0,0,0.1)!important}
@@ -315,10 +315,10 @@ const PortfolioWebsite: React.FC = () => {
     [data-theme="light"] .modal-content{background:rgba(255,255,255,0.95)!important;border:1px solid rgba(0,0,0,0.08)}
     [data-theme="light"] .modal-close{background:rgba(0,0,0,0.05);color:rgba(0,0,0,0.8)}
     [data-theme="light"] .impl-stats-bar{background:rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.06)}
-    [data-theme="light"] .impl-stat-number{background:linear-gradient(135deg, #111111, #555555);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    [data-theme="light"] .impl-stat-number{background:linear-gradient(135deg, #0d9488, #0f766e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     [data-theme="light"] .impl-filter-btn{background:rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.08);color:rgba(0,0,0,0.6)}
     [data-theme="light"] .impl-filter-btn:hover{background:rgba(0,0,0,0.04);color:rgba(0,0,0,0.9)}
-    [data-theme="light"] .impl-filter-btn.active{background:linear-gradient(135deg, #222, #000) !important;color:#ffffff !important;border-color:transparent !important}
+    [data-theme="light"] .impl-filter-btn.active{background:linear-gradient(135deg, #0d9488, #0f766e) !important;color:#ffffff !important;border-color:transparent !important}
     [data-theme="light"] .impl-expand-btn{background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.08);color:rgba(0,0,0,0.6)}
     [data-theme="light"] .impl-expand-btn:hover{background:rgba(0,0,0,0.06);color:rgba(0,0,0,0.9)}
     [data-theme="light"] .impl-project-icon{background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.06)}
@@ -329,7 +329,7 @@ const PortfolioWebsite: React.FC = () => {
     [data-theme="light"] .contact-banner.error{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#dc2626}
     
     /* Dark Theme */
-    [data-theme="dark"] { --skin:linear-gradient(135deg, #333333 0%, #111111 100%);--skin-solid:#555555;--title:rgba(255,255,255,0.95);--text:rgba(255,255,255,0.75);--body:#0a0a0a;--glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,0.5);--label-bg:#0d0d0d }
+    [data-theme="dark"] { --skin:linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);--skin-solid:#14b8a6;--title:rgba(255,255,255,0.95);--text:rgba(255,255,255,0.75);--body:#0a0a0a;--glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--shadow:rgba(0,0,0,0.5);--label-bg:#0d0d0d }
     [data-theme="dark"] body{background:var(--body);color:var(--text)}
     [data-theme="dark"] body::before{display:none}
     [data-theme="dark"] .home{background:#0a0a0a}
@@ -353,7 +353,7 @@ const PortfolioWebsite: React.FC = () => {
     .home::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%, rgba(80,80,80,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(60,60,60,0.1) 0%, transparent 50%);pointer-events:none}
     .home-data{max-width:700px;padding:3rem;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:30px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.2);animation:fadeInUp 1s ease;text-align:center;margin:2rem}
     @keyframes fadeInUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
-    .home-title{font-size:3.5rem;color:var(--title);margin-bottom:.5rem;font-weight:700;background:linear-gradient(135deg, #ffffff, #cccccc, #888888);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 3s ease-in-out infinite}
+    .home-title{font-size:3.5rem;color:var(--title);margin-bottom:.5rem;font-weight:700;background:linear-gradient(135deg, #ffffff, #b2dfdb, #14b8a6);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 3s ease-in-out infinite}
     @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
     .home-subtitle{font-size:1.5rem;margin-bottom:1.5rem;color:var(--text);font-weight:500;font-style:italic}
     .about{padding:6rem 0}.about-container{grid-template-columns:350px 1fr;gap:4rem;align-items:flex-start;max-width:1400px;margin:0 auto}.about-img{width:100%;max-width:350px;height:auto;border-radius:25px;box-shadow:0 20px 40px rgba(0,0,0,0.2);transition:transform 0.3s ease;object-fit:cover}.about-img:hover{transform:translateY(-10px)}
@@ -362,7 +362,7 @@ const PortfolioWebsite: React.FC = () => {
     .about-icon{font-size:2rem;color:var(--skin-solid);margin-bottom:.5rem}
     .skills-container{grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
     .skills-header{display:flex;align-items:center;padding:1.2rem;border-radius:15px;cursor:pointer;margin-bottom:1rem;transition:all 0.3s ease}
-    .skills-header.active{background:linear-gradient(135deg, #333, #111) !important;transform:translateX(10px);box-shadow:0 10px 25px rgba(0,0,0,0.3)}
+    .skills-header.active{background:linear-gradient(135deg, #14b8a6, #0d9488) !important;transform:translateX(10px);box-shadow:0 10px 25px rgba(20,184,166,0.3)}
     .skills-icon{font-size:2rem;color:var(--skin-solid);margin-right:1rem;transition:all 0.3s ease}
     .skills-header.active .skills-icon{color:#ffffff !important}
     .skills-header.active h3,.skills-header.active span{color:#ffffff !important}
@@ -422,7 +422,7 @@ const PortfolioWebsite: React.FC = () => {
     .steadfast-showcase:hover{transform:translateY(-3px)!important}
     .steadfast-images::-webkit-scrollbar{height:4px}
     .steadfast-images::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);border-radius:10px}
-    .steadfast-images::-webkit-scrollbar-thumb{background:#444444;border-radius:10px}
+    .steadfast-images::-webkit-scrollbar-thumb{background:#14b8a6;border-radius:10px}
     @media(max-width:1024px){
       .sidebar{transform:translateX(${sidebar ? "0" : "-100%"})}
       .nav-toggle{display:flex}

@@ -24,9 +24,9 @@ html {
   color-scheme: dark;
   
   /* Primary Colors */
-  --color-primary: #333333;
-  --color-primary-light: #555555;
-  --color-primary-dark: #1a1a1a;
+  --color-primary: #14b8a6;
+  --color-primary-light: #2dd4bf;
+  --color-primary-dark: #0d9488;
   
   /* Background Colors - Dark Mode (Default) */
   --bg-primary: #0a0a0a;
@@ -41,8 +41,8 @@ html {
   --text-muted: rgba(255, 255, 255, 0.45);
   
   /* Accent & UI */
-  --accent-gradient: linear-gradient(135deg, #444444 0%, #222222 100%);
-  --accent-solid: #444444;
+  --accent-gradient: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  --accent-solid: #14b8a6;
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -94,7 +94,7 @@ html {
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(68, 68, 68, 0.3);
+  --shadow-glow: 0 0 20px rgba(20, 184, 166, 0.3);
   
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -136,8 +136,8 @@ html {
   --text-tertiary: rgba(0, 0, 0, 0.55);
   --text-muted: rgba(0, 0, 0, 0.45);
   
-  --accent-gradient: linear-gradient(135deg, #555555 0%, #333333 100%);
-  --accent-solid: #555555;
+  --accent-gradient: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+  --accent-solid: #0d9488;
   --glass-bg: rgba(0, 0, 0, 0.03);
   --glass-border: rgba(0, 0, 0, 0.08);
   --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
@@ -404,7 +404,7 @@ h6 { font-size: var(--text-base); }
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, #333333 0%, #111111 100%);
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
   color: #ffffff !important;
   padding: 0.875rem 1.75rem;
   border: none;
@@ -414,14 +414,14 @@ h6 { font-size: var(--text-base); }
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(20, 184, 166, 0.25);
 }
 
 .portfolio-btn:hover,
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(135deg, #444444 0%, #222222 100%);
+  box-shadow: 0 8px 25px rgba(20, 184, 166, 0.35);
+  background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
 }
 
 .portfolio-btn:active,
@@ -436,18 +436,18 @@ h6 { font-size: var(--text-base); }
   transform: none;
 }
 
-/* Light theme - buttons stay dark with white text for contrast */
+/* Light theme - teal buttons */
 [data-theme="light"] .portfolio-btn,
 [data-theme="light"] .btn {
-  background: linear-gradient(135deg, #222222 0%, #000000 100%);
+  background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
   color: #ffffff !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 15px rgba(13, 148, 136, 0.25);
 }
 
 [data-theme="light"] .portfolio-btn:hover,
 [data-theme="light"] .btn:hover {
-  background: linear-gradient(135deg, #333333 0%, #111111 100%);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  box-shadow: 0 8px 25px rgba(20, 184, 166, 0.35);
 }
 
 /* Secondary/Button variants */
