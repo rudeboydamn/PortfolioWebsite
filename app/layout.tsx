@@ -3,16 +3,20 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Dammy Henry - Sr. Business Analyst & Data Engineer',
+    default: 'Dammy Henry - Data Engineering & Management Leader',
     template: '%s | Dammy Henry',
   },
   description:
-    'Senior Business Analyst & Data Engineer with 12+ years across financial services, healthcare, and enterprise tech. Specializing in requirements analysis, ETL pipelines, data warehousing, and Power BI dashboards.',
+    'Enterprise Information Manager & data engineering leader with 12+ years across manufacturing, energy, and financial services. Data platform ownership, ETL pipelines, Azure Synapse, data governance, and Power BI at enterprise scale.',
   keywords: [
-    'Senior Business Analyst',
-    'Business Analyst',
+    'Enterprise Information Manager',
+    'Data Engineering Manager',
     'Data Engineer',
     'Data Engineering',
+    'Data Governance',
+    'Azure Synapse',
+    'Microsoft Fabric',
+    'Docker',
     'ETL Pipelines',
     'Power BI',
     'DAX',
@@ -42,8 +46,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Dammy Henry - Sr. Business Analyst & Data Engineer',
-    description: 'Senior Business Analyst & Data Engineer specializing in requirements analysis, ETL pipelines, Power BI dashboards, and data warehousing. 12+ years of enterprise experience.',
+    title: 'Dammy Henry - Data Engineering & Management Leader',
+    description: 'Enterprise Information Manager owning data platforms end to end: pipelines, warehouses, governance, and executive BI. 12+ years of enterprise experience.',
     url: 'https://dammyhenry.com',
     siteName: 'Dammy Henry Portfolio',
     locale: 'en_US',
@@ -53,14 +57,14 @@ export const metadata: Metadata = {
         url: '/img/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Dammy Henry - Sr. Business Analyst & Data Engineer',
+        alt: 'Dammy Henry - Data Engineering & Management Leader',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dammy Henry - Sr. Business Analyst & Data Engineer',
-    description: 'Senior Business Analyst & Data Engineer. Requirements analysis, ETL pipelines, Power BI, and data warehousing. 12+ years experience.',
+    title: 'Dammy Henry - Data Engineering & Management Leader',
+    description: 'Enterprise Information Manager. Data platforms, ETL pipelines, governance, Azure Synapse, and Power BI. 12+ years experience.',
     creator: '@dammyhenry',
     images: ['/img/twitter-image.jpg'],
   },
@@ -97,9 +101,9 @@ const personSchema = {
   name: 'Dammy Henry',
   url: 'https://dammyhenry.com',
   image: 'https://dammyhenry.com/img/dammyhenry.png',
-  jobTitle: 'Senior Business Analyst & Data Engineer',
+  jobTitle: 'Enterprise Information Manager',
   description:
-    'Senior Business Analyst & Data Engineer specializing in requirements analysis, ETL pipelines, Power BI dashboards, data warehousing, and building scalable data solutions.',
+    'Enterprise Information Manager and data engineering leader specializing in data platform ownership, ETL pipelines, data governance, Azure Synapse, and Power BI at enterprise scale.',
   sameAs: [
     'https://www.linkedin.com/in/dammyhenry',
     'https://github.com/rudeboydamn',

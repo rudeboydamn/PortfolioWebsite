@@ -1,6 +1,6 @@
 # Dammy Henry Portfolio - Thoughts Platform
 
-A modern portfolio website with an integrated social platform called "Thoughts" - featuring authentication, real-time posting, likes, and comments.
+Modern portfolio site with an integrated social product called Thoughts. The public site handles portfolio, blog, builds, and implementations; Thoughts adds auth, posting, likes, and comments.
 
 ## Features
 
@@ -18,7 +18,7 @@ A modern portfolio website with an integrated social platform called "Thoughts" 
 - **Styling**: Custom CSS with glassmorphism design
 - **Deployment**: Vercel
 
-## Getting Started
+## Setup
 
 ### 1. Install Dependencies
 
@@ -49,7 +49,15 @@ GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 ```
 
-### 3. Initialize Database
+### 3. Start the App
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+### 4. Initialize Database
 
 After deploying to Vercel and setting up Postgres:
 
@@ -60,7 +68,7 @@ curl -X POST https://your-domain.vercel.app/api/init-db \
   -d '{"secret": "your-nextauth-secret"}'
 ```
 
-### 4. Migrate Blog Posts to Thoughts
+### 5. Migrate Blog Posts to Thoughts
 
 Run the migration script to transfer existing blog posts:
 
@@ -72,13 +80,13 @@ This will create the admin user with credentials:
 - Email: dammy@dammyhenry.com
 - Password: valleyvale (⚠️ Change this immediately after first login!)
 
-### 5. Run Development Server
+## Usage
 
-```bash
-npm run dev
-```
-
-Visit `http://localhost:3000` to see the site.
+- `/` - public portfolio homepage and brand narrative
+- `/blog` - long-form content archive
+- `/builds` and `/implementations` - project and delivery proof
+- `/thoughts` - the separate social/content product surface
+- Before shipping content or app changes, run `npm run build`
 
 ## Deployment to Vercel
 

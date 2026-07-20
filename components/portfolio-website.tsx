@@ -39,11 +39,12 @@ type ImplProject = {
 
 const skills: Record<SkillCategory, Skill[]> = {
   data: [
-    { n: "SQL / Power BI / DAX", p: 95 },
+    { n: "SQL / Power BI / DAX / TMDL", p: 95 },
     { n: "Python / Pandas", p: 92 },
-    { n: "Data Warehousing", p: 90 },
-    { n: "ETL Pipelines", p: 92 },
-    { n: "dbt / Data Modeling", p: 88 },
+    { n: "ETL & Pipeline Automation", p: 92 },
+    { n: "Azure Synapse / Fabric / Dataflow Gen2", p: 88 },
+    { n: "Docker / Linux / Microservices Ops", p: 85 },
+    { n: "Data Governance & Lineage", p: 90 },
   ],
   edi: [
     { n: "EDI X12", p: 90 },
@@ -81,10 +82,10 @@ const skills: Record<SkillCategory, Skill[]> = {
 
 const works: WorkItem[] = [
   { id: 1, title: "SteadFast iOS App", url: "https://github.com/rudeboydamn/SteadFast", type: "iOS App" },
-  { id: 2, title: "dammyhenry.com", url: "https://dammyhenry.com", type: "Web Design" },
-  { id: 3, title: "Vale CRM", url: "https://github.com/rudeboydamn/valecrm", type: "iOS App" },
-  { id: 4, title: "Keystonevale.org", url: "https://keystonevale.org", type: "Brand Design" },
-  { id: 5, title: "Keystone Vale CRM", url: "https://keystonevale.org/crm", type: "CRM System" },
+  { id: 2, title: "DammyHenry.com", url: "https://dammyhenry.com", type: "Portfolio Website" },
+  { id: 3, title: "Vale CRM", url: "https://github.com/rudeboydamn/valecrm", type: "iOS CRM Prototype" },
+  { id: 4, title: "KeystoneVale.org", url: "https://keystonevale.org", type: "Business Website" },
+  { id: 5, title: "Keystone Vale CRM", url: "https://keystonevale.org/crm", type: "CRM Platform" },
 ];
 
 const services: Service[] = [
@@ -106,12 +107,12 @@ const services: Service[] = [
   {
     icon: "chart-line",
     title: "Data &<br>Analytics",
-    items: ["SQL & Power BI (DAX, RLS)", "Excel (Power Query), ETL", "Reporting & Dashboarding", "Trend Forecasting", "Data Visualization"],
+    items: ["SQL & Power BI (DAX, TMDL, RLS)", "ETL & Pipeline Automation", "Semantic Model Design", "Executive Dashboarding", "Data Visualization"],
   },
   {
-    icon: "web-grid",
-    title: "Web<br>Designer",
-    items: ["UI Development", "Web Page Development", "Interactive UX/UI", "Brand Positioning", "Product Mockups"],
+    icon: "server-network",
+    title: "Data Platform<br>Engineering",
+    items: ["Docker & Microservices Operations", "Azure Synapse / Fabric / Dataflow Gen2", "Data Governance & Lineage", "Recovery Runbooks & DR Planning", "Platform Transition Management"],
   },
   {
     icon: "arrow",
@@ -185,14 +186,12 @@ const PortfolioWebsite: React.FC = () => {
   const [activeService, setActiveService] = useState<Service | null>(null);
   const [expandedImpl, setExpandedImpl] = useState<number | null>(null);
   const [implFilter, setImplFilter] = useState<string>("all");
-  const [steadfastImg, setSteadfastImg] = useState(0);
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactMessage, setContactMessage] = useState("");
   const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const filteredImpl = implFilter === "all" ? implProjects : implProjects.filter(p => p.category === implFilter);
-  const steadfastImages = ["/img/st1.PNG", "/img/st2.PNG", "/img/st3.PNG", "/img/st4.PNG", "/img/st5.PNG"];
 
   // Header scroll effect
   useEffect(() => {
@@ -352,7 +351,7 @@ const PortfolioWebsite: React.FC = () => {
     .main{margin-left:100px;min-height:100vh;position:relative;overflow-x:hidden}
     .home{background:linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     .home::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%, rgba(80,80,80,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(60,60,60,0.1) 0%, transparent 50%);pointer-events:none}
-    .home-data{max-width:700px;padding:3rem;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:30px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.2);animation:fadeInUp 1s ease;text-align:center;margin:2rem}
+    .home-data{width:min(700px,calc(100vw - 8rem));max-width:700px;padding:3rem;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:30px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.2);animation:fadeInUp 1s ease;text-align:center;margin:2rem auto}
     @keyframes fadeInUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
     .home-title{font-size:3.5rem;color:var(--title);margin-bottom:.5rem;font-weight:700;background:linear-gradient(135deg, #ffffff, #b2dfdb, #14b8a6);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 3s ease-in-out infinite}
     @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
@@ -497,11 +496,12 @@ const PortfolioWebsite: React.FC = () => {
         z-index:1001;
       }
       .nav-toggle i{font-size:1.5rem}
-      .home{min-height:100vh;padding:1rem}
+      .home{min-height:100vh;padding:1rem 0.75rem}
       .home-data{
-        margin:1rem;
-        padding:1.5rem;
+        width:100%;
         max-width:100%;
+        margin:1rem auto;
+        padding:1.5rem;
         border-radius:20px;
       }
       .home-title{font-size:2rem;line-height:1.2}
@@ -599,7 +599,7 @@ const PortfolioWebsite: React.FC = () => {
     @media(max-width:480px){
       .home-title{font-size:1.75rem}
       .home-subtitle{font-size:1rem}
-      .home-data{padding:1.25rem}
+      .home-data{width:calc(100vw - 1.5rem);padding:1.25rem}
       .title{font-size:1.5rem}
       .nav-link{font-size:1.1rem;padding:1rem 1.5rem}
       .about-img{max-width:200px}
@@ -709,11 +709,24 @@ const PortfolioWebsite: React.FC = () => {
             </button>
           </div>
           <div className="home-data">
+            <p style={{ marginBottom: "0.75rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--skin-solid)", fontSize: "0.8rem", fontWeight: 700 }}>
+              Data Engineering &amp; Management
+            </p>
             <h1 className="home-title">Hi, I&apos;m Dammy</h1>
-            <h3 className="home-subtitle">Sr. Business Analyst & Data Engineer</h3>
-            <button className="btn" onClick={() => scrollToSection("about")}>
-              <i className="uil uil-user"></i>More About me
-            </button>
+            <h3 className="home-subtitle">I build and run the data platforms that enterprises make decisions on.</h3>
+            <p style={{ lineHeight: 1.8, color: "var(--text)", maxWidth: "620px", margin: "0 auto 1.5rem" }}>
+              Enterprise Information Manager with 12+ years across manufacturing, energy, and financial services —
+              owning analytics platforms end to end: pipelines, warehouses, governance, and the teams and
+              stakeholders around them.
+            </p>
+            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <button className="btn" onClick={() => scrollToSection("platform-work")}>
+                <i className="uil uil-database"></i>See Recent Platform Work
+              </button>
+              <button className="btn" onClick={() => scrollToSection("contact")} style={{ background: "transparent", border: "1px solid var(--skin-solid)", color: "var(--title)" }}>
+                <i className="uil uil-navigator"></i>Contact me
+              </button>
+            </div>
           </div>
           <div 
             className="interactive-hero"
@@ -727,6 +740,78 @@ const PortfolioWebsite: React.FC = () => {
           ></div>
         </section>
 
+        <section className="section" id="platform-work">
+          <h2 className="title">Recent Enterprise Data Platform Work</h2>
+          <div className="container">
+            <p style={{ textAlign: "center", color: "var(--text)", marginBottom: "2rem", maxWidth: "720px", marginLeft: "auto", marginRight: "auto", lineHeight: 1.7 }}>
+              As Enterprise Information Manager for a global manufacturing &amp; energy-products enterprise, I own the
+              analytics platform end to end — from containerized ingestion services to governed warehouse models to
+              the executive dashboards leadership runs the business on.
+            </p>
+
+            <div className="impl-stats-bar">
+              {[
+                { number: "37", label: "Microservices Operated" },
+                { number: "45", label: "Governed EDW Views Verified" },
+                { number: "475K+", label: "Daily Records Traced" },
+                { number: "100%", label: "Lineage & Access Verified" },
+              ].map((stat) => (
+                <div key={stat.label} className="impl-stat-item">
+                  <div className="impl-stat-number">{stat.number}</div>
+                  <div className="impl-stat-label">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem", marginTop: "2rem" }}>
+              {[
+                {
+                  icon: "🏭",
+                  tag: "Platform Ownership",
+                  title: "Enterprise Analytics Platform",
+                  body: "Own a manufacturing analytics platform of 37 Node.js microservices across 22 Docker containers, orchestrating data between Oracle ERP, PostgreSQL, SharePoint, and Azure SQL. Led its Windows-to-Linux container migration (14 services rebuilt with health checks and standardized templates) and authored the full recovery-procedure and runbook library.",
+                  tech: ["Docker", "Node.js", "PostgreSQL", "Oracle ERP", "Linux"],
+                },
+                {
+                  icon: "🧭",
+                  tag: "Governance & Lineage",
+                  title: "Warehouse Governance at Transition Scale",
+                  body: "During a major IT transition, verified ownership and live accessibility of all 45 governed data-warehouse views on Azure Synapse with a repeatable read-only probe — 100% confirmed, zero access failures. Documented end-to-end revenue and margin lineage across ~475K daily invoice, order, and forecast records, closing long-standing “where does this number come from” gaps.",
+                  tech: ["Azure Synapse", "SQL", "Python", "Data Governance"],
+                },
+                {
+                  icon: "⚙️",
+                  tag: "Pipeline Engineering",
+                  title: "Automated, Self-Healing Data Pipelines",
+                  body: "Automated market-data ingestion end to end: schema contracts, scheduled daily refreshes validated at 10,000+ rows with zero data loss, and a move-resilient Dataflow Gen2 rebuild that self-locates relocated sources so a folder reorg can never silently break refresh again. Root-caused and permanently fixed recurring refresh failures other teams had worked around.",
+                  tech: ["Dataflow Gen2", "Microsoft Fabric", "Power Query M", "Task Automation"],
+                },
+                {
+                  icon: "📊",
+                  tag: "Semantic Models & BI",
+                  title: "Executive Models & Decision Support",
+                  body: "Designed and maintain a 12-table energy-market semantic model (TMDL) behind executive dashboards, aligned competing capacity-planning models onto a single source of truth with operations and commercial leadership, and shipped a ranked knowledge-search experience on ServiceNow replacing basic keyword matching — 170+ resource links validated.",
+                  tech: ["Power BI", "TMDL / DAX", "ServiceNow", "Stakeholder Leadership"],
+                },
+              ].map((card) => (
+                <div key={card.title} className="glass-card" style={{ padding: "1.75rem", borderRadius: "24px", display: "flex", flexDirection: "column" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
+                    <span style={{ fontSize: "1.6rem" }}>{card.icon}</span>
+                    <span style={{ letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--skin-solid)", fontSize: "0.72rem", fontWeight: 700 }}>{card.tag}</span>
+                  </div>
+                  <h3 style={{ color: "var(--title)", fontSize: "1.15rem", marginBottom: "0.75rem", lineHeight: 1.35 }}>{card.title}</h3>
+                  <p style={{ color: "var(--text)", fontSize: "0.88rem", lineHeight: 1.7, marginBottom: "1rem", flex: 1 }}>{card.body}</p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                    {card.tech.map((t) => (
+                      <span key={t} style={{ padding: "0.25rem 0.6rem", background: "rgba(20,184,166,0.08)", border: "1px solid rgba(20,184,166,0.25)", borderRadius: "20px", fontSize: "0.7rem", color: "var(--title)" }}>{t}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="about section" id="about">
           <h2 className="title">About me</h2>
           <div className="about-container container grid">
@@ -735,24 +820,25 @@ const PortfolioWebsite: React.FC = () => {
             </div>
             <div>
               <p style={{ lineHeight: "1.8", marginBottom: "1rem" }}>
-                I&apos;m Dammy Henry — a Senior Business Analyst and Data Engineer with 12+ years of experience 
-                spanning financial services, healthcare, and enterprise technology. I bridge the gap between 
-                business strategy and data execution: leading requirements, aligning stakeholders, and building 
-                the ETL pipelines and analytics infrastructure that drive real decisions.
+                I&apos;m Dammy Henry — an Enterprise Information Manager and data engineering leader with 12+ years
+                across manufacturing, energy, and financial services. I own data platforms end to end: containerized
+                ingestion services, warehouse models and governance, pipeline automation, and the executive
+                dashboards that leadership actually runs the business on.
               </p>
               <p style={{ lineHeight: "1.8", marginBottom: "1.5rem" }}>
-                My background in business analysis gives me an edge: I don&apos;t just build pipelines — I understand 
-                the stakeholders, the processes, and the outcomes that matter. I&apos;ve led enterprise EDI integrations, 
-                designed data warehouses, and delivered $137K+ in documented cost savings across seven enterprise 
-                clients in a single quarter. I also build iOS apps in Swift and design web experiences on the side.
+                What sets me apart is the management half: I lead transitions, verify governance at scale, align
+                competing models onto one source of truth, and build the runbooks and knowledge systems that make
+                platforms survivable beyond any one person. Earlier in my career I led enterprise EDI integrations
+                in banking, delivering $137K+ in documented cost savings across seven enterprise clients in a
+                single quarter. I also build iOS apps in Swift on the side.
               </p>
               <h4 style={{ marginBottom: "0.75rem", color: "var(--title)" }}>What I bring to the table</h4>
               <ul style={{ paddingLeft: "1.25rem", lineHeight: "1.8" }}>
-                <li>SQL, Power BI (DAX, RLS), and analytics dashboarding</li>
-                <li>ETL pipeline design and data warehouse architecture</li>
-                <li>Enterprise EDI and Integrated Payables implementation</li>
-                <li>Requirements analysis and stakeholder management</li>
-                <li>iOS and web application development</li>
+                <li>Data platform ownership: Docker microservices, Oracle ERP, PostgreSQL, Azure SQL &amp; Synapse</li>
+                <li>Pipeline engineering: schema contracts, Dataflow Gen2, scheduled refreshes, zero-loss validation</li>
+                <li>Governance &amp; lineage: warehouse view verification, end-to-end revenue lineage, transition management</li>
+                <li>Semantic modeling &amp; BI: Power BI (TMDL, DAX, RLS) executive dashboards at enterprise scale</li>
+                <li>Leadership: stakeholder alignment, knowledge transfer, runbooks, and analyst mentoring</li>
               </ul>
               <div className="about-info">
                 {[
@@ -774,10 +860,10 @@ const PortfolioWebsite: React.FC = () => {
         </section>
 
         <section className="impl-section section" id="implementations">
-          <h2 className="title">Key Implementation Projects Completed in Q4 2025</h2>
+          <h2 className="title">Enterprise Implementation Case Studies</h2>
           <div className="container">
             <p style={{ textAlign: "center", color: "var(--text)", marginBottom: "2rem", maxWidth: "700px", marginLeft: "auto", marginRight: "auto", lineHeight: "1.6" }}>
-              A portfolio of enterprise implementations showcasing complex integrations, creative problem-solving, and measurable business impact across financial services and healthcare.
+              Banking-side delivery record: complex EDI and payment integrations across financial services and healthcare, with creative problem-solving and measurable business impact.
             </p>
 
             <div className="impl-stats-bar">
@@ -882,7 +968,7 @@ const PortfolioWebsite: React.FC = () => {
           <div className="skills-container container grid">
             <div>
               {[
-                { id: "data" as SkillCategory, icon: "database", title: "Sr. BA & Data Engineer", years: "8+ years" },
+                { id: "data" as SkillCategory, icon: "database", title: "Data Engineering & Management", years: "8+ years" },
                 { id: "edi" as SkillCategory, icon: "exchange", title: "EDI Implementer", years: "2+ years" },
                 { id: "relations" as SkillCategory, icon: "users-alt", title: "Client Relations", years: "10+ years" },
                 { id: "frontend" as SkillCategory, icon: "brackets-curly", title: "Frontend Developer", years: "2 years" },
@@ -916,32 +1002,11 @@ const PortfolioWebsite: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <h4 style={{ marginTop: "2rem", marginBottom: "1rem", color: "var(--title)" }}>Recent Projects</h4>
-
-              {/* SteadFast iOS App Showcase */}
-              <div className="steadfast-showcase glass-card" style={{ padding: "1.5rem", marginBottom: "1.5rem", background: "linear-gradient(135deg, rgba(60,60,60,0.12), rgba(40,40,40,0.12))", borderColor: "rgba(100,100,100,0.3)" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
-                  <div>
-                    <h4 style={{ color: "var(--title)", margin: 0, fontSize: "1.1rem" }}>SteadFast iOS App</h4>
-                    <span style={{ fontSize: "0.85rem", color: "var(--text)" }}>Fasting & Meditation with a Blob Companion</span>
-                  </div>
-                  <a href="https://github.com/rudeboydamn/SteadFast" target="_blank" rel="noopener noreferrer" style={{ color: "#888888", fontSize: "1.2rem" }}>
-                    <i className="uil uil-github"></i>
-                  </a>
-                </div>
-                <div className="steadfast-images" style={{ display: "flex", gap: "0.75rem", overflowX: "auto", paddingBottom: "0.5rem", scrollSnapType: "x mandatory" }}>
-                  {steadfastImages.map((img, idx) => (
-                    <div key={idx} style={{ flexShrink: 0, scrollSnapAlign: "start", borderRadius: "12px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}>
-                      <Image src={img} alt={`SteadFast App Screenshot ${idx + 1}`} width={140} height={280} style={{ display: "block", objectFit: "cover", borderRadius: "12px" }} />
-                    </div>
-                  ))}
-                </div>
-                <p style={{ fontSize: "0.8rem", color: "var(--text)", marginTop: "0.75rem", lineHeight: 1.5 }}>
-                  An iOS app where users track fasting windows and meditation sessions while caring for a virtual blob companion that grows with their consistency.
-                </p>
-              </div>
-
-              {works.filter(w => w.id !== 1).map((work) => (
+              <h4 style={{ marginTop: "2rem", marginBottom: "0.5rem", color: "var(--title)" }}>Side Builds & Product Work</h4>
+              <p style={{ color: "var(--text)", lineHeight: 1.6, marginBottom: "1rem" }}>
+                Public projects that show range beyond the day job — iOS, web, and CRM systems built end to end.
+              </p>
+              {works.map((work) => (
                 <a key={work.id} href={work.url} target="_blank" rel="noopener noreferrer" className="work-card glass-card">
                   <div>
                     <h4>{work.title}</h4>
@@ -1044,7 +1109,7 @@ const PortfolioWebsite: React.FC = () => {
         <footer className="footer glass-card">
           <div className="container">
             <h2 style={{ color: "var(--title)", fontSize: "1.5rem" }}>Dammy Henry</h2>
-            <p style={{ fontSize: "0.95rem" }}>Sr. Business Analyst & Data Engineer</p>
+            <p style={{ fontSize: "0.95rem" }}>Enterprise Information Manager | Data Engineering & Analytics</p>
             <div className="footer-links">
               <a className="footer-link" onClick={() => scrollToSection("services")}>Services</a>
               <Link href="/builds" className="footer-link">Builds</Link>
