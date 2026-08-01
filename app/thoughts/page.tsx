@@ -28,6 +28,29 @@ type Comment = {
   user_image?: string;
 };
 
+const fieldNotes = [
+  {
+    date: 'July 31, 2026',
+    title: 'Architecture is an ownership decision',
+    content: 'A platform is not finished when the pipeline runs. It is finished when ownership, recovery, data quality, and the next decision are clear without the original builder in the room.',
+  },
+  {
+    date: 'July 25, 2026',
+    title: 'A migration is a management system',
+    content: 'The database move gets the attention. The real work is dependency mapping, access, rollback, reconciliation, operating documentation, and knowing exactly who can make the call when the plan meets production.',
+  },
+  {
+    date: 'July 21, 2026',
+    title: 'Composite beats copied',
+    content: 'When a certified model already carries the enterprise truth, extend it. Another extract can make a dashboard faster to build and the organization slower to trust.',
+  },
+  {
+    date: 'July 14, 2026',
+    title: 'Knowledge is part of the platform',
+    content: 'Searchable lineage, ownership, recovery notes, and business definitions are not documentation around a data product. They are part of the product.',
+  },
+];
+
 export default function ThoughtsPage() {
   const { data: session, status } = useSession();
   const [thoughts, setThoughts] = useState<Thought[]>([]);
@@ -478,6 +501,27 @@ export default function ThoughtsPage() {
           </div>
         </div>
 
+        <section aria-labelledby="field-notes-title" style={{ marginBottom: '2rem' }}>
+          <h2 id="field-notes-title" style={{ fontSize: '0.85rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--primary-color)', marginBottom: '1rem' }}>
+            Notes from the field
+          </h2>
+          {fieldNotes.map((note) => (
+            <article key={note.title} className="thought-card">
+              <div className="thought-header">
+                <div className="thought-author">
+                  <div className="thought-avatar">DH</div>
+                  <div className="thought-meta">
+                    <div className="thought-name">Dammy Henry</div>
+                    <div className="thought-date">{note.date}</div>
+                  </div>
+                </div>
+              </div>
+              <h3 className="thought-title">{note.title}</h3>
+              <p className="thought-content">{note.content}</p>
+            </article>
+          ))}
+        </section>
+
         <div className="share-box">
           <form onSubmit={handlePostThought}>
             <input
@@ -546,29 +590,29 @@ export default function ThoughtsPage() {
                     className={`action-btn ${thought.user_has_liked ? 'liked' : ''}`}
                     onClick={() => handleLike(thought.id)}
                   >
-                    {thought.user_has_liked ? '❤️' : '🤍'} {thought.like_count || 0}
+                    Like {thought.like_count || 0}
                   </button>
                   <button 
                     className="action-btn"
                     onClick={() => toggleComments(thought.id)}
                   >
-                    💬 {thought.comment_count || 0}
+                    Comment {thought.comment_count || 0}
                   </button>
                   <div style={{ position: 'relative' }}>
                     <button 
                       className="action-btn share-action-btn"
                       onClick={() => setShareMenuOpen(shareMenuOpen === thought.id ? null : thought.id)}
                     >
-                      🔗 Share
+                      Share
                     </button>
                     {shareMenuOpen === thought.id && (
                       <div className="share-dropdown">
                         <button onClick={() => handleShare(thought.id, thought, 'twitter')}>𝕏 Twitter</button>
                         <button onClick={() => handleShare(thought.id, thought, 'facebook')}>f Facebook</button>
                         <button onClick={() => handleShare(thought.id, thought, 'linkedin')}>in LinkedIn</button>
-                        <button onClick={() => handleShare(thought.id, thought, 'whatsapp')}>💬 WhatsApp</button>
+                        <button onClick={() => handleShare(thought.id, thought, 'whatsapp')}>WhatsApp</button>
                         <button onClick={() => handleShare(thought.id, thought, 'copy')}>
-                          {copiedId === thought.id ? '✓ Copied!' : '📋 Copy Link'}
+                          {copiedId === thought.id ? 'Copied' : 'Copy Link'}
                         </button>
                       </div>
                     )}

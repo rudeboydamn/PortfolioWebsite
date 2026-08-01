@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from 'next/link';
 import { useTheme } from '../app/providers';
 
-type SkillCategory = "data" | "edi" | "relations" | "frontend" | "design" | "backend";
+type SkillCategory = "architecture" | "delivery" | "leadership";
 
 type Skill = {
   n: string;
@@ -38,138 +38,111 @@ type ImplProject = {
 };
 
 const skills: Record<SkillCategory, Skill[]> = {
-  data: [
-    { n: "SQL / Power BI / DAX / TMDL", p: 95 },
-    { n: "Python / Pandas", p: 92 },
-    { n: "ETL & Pipeline Automation", p: 92 },
-    { n: "Azure Synapse / Fabric / Dataflow Gen2", p: 88 },
-    { n: "Docker / Linux / Microservices Ops", p: 85 },
-    { n: "Data Governance & Lineage", p: 90 },
+  architecture: [
+    { n: "Enterprise Data Architecture", p: 96 },
+    { n: "Azure Synapse / Fabric / PostgreSQL", p: 92 },
+    { n: "Data Warehousing & Semantic Models", p: 95 },
+    { n: "Governance, Lineage & Data Contracts", p: 94 },
+    { n: "Platform Reliability & Recovery", p: 90 },
   ],
-  edi: [
-    { n: "EDI X12", p: 90 },
-    { n: "AS2 / SFTP", p: 85 },
-    { n: "Partner Onboarding", p: 88 },
-    { n: "Integrated Payables", p: 85 },
-    { n: "Process Mapping", p: 90 },
+  delivery: [
+    { n: "ETL & Pipeline Modernization", p: 94 },
+    { n: "Power BI / DAX / TMDL", p: 96 },
+    { n: "SQL / Python / Power Query M", p: 93 },
+    { n: "Cloud Migration & Cutover", p: 91 },
+    { n: "Data Product Operating Models", p: 90 },
   ],
-  relations: [
-    { n: "Stakeholder Management", p: 95 },
-    { n: "Client Communication", p: 92 },
-    { n: "Cross-functional Collaboration", p: 90 },
-    { n: "Requirements Gathering", p: 88 },
-    { n: "Training & Documentation", p: 85 },
-  ],
-  frontend: [
-    { n: "HTML", p: 90 },
-    { n: "CSS", p: 85 },
-    { n: "JavaScript", p: 80 },
-    { n: "React", p: 75 },
-    { n: "TypeScript", p: 70 },
-  ],
-  design: [
-    { n: "Figma", p: 85 },
-    { n: "UI Design", p: 80 },
-    { n: "UX Research", p: 75 },
-  ],
-  backend: [
-    { n: "Python", p: 80 },
-    { n: "PLpgSQL", p: 75 },
-    { n: "SQL", p: 85 },
-    { n: "Swift", p: 65 },
+  leadership: [
+    { n: "Portfolio & Delivery Leadership", p: 95 },
+    { n: "Executive Stakeholder Alignment", p: 96 },
+    { n: "Team Enablement & Mentoring", p: 92 },
+    { n: "Vendor & Transition Management", p: 91 },
+    { n: "Roadmaps, Standards & Runbooks", p: 94 },
   ],
 };
 
 const works: WorkItem[] = [
-  { id: 1, title: "SteadFast iOS App", url: "https://github.com/rudeboydamn/SteadFast", type: "iOS App" },
-  { id: 2, title: "DammyHenry.com", url: "https://dammyhenry.com", type: "Portfolio Website" },
-  { id: 3, title: "Vale CRM", url: "https://github.com/rudeboydamn/valecrm", type: "iOS CRM Prototype" },
-  { id: 4, title: "KeystoneVale.org", url: "https://keystonevale.org", type: "Business Website" },
-  { id: 5, title: "Keystone Vale CRM", url: "https://keystonevale.org/crm", type: "CRM Platform" },
+  { id: 1, title: "Azure PostgreSQL Modernization", url: "/builds", type: "Cloud platform cutover" },
+  { id: 2, title: "EIM Knowledge", url: "/builds", type: "Enterprise knowledge system" },
+  { id: 3, title: "EMIL", url: "/builds", type: "Executive market intelligence" },
+  { id: 4, title: "HelpMate", url: "https://helpmate-tau.vercel.app", type: "Project operations product" },
 ];
 
 const services: Service[] = [
   {
-    icon: "analysis",
-    title: "Business<br>Analysis",
-    items: ["Requirements Gathering", "Process Documentation", "Stakeholder Management", "Gap Analysis", "Solution Design"],
-  },
-  {
-    icon: "setting",
-    title: "Implementation<br>& Integration",
-    items: ["EDI (X12, onboarding, QA)", "Integrated Payables", "Process Mapping (Visio)", "Partner Onboarding", "Workflow Automation"],
-  },
-  {
-    icon: "robot",
-    title: "Automation<br>& RPA",
-    items: ["RPA (UiPath)", "Scripting & Workflow", "Documentation & SOPs", "Process Improvement", "System Testing"],
-  },
-  {
-    icon: "chart-line",
-    title: "Data &<br>Analytics",
-    items: ["SQL & Power BI (DAX, TMDL, RLS)", "ETL & Pipeline Automation", "Semantic Model Design", "Executive Dashboarding", "Data Visualization"],
+    icon: "sitemap",
+    title: "Data<br>Architecture",
+    items: ["Current and target-state architecture", "Data contracts and source strategy", "Warehouse and lakehouse evaluation", "Semantic layer design", "Governance and lineage"],
   },
   {
     icon: "server-network",
-    title: "Data Platform<br>Engineering",
-    items: ["Docker & Microservices Operations", "Azure Synapse / Fabric / Dataflow Gen2", "Data Governance & Lineage", "Recovery Runbooks & DR Planning", "Platform Transition Management"],
+    title: "Platform<br>Modernization",
+    items: ["Cloud migration and cutover", "ETL and pipeline modernization", "Reliability and recovery planning", "Platform transition leadership", "Technical debt reduction"],
   },
   {
-    icon: "arrow",
-    title: "UI/UX<br>Designer",
-    items: ["Usability Testing", "User Research", "Interaction Design", "Responsive Design", "Style Guides"],
+    icon: "chart-growth",
+    title: "Analytics<br>Strategy",
+    items: ["Executive decision products", "Power BI semantic models", "KPI and metric governance", "Self-service operating models", "Portfolio rationalization"],
+  },
+  {
+    icon: "users-alt",
+    title: "Delivery<br>Leadership",
+    items: ["Roadmaps and prioritization", "Cross-functional team leadership", "Vendor and partner management", "Risk, dependency and scope control", "Executive communication"],
+  },
+  {
+    icon: "book-open",
+    title: "Operational<br>Readiness",
+    items: ["Knowledge transfer programs", "Recovery runbooks", "Support and ownership models", "Data quality controls", "Team enablement"],
+  },
+  {
+    icon: "compass",
+    title: "Technology<br>Advisory",
+    items: ["Platform and vendor assessment", "Build, buy or modernize decisions", "Pilot design", "Cost and delivery tradeoffs", "Architecture reviews"],
   },
 ];
 
 const implProjects: ImplProject[] = [
   {
-    id: 1, client: "Gordon Food Services", title: "Multi-Party EDI 820 ACH Payment Integration", category: "Payment Solutions", icon: "🏦",
-    challenge: "Implemented a new EDI 820 ACH payment solution with embedded addenda transmitted through High Radius—a multi-party integration requiring precise coordination.",
-    approach: ["Initiated comprehensive kickoff to verify ISA header preferences, PGP encryption, file turnaround times, and credit/debit protocols", "Established weekly staging project sync meetings", "Guided end-to-end testing including null file testing with PGP encryption"],
-    impact: [{ metric: "On-Time Delivery", description: "Delivered on time and to exact specifications" }, { metric: "Zero Post-Production Fixes", description: "Weekly syncs caught all issues early" }, { metric: "Streamlined Operations", description: "Smooth workflow between GFS, High Radius, and PNC" }],
-    technologies: ["EDI 820", "ACH", "PGP Encryption", "AS2/SFTP", "High Radius"]
+    id: 1, client: "Global Manufacturing", title: "Production PostgreSQL to Azure Modernization", category: "Cloud Modernization", icon: "AZ",
+    challenge: "A business-critical production database and its application estate needed to move to managed Azure infrastructure without disrupting shop-floor operations.",
+    approach: ["Directed readiness, dependency and rollback planning across database and application owners", "Established TLS, access, reconciliation and cutover controls", "Converted the migration record into operating documentation and a reusable recovery path"],
+    impact: [{ metric: "19.7M Rows", description: "Production data reconciled after cutover" }, { metric: "12-Min Restore", description: "Restore time reduced from a legacy two-hour process" }, { metric: "No Rollback", description: "Cutover completed inside the planned window" }],
+    technologies: ["Azure Database for PostgreSQL", "PostGIS", "Docker", "TLS", "Cutover Governance"]
   },
   {
-    id: 2, client: "BDO USA", title: "Enterprise File Integration & Scope Redefinition", category: "Requirements Analysis", icon: "📋",
-    challenge: "BDO USA submitted a request for testing services covering Positive Pay, ACH, Wires, and Acknowledgment files—deeper analysis uncovered hidden complexities.",
-    approach: ["Reworked project documentation with comprehensive technical synopsis", "Identified critical upstream dependency with PeopleSoft ERP integration", "Flagged ACH integration requiring separate PPD vs CCD+/CTX configurations"],
-    impact: [{ metric: "3-4 Weeks Saved", description: "Caught complexities early preventing delays" }, { metric: "$50K Annual Savings", description: "Became template for similar ERP integrations" }, { metric: "Client Commendation", description: "Praised for thoroughness and proactive approach" }],
-    technologies: ["Positive Pay", "ACH (PPD/CCD+/CTX)", "Wire Transfers", "PeopleSoft ERP", "Snap Logic/DPS"]
+    id: 2, client: "Enterprise Information Management", title: "API-Direct Market Data Pipeline", category: "Pipeline Engineering", icon: "API",
+    challenge: "A fragile file-based market-data flow created recurring refresh failures and hidden operational dependencies.",
+    approach: ["Set an API-direct target architecture and explicit schema contract", "Coordinated the Dataflow Gen2 rebuild and downstream report repoint", "Added refresh verification and recovery guidance so ownership could transfer cleanly"],
+    impact: [{ metric: "10K+ Rows", description: "Daily refresh volume validated" }, { metric: "Zero Data Loss", description: "Repoint and refresh reconciliation completed" }, { metric: "Move-Resilient", description: "Source relocation no longer silently breaks refresh" }],
+    technologies: ["Microsoft Fabric", "Dataflow Gen2", "REST API", "Power Query M", "Power BI"]
   },
   {
-    id: 3, client: "Diebold Nixdorf Inc", title: "Adaptive Scope Management & EDI Enhancement", category: "Agile Delivery", icon: "🔄",
-    challenge: "Initially engaged to update invalid CTX reporting functionality. During discovery, an additional need for inbound EDI 820 testing emerged.",
-    approach: ["Actively listened to uncover additional EDI 820 testing requirement", "Evaluated technical overlap rather than treating as scope creep", "Restructured project plan to accommodate both requests simultaneously"],
-    impact: [{ metric: "3-4 Weeks Saved", description: "Eliminated need for second project kickoff" }, { metric: "Comprehensive Solution", description: "Improved reporting and payment processing" }, { metric: "Trusted Advisor", description: "Positioned as thinking beyond immediate requests" }],
-    technologies: ["EDI 820", "CTX Reporting", "Inbound EDI Processing"]
+    id: 3, client: "Commercial Leadership", title: "Executive Market Intelligence Model", category: "Analytics Products", icon: "BI",
+    challenge: "Leadership needed one governed view of revenue, backlog, market plans and forward outlook instead of competing definitions across reports.",
+    approach: ["Led the semantic-model redesign around certified sources and explicit business rules", "Aligned finance, commercial and operations stakeholders on metric treatment", "Built clear explainers, model documentation and a controlled operating cadence"],
+    impact: [{ metric: "12-Table Model", description: "Lean governed semantic layer" }, { metric: "One Source", description: "Competing definitions aligned" }, { metric: "Executive Ready", description: "Forward-looking decision views delivered" }],
+    technologies: ["Power BI", "TMDL", "DAX", "Azure Synapse", "Data Governance"]
   },
   {
-    id: 4, client: "Metergy Solutions", title: "Mastercard RPPS Implementation & Knowledge Building", category: "Documentation & Training", icon: "📚",
-    challenge: "Adding Mastercard RPPS Items in CIE format to two RT55 setups—highly specialized with virtually no documentation.",
-    approach: ["Partnered with the one knowledgeable team member to extract tacit knowledge", "Created comprehensive documentation covering configuration, data mappings, testing, and troubleshooting", "Established documentation as reusable asset in knowledge repository"],
-    impact: [{ metric: "60% Efficiency Gain", description: "Reduced implementation from 40+ to ~15 hours" }, { metric: "6 Subsequent Uses", description: "Documentation referenced for future implementations" }, { metric: "Risk Mitigation", description: "Eliminated single-point-of-failure knowledge dependency" }],
-    technologies: ["Mastercard RPPS", "CIE Format", "RT55", "EDI 820"]
+    id: 4, client: "Enterprise Information Management", title: "EIM Knowledge Platform", category: "Data Governance", icon: "KB",
+    challenge: "A large analytics estate lacked a searchable ownership and knowledge layer, making support and transition dependent on individual memory.",
+    approach: ["Established a taxonomy across workspaces, models, dataflows and reports", "Directed the migration of technical knowledge into a searchable enterprise surface", "Added ranked search, browse paths and reusable article standards"],
+    impact: [{ metric: "1,500+ Articles", description: "Technical knowledge made searchable" }, { metric: "Tenant-Wide", description: "One operating surface for the analytics estate" }, { metric: "Lower Key-Person Risk", description: "Support knowledge moved out of individual memory" }],
+    technologies: ["ServiceNow", "Power BI", "Metadata", "Search", "Knowledge Governance"]
   },
   {
-    id: 5, client: "Thoroughbred Funding / Norfolk Southern", title: "Creative Data Pathway Solution", category: "Problem Solving", icon: "🚂",
-    challenge: "Freight bill numbers missing in High Radius. Standard solution would modify a map used by thousands of customers—6+ month timeline.",
-    approach: ["Assessed standard solution timeline of 6+ months", "Analyzed alternative data pathways leveraging existing freeform field", "Presented creative alternative using OBI field to pass freight bill data"],
-    impact: [{ metric: "2 Weeks vs 6+ Months", description: "Resolved in fraction of standard timeline" }, { metric: "$75K Saved", description: "Avoided enterprise-wide development costs" }, { metric: "Zero Disruption", description: "No risk to thousands of other clients" }],
-    technologies: ["EDI Mapping", "PME", "High Radius", "OBI Field Configuration"]
+    id: 5, client: "Enterprise Analytics", title: "Data Product Transition and Ownership", category: "Portfolio Leadership", icon: "PM",
+    challenge: "A broad portfolio of semantic models, dataflows and operational services needed clear ownership ahead of a major partner transition.",
+    approach: ["Built the asset inventory and dependency view", "Separated hard-date work from deferrable enhancements", "Established takeover, credential, knowledge-transfer and support gates"],
+    impact: [{ metric: "67 Assets", description: "Remaining ownership work made visible" }, { metric: "45 Views", description: "Governed warehouse access verified" }, { metric: "Clear Gates", description: "Delivery risks translated into an executable roadmap" }],
+    technologies: ["Power BI", "Azure Synapse", "Portfolio Governance", "Lineage", "Service Transition"]
   },
   {
-    id: 6, client: "Trinity Health", title: "Enterprise-Wide Formatting Solution", category: "Technical Resolution", icon: "🏥",
-    challenge: "Check numbers not populating correctly in Integrated Receivables. Wellmark ACH items had tilde formatting issues in addenda records.",
-    approach: ["Convened cross-functional meeting to diagnose data feed issues", "Positioned as production support to protect client from unnecessary costs", "Developed global solution fixing Trinity Health and preventing similar issues across all clients"],
-    impact: [{ metric: "$12K Saved", description: "Avoided feature development fees" }, { metric: "40+ Issues Prevented", description: "Global fix across entire client base" }, { metric: "15% Accuracy Gain", description: "Enhanced integrated receivables processing" }],
-    technologies: ["Integrated Receivables", "EDI", "Lockbox", "ACH Addenda Processing"]
-  },
-  {
-    id: 7, client: "Regal Beloit / Rexnord", title: "Rare EBPP Implementation & Enterprise Enhancement", category: "Specialized Implementation", icon: "⚙️",
-    challenge: "Consolidating direct transmission files and adding Payer Express via EBPP—highly specialized work completed only 8 times previously at PNC Bank.",
-    approach: ["Created EBPP AR9 with custom mapping and new value translation table", "Resolved critical mismatch between effective and posted dates", "Coordinated patches for AMEX duplication and contactless payment type issues"],
-    impact: [{ metric: "8-10 Hrs/Month Saved", description: "Streamlined reconciliation process" }, { metric: "100+ Hours Saved", description: "Global updates prevented future troubleshooting" }, { metric: "Reference Template", description: "Became template for subsequent EBPP deployments" }],
-    technologies: ["EBPP", "EDI 820", "Esker", "Payer Express", "RT 55"]
+    id: 6, client: "Operations and Purchasing", title: "Certified Composite Analytics Model", category: "Analytics Products", icon: "MDL",
+    challenge: "Operational teams needed actionable late-purchase-order insight without creating another disconnected copy of enterprise data.",
+    approach: ["Reused a certified semantic foundation", "Added business-unit measures and exception logic as a composite model", "Validated the result against live enterprise totals before release"],
+    impact: [{ metric: "147K Open POs", description: "Enterprise scope validated" }, { metric: "94K Late", description: "Exception population made actionable" }, { metric: "No Data Copy", description: "Certified lineage preserved" }],
+    technologies: ["Power BI", "Composite Models", "DirectQuery", "DAX", "Certified Data Products"]
   }
 ];
 
@@ -179,7 +152,7 @@ const PortfolioWebsite: React.FC = () => {
   const [sidebar, setSidebar] = useState(false);
   const [section, setSection] = useState("home");
   const { theme, toggleTheme } = useTheme();
-  const [activeSkill, setActiveSkill] = useState<SkillCategory>("data");
+  const [activeSkill, setActiveSkill] = useState<SkillCategory>("architecture");
   const [modal, setModal] = useState<number | null>(null);
   const [focus, setFocus] = useState<Record<string, boolean>>({});
   const [headerClass, setHeaderClass] = useState("");
@@ -703,21 +676,20 @@ const PortfolioWebsite: React.FC = () => {
             >
               <div className="toggle-base"></div>
               <div className="toggle-lever">
-                <span className="lever-text light-text">☀️</span>
-                <span className="lever-text dark-text">🌙</span>
+                <span className="lever-text light-text">L</span>
+                <span className="lever-text dark-text">D</span>
               </div>
             </button>
           </div>
           <div className="home-data">
             <p style={{ marginBottom: "0.75rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--skin-solid)", fontSize: "0.8rem", fontWeight: 700 }}>
-              Data Engineering &amp; Management
+              Senior Data Architect
             </p>
             <h1 className="home-title">Hi, I&apos;m Dammy</h1>
-            <h3 className="home-subtitle">I build and run the data platforms that enterprises make decisions on.</h3>
+            <h3 className="home-subtitle">I shape the data platforms, operating models, and teams behind enterprise decisions.</h3>
             <p style={{ lineHeight: 1.8, color: "var(--text)", maxWidth: "620px", margin: "0 auto 1.5rem" }}>
-              Enterprise Information Manager with 12+ years across manufacturing, energy, and financial services —
-              owning analytics platforms end to end: pipelines, warehouses, governance, and the teams and
-              stakeholders around them.
+              I turn fragmented systems and competing definitions into governed, supportable data products,
+              then lead the people and transitions that keep them useful.
             </p>
             <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
               <button className="btn" onClick={() => scrollToSection("platform-work")}>
@@ -741,20 +713,19 @@ const PortfolioWebsite: React.FC = () => {
         </section>
 
         <section className="section" id="platform-work">
-          <h2 className="title">Recent Enterprise Data Platform Work</h2>
+          <h2 className="title">Key Implementations</h2>
           <div className="container">
             <p style={{ textAlign: "center", color: "var(--text)", marginBottom: "2rem", maxWidth: "720px", marginLeft: "auto", marginRight: "auto", lineHeight: 1.7 }}>
-              As Enterprise Information Manager for a global manufacturing &amp; energy-products enterprise, I own the
-              analytics platform end to end — from containerized ingestion services to governed warehouse models to
-              the executive dashboards leadership runs the business on.
+              Recent architecture and delivery work across cloud platforms, pipelines, governance, semantic models,
+              and enterprise analytics operations.
             </p>
 
             <div className="impl-stats-bar">
               {[
-                { number: "37", label: "Microservices Operated" },
+                { number: "19.7M", label: "Rows Reconciled at Cutover" },
                 { number: "45", label: "Governed EDW Views Verified" },
-                { number: "475K+", label: "Daily Records Traced" },
-                { number: "100%", label: "Lineage & Access Verified" },
+                { number: "1,500+", label: "Knowledge Articles Organized" },
+                { number: "67", label: "Data Assets Mapped for Transition" },
               ].map((stat) => (
                 <div key={stat.label} className="impl-stat-item">
                   <div className="impl-stat-number">{stat.number}</div>
@@ -766,37 +737,37 @@ const PortfolioWebsite: React.FC = () => {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem", marginTop: "2rem" }}>
               {[
                 {
-                  icon: "🏭",
-                  tag: "Platform Ownership",
-                  title: "Enterprise Analytics Platform",
-                  body: "Own a manufacturing analytics platform of 37 Node.js microservices across 22 Docker containers, orchestrating data between Oracle ERP, PostgreSQL, SharePoint, and Azure SQL. Led its Windows-to-Linux container migration (14 services rebuilt with health checks and standardized templates) and authored the full recovery-procedure and runbook library.",
-                  tech: ["Docker", "Node.js", "PostgreSQL", "Oracle ERP", "Linux"],
+                  icon: "AZ",
+                  tag: "Cloud Modernization",
+                  title: "Production PostgreSQL to Azure",
+                  body: "Directed the modernization of a business-critical production database and its application estate. The cutover reconciled 19.7 million rows, completed inside the planned window, and reduced restore time from roughly two hours to 12 minutes.",
+                  tech: ["Azure PostgreSQL", "PostGIS", "TLS", "Cutover Governance"],
                 },
                 {
-                  icon: "🧭",
-                  tag: "Governance & Lineage",
-                  title: "Warehouse Governance at Transition Scale",
-                  body: "During a major IT transition, verified ownership and live accessibility of all 45 governed data-warehouse views on Azure Synapse with a repeatable read-only probe — 100% confirmed, zero access failures. Documented end-to-end revenue and margin lineage across ~475K daily invoice, order, and forecast records, closing long-standing “where does this number come from” gaps.",
-                  tech: ["Azure Synapse", "SQL", "Python", "Data Governance"],
-                },
-                {
-                  icon: "⚙️",
+                  icon: "API",
                   tag: "Pipeline Engineering",
-                  title: "Automated, Self-Healing Data Pipelines",
-                  body: "Automated market-data ingestion end to end: schema contracts, scheduled daily refreshes validated at 10,000+ rows with zero data loss, and a move-resilient Dataflow Gen2 rebuild that self-locates relocated sources so a folder reorg can never silently break refresh again. Root-caused and permanently fixed recurring refresh failures other teams had worked around.",
-                  tech: ["Dataflow Gen2", "Microsoft Fabric", "Power Query M", "Task Automation"],
+                  title: "API-Direct Market Data",
+                  body: "Reframed a fragile file-based flow as an API-direct data product, then led its Fabric Dataflow Gen2 rebuild, downstream repoint, schema validation, and recovery design. Daily refreshes now validate 10,000+ rows without silent source-location failures.",
+                  tech: ["Microsoft Fabric", "Dataflow Gen2", "REST", "Power Query M"],
                 },
                 {
-                  icon: "📊",
-                  tag: "Semantic Models & BI",
-                  title: "Executive Models & Decision Support",
-                  body: "Designed and maintain a 12-table energy-market semantic model (TMDL) behind executive dashboards, aligned competing capacity-planning models onto a single source of truth with operations and commercial leadership, and shipped a ranked knowledge-search experience on ServiceNow replacing basic keyword matching — 170+ resource links validated.",
-                  tech: ["Power BI", "TMDL / DAX", "ServiceNow", "Stakeholder Leadership"],
+                  icon: "BI",
+                  tag: "Decision Products",
+                  title: "Executive Market Intelligence",
+                  body: "Led a governed semantic-model rebuild that aligned revenue, backlog, market plans, and forward outlook across commercial, finance, and operations. The result is a lean 12-table model with transparent business rules and executive-ready decision views.",
+                  tech: ["Power BI", "TMDL", "DAX", "Azure Synapse"],
+                },
+                {
+                  icon: "KB",
+                  tag: "Knowledge Governance",
+                  title: "EIM Knowledge Platform",
+                  body: "Turned a sprawling analytics estate into a searchable operating system for support. More than 1,500 articles now connect workspaces, models, dataflows, reports, ownership, and recovery knowledge in one enterprise surface.",
+                  tech: ["ServiceNow", "Metadata", "Search", "Knowledge Governance"],
                 },
               ].map((card) => (
                 <div key={card.title} className="glass-card" style={{ padding: "1.75rem", borderRadius: "24px", display: "flex", flexDirection: "column" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
-                    <span style={{ fontSize: "1.6rem" }}>{card.icon}</span>
+                    <span style={{ fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.08em", border: "1px solid var(--skin-solid)", borderRadius: "999px", padding: "0.35rem 0.5rem", color: "var(--skin-solid)" }}>{card.icon}</span>
                     <span style={{ letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--skin-solid)", fontSize: "0.72rem", fontWeight: 700 }}>{card.tag}</span>
                   </div>
                   <h3 style={{ color: "var(--title)", fontSize: "1.15rem", marginBottom: "0.75rem", lineHeight: 1.35 }}>{card.title}</h3>
@@ -820,25 +791,15 @@ const PortfolioWebsite: React.FC = () => {
             </div>
             <div>
               <p style={{ lineHeight: "1.8", marginBottom: "1rem" }}>
-                I&apos;m Dammy Henry — an Enterprise Information Manager and data engineering leader with 12+ years
-                across manufacturing, energy, and financial services. I own data platforms end to end: containerized
-                ingestion services, warehouse models and governance, pipeline automation, and the executive
-                dashboards that leadership actually runs the business on.
-              </p>
-              <p style={{ lineHeight: "1.8", marginBottom: "1.5rem" }}>
-                What sets me apart is the management half: I lead transitions, verify governance at scale, align
-                competing models onto one source of truth, and build the runbooks and knowledge systems that make
-                platforms survivable beyond any one person. Earlier in my career I led enterprise EDI integrations
-                in banking, delivering $137K+ in documented cost savings across seven enterprise clients in a
-                single quarter. I also build iOS apps in Swift on the side.
+                I&apos;m a Senior Data Architect who turns fragmented enterprise data into governed platforms people can
+                trust. I connect architecture to execution: setting direction, leading teams and transitions, and
+                making sure the finished product is supportable after launch.
               </p>
               <h4 style={{ marginBottom: "0.75rem", color: "var(--title)" }}>What I bring to the table</h4>
               <ul style={{ paddingLeft: "1.25rem", lineHeight: "1.8" }}>
-                <li>Data platform ownership: Docker microservices, Oracle ERP, PostgreSQL, Azure SQL &amp; Synapse</li>
-                <li>Pipeline engineering: schema contracts, Dataflow Gen2, scheduled refreshes, zero-loss validation</li>
-                <li>Governance &amp; lineage: warehouse view verification, end-to-end revenue lineage, transition management</li>
-                <li>Semantic modeling &amp; BI: Power BI (TMDL, DAX, RLS) executive dashboards at enterprise scale</li>
-                <li>Leadership: stakeholder alignment, knowledge transfer, runbooks, and analyst mentoring</li>
+                <li>Target-state architecture grounded in the systems, constraints, and teams that already exist</li>
+                <li>Cloud, pipeline, semantic-model, and governance modernization</li>
+                <li>Roadmaps, operating models, knowledge transfer, and portfolio leadership</li>
               </ul>
               <div className="about-info">
                 {[
@@ -860,18 +821,19 @@ const PortfolioWebsite: React.FC = () => {
         </section>
 
         <section className="impl-section section" id="implementations">
-          <h2 className="title">Enterprise Implementation Case Studies</h2>
+          <h2 className="title">Enterprise Projects</h2>
           <div className="container">
             <p style={{ textAlign: "center", color: "var(--text)", marginBottom: "2rem", maxWidth: "700px", marginLeft: "auto", marginRight: "auto", lineHeight: "1.6" }}>
-              Banking-side delivery record: complex EDI and payment integrations across financial services and healthcare, with creative problem-solving and measurable business impact.
+              Selected recent work, generalized for confidentiality, with the focus on architecture decisions,
+              delivery leadership, and measurable operating outcomes.
             </p>
 
             <div className="impl-stats-bar">
               {[
-                { number: "7", label: "Enterprise Clients" },
-                { number: "$137K+", label: "Cost Savings Delivered" },
-                { number: "60%", label: "Avg. Efficiency Gain" },
-                { number: "100%", label: "On-Time Delivery" },
+                { number: "6", label: "Recent Programs" },
+                { number: "19.7M", label: "Rows Reconciled" },
+                { number: "1,500+", label: "Knowledge Assets" },
+                { number: "45", label: "Governed Views Verified" },
               ].map((stat) => (
                 <div key={stat.label} className="impl-stat-item">
                   <div className="impl-stat-number">{stat.number}</div>
@@ -968,12 +930,9 @@ const PortfolioWebsite: React.FC = () => {
           <div className="skills-container container grid">
             <div>
               {[
-                { id: "data" as SkillCategory, icon: "database", title: "Data Engineering & Management", years: "8+ years" },
-                { id: "edi" as SkillCategory, icon: "exchange", title: "EDI Implementer", years: "2+ years" },
-                { id: "relations" as SkillCategory, icon: "users-alt", title: "Client Relations", years: "10+ years" },
-                { id: "frontend" as SkillCategory, icon: "brackets-curly", title: "Frontend Developer", years: "2 years" },
-                { id: "backend" as SkillCategory, icon: "server-network", title: "Backend & iOS Developer", years: "2 years" },
-                { id: "design" as SkillCategory, icon: "swatchbook", title: "UI/UX Designer", years: "2 years" },
+                { id: "architecture" as SkillCategory, icon: "sitemap", title: "Data Architecture", years: "12+ years" },
+                { id: "delivery" as SkillCategory, icon: "server-network", title: "Platform Delivery", years: "10+ years" },
+                { id: "leadership" as SkillCategory, icon: "users-alt", title: "Management & Advisory", years: "10+ years" },
               ].map((skill) => (
                 <div
                   key={skill.id}
@@ -1002,9 +961,9 @@ const PortfolioWebsite: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <h4 style={{ marginTop: "2rem", marginBottom: "0.5rem", color: "var(--title)" }}>Side Builds & Product Work</h4>
+              <h4 style={{ marginTop: "2rem", marginBottom: "0.5rem", color: "var(--title)" }}>Recent Builds</h4>
               <p style={{ color: "var(--text)", lineHeight: 1.6, marginBottom: "1rem" }}>
-                Public projects that show range beyond the day job — iOS, web, and CRM systems built end to end.
+                A living shelf of data products, platform work, and practical operating tools.
               </p>
               {works.map((work) => (
                 <a key={work.id} href={work.url} target="_blank" rel="noopener noreferrer" className="work-card glass-card">
@@ -1046,10 +1005,10 @@ const PortfolioWebsite: React.FC = () => {
             {activeService && (
               <>
                 <h3 style={{ marginBottom: "1rem" }}>{activeService.title.replace(/<br>/g, " ")}</h3>
-                <p style={{ marginBottom: "1rem" }}>I offer quality services to clients and companies.</p>
+                <p style={{ marginBottom: "1rem" }}>I help organizations turn data ambition into an operating platform.</p>
                 <ul style={{ paddingLeft: "1.25rem" }}>
                   {activeService.items.map((item: string) => (
-                    <li key={item} style={{ marginBottom: ".5rem" }}>✓ {item}</li>
+                    <li key={item} style={{ marginBottom: ".5rem" }}>{item}</li>
                   ))}
                 </ul>
               </>
@@ -1078,7 +1037,7 @@ const PortfolioWebsite: React.FC = () => {
             <form className="glass-card" style={{ padding: "2rem", borderRadius: "25px" }} onSubmit={handleContactSubmit}>
               {contactStatus === "sent" && (
                 <div className="contact-banner success">
-                  ✓ Message sent successfully! I&apos;ll get back to you soon.
+                  Message sent successfully. I&apos;ll get back to you soon.
                 </div>
               )}
               {contactStatus === "error" && (
@@ -1109,7 +1068,7 @@ const PortfolioWebsite: React.FC = () => {
         <footer className="footer glass-card">
           <div className="container">
             <h2 style={{ color: "var(--title)", fontSize: "1.5rem" }}>Dammy Henry</h2>
-            <p style={{ fontSize: "0.95rem" }}>Enterprise Information Manager | Data Engineering & Analytics</p>
+            <p style={{ fontSize: "0.95rem" }}>Senior Data Architect | Enterprise Data Leadership</p>
             <div className="footer-links">
               <a className="footer-link" onClick={() => scrollToSection("services")}>Services</a>
               <Link href="/builds" className="footer-link">Builds</Link>

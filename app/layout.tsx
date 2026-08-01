@@ -3,13 +3,14 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Dammy Henry - Data Engineering & Management Leader',
+    default: 'Dammy Henry - Senior Data Architect',
     template: '%s | Dammy Henry',
   },
   description:
-    'Enterprise Information Manager & data engineering leader with 12+ years across manufacturing, energy, and financial services. Data platform ownership, ETL pipelines, Azure Synapse, data governance, and Power BI at enterprise scale.',
+    'Senior Data Architect leading enterprise platform modernization, cloud migration, data governance, semantic models, and analytics delivery.',
   keywords: [
-    'Enterprise Information Manager',
+    'Senior Data Architect',
+    'Data Architecture Manager',
     'Data Engineering Manager',
     'Data Engineer',
     'Data Engineering',
@@ -28,13 +29,6 @@ export const metadata: Metadata = {
     'Data Modeling',
     'dbt',
     'Apache Airflow',
-    'Web Developer',
-    'Full Stack Developer',
-    'iOS Developer',
-    'Swift',
-    'React',
-    'TypeScript',
-    'Next.js',
     'EDI',
     'Enterprise Integration',
   ],
@@ -46,27 +40,27 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Dammy Henry - Data Engineering & Management Leader',
-    description: 'Enterprise Information Manager owning data platforms end to end: pipelines, warehouses, governance, and executive BI. 12+ years of enterprise experience.',
+    title: 'Dammy Henry - Senior Data Architect',
+    description: 'Senior Data Architect leading governed enterprise platforms, cloud modernization, semantic models, and the teams behind them.',
     url: 'https://dammyhenry.com',
     siteName: 'Dammy Henry Portfolio',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: '/img/og-image.jpg',
+        url: '/og.png',
         width: 1200,
         height: 630,
-        alt: 'Dammy Henry - Data Engineering & Management Leader',
+        alt: 'Dammy Henry - Senior Data Architect',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dammy Henry - Data Engineering & Management Leader',
-    description: 'Enterprise Information Manager. Data platforms, ETL pipelines, governance, Azure Synapse, and Power BI. 12+ years experience.',
+    title: 'Dammy Henry - Senior Data Architect',
+    description: 'Enterprise data architecture, platform modernization, governance, semantic models, and delivery leadership.',
     creator: '@dammyhenry',
-    images: ['/img/twitter-image.jpg'],
+    images: ['/og.png'],
   },
   robots: {
     index: true,
@@ -101,16 +95,16 @@ const personSchema = {
   name: 'Dammy Henry',
   url: 'https://dammyhenry.com',
   image: 'https://dammyhenry.com/img/dammyhenry.png',
-  jobTitle: 'Enterprise Information Manager',
+  jobTitle: 'Senior Data Architect',
   description:
-    'Enterprise Information Manager and data engineering leader specializing in data platform ownership, ETL pipelines, data governance, Azure Synapse, and Power BI at enterprise scale.',
+    'Senior Data Architect leading enterprise data platforms, cloud modernization, governance, semantic models, and cross-functional delivery.',
   sameAs: [
     'https://www.linkedin.com/in/dammyhenry',
     'https://github.com/rudeboydamn',
   ],
   knowsAbout: [
-    'Business Analysis',
-    'Requirements Analysis',
+    'Enterprise Data Architecture',
+    'Platform Modernization',
     'Stakeholder Management',
     'Data Engineering',
     'ETL Pipelines',
@@ -119,8 +113,8 @@ const personSchema = {
     'Python',
     'Data Warehousing',
     'Business Intelligence',
-    'Web Development',
-    'iOS Development',
+    'Portfolio Leadership',
+    'Data Product Strategy',
   ],
   worksFor: {
     '@type': 'Organization',
@@ -138,28 +132,27 @@ const websiteSchema = {
     name: 'Dammy Henry',
   },
   description:
-    'Portfolio of Dammy Henry - Senior Business Analyst & Data Engineer specializing in requirements analysis, ETL pipelines, Power BI, and data warehousing.',
+    'Portfolio of Dammy Henry, Senior Data Architect and enterprise data leader.',
 };
 
 const professionalServiceSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'Dammy Henry - Business Analysis & Data Engineering Services',
+  name: 'Dammy Henry - Enterprise Data Architecture Services',
   description:
-    'Senior Business Analysis, data engineering, analytics, and business intelligence consulting services.',
+    'Enterprise data architecture, platform modernization, analytics strategy, and delivery leadership services.',
   url: 'https://dammyhenry.com',
   provider: {
     '@type': 'Person',
     name: 'Dammy Henry',
   },
   serviceType: [
-    'Business Analysis',
-    'Requirements Analysis',
-    'Data Engineering',
-    'ETL Development',
-    'Power BI Dashboards',
-    'Data Warehousing',
-    'Web Development',
+    'Enterprise Data Architecture',
+    'Platform Modernization',
+    'Data Engineering Leadership',
+    'Analytics Strategy',
+    'Data Governance',
+    'Semantic Model Design',
   ],
 };
 

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import ThemeToggle from '../../components/theme-toggle';
 
@@ -16,36 +15,45 @@ type BuildCategory = {
 const builds: BuildCategory[] = [
   {
     title: "HelpMate",
-    icon: "⚡",
-    description: "Modern project management with HTMX - Issues, Cycles, Modules, Pages, Analytics & more",
+    icon: "OPS",
+    description: "A practical operations workspace for issues, cycles, modules, pages, and delivery analytics.",
     status: "available",
     href: "https://helpmate-tau.vercel.app",
   },
   {
-    title: "Games",
-    icon: "🎮",
-    description: "Interactive games and entertainment experiences",
+    title: "Azure PostgreSQL Modernization",
+    icon: "AZ",
+    description: "A production cloud cutover covering architecture, application dependencies, reconciliation, rollback, and operational readiness.",
     status: "available",
-    href: "/games",
+    href: "/#implementations",
   },
   {
-    title: "SteadFast iOS App",
-    icon: "🧘",
-    description: "A fasting & meditation iOS app where users care for a blob companion that grows with their consistency. Built with Swift.",
+    title: "EIM Knowledge",
+    icon: "KB",
+    description: "A searchable enterprise knowledge layer connecting analytics assets, ownership, lineage, and support guidance.",
     status: "available",
-    href: "https://github.com/rudeboydamn/SteadFast",
+    href: "/#implementations",
   },
   {
-    title: "3D Printer Builds",
-    icon: "🖨️",
-    description: "Custom 3D printing projects and designs",
-    status: "coming-soon",
+    title: "EMIL",
+    icon: "BI",
+    description: "An executive market intelligence model that aligns revenue, backlog, plans, and forward outlook on governed definitions.",
+    status: "available",
+    href: "/#implementations",
   },
   {
-    title: "Data Dashboards",
-    icon: "📊",
-    description: "Interactive data visualization and reporting tools",
-    status: "coming-soon",
+    title: "API-Direct Market Data",
+    icon: "API",
+    description: "A resilient Fabric pipeline that replaces fragile file movement with a validated API-first data product.",
+    status: "available",
+    href: "/#platform-work",
+  },
+  {
+    title: "Global Purchasing Composite",
+    icon: "MDL",
+    description: "A certified composite model that adds actionable late-PO intelligence without duplicating enterprise data.",
+    status: "available",
+    href: "/#implementations",
   },
 ];
 
@@ -154,13 +162,6 @@ export default function BuildsPage() {
                   <p className="build-desc">{build.description}</p>
                   <span className="build-status status-available">Explore →</span>
                 </a>
-              ) : build.title === 'SteadFast iOS App' ? (
-                <a key={build.title} href={build.href} target="_blank" rel="noopener noreferrer" className="build-card">
-                  <Image src="/img/stead.jpg" alt="SteadFast App" width={64} height={64} className="build-icon-img" />
-                  <h3 className="build-title">{build.title}</h3>
-                  <p className="build-desc">{build.description}</p>
-                  <span className="build-status status-available" style={{ fontSize: '0.75rem' }}>View on GitHub (Private Repo) →</span>
-                </a>
               ) : (
                 <Link key={build.title} href={build.href} className="build-card">
                   <div className="build-icon">{build.icon}</div>
@@ -206,7 +207,7 @@ export default function BuildsPage() {
               border: '1px solid rgba(255,255,255,0.2)',
               textAlign: 'center'
             }}>
-              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚠️</div>
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.18em', color: '#14b8a6', marginBottom: '1rem' }}>EXTERNAL SITE</div>
               <h3 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.5rem' }}>
                 Leaving dammyhenry.com
               </h3>

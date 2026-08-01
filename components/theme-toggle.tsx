@@ -18,7 +18,7 @@ export default function ThemeToggle({ className = '' }: ThemeToggleProps) {
         title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       >
         <span className="toggle-icon" aria-hidden="true">
-          {theme === 'light' ? '🌙' : '☀️'}
+          {theme === 'light' ? 'D' : 'L'}
         </span>
         <span className="toggle-label">{theme === 'light' ? 'Dark' : 'Light'}</span>
       </button>

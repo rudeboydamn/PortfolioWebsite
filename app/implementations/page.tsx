@@ -3,179 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import ThemeToggle from '../../components/theme-toggle';
-
-type Project = {
-  id: number;
-  client: string;
-  title: string;
-  category: string;
-  icon: string;
-  challenge: string;
-  approach: string[];
-  impact: {
-    metric: string;
-    description: string;
-  }[];
-  technologies: string[];
-};
-
-const projects: Project[] = [
-  {
-    id: 1,
-    client: "Gordon Food Services",
-    title: "Multi-Party EDI 820 ACH Payment Integration",
-    category: "Payment Solutions",
-    icon: "🏦",
-    challenge: "Gordon Food Services needed to implement a new EDI 820 ACH payment solution with embedded addenda transmitted through High Radius before reaching the end client—a multi-party integration requiring precise coordination and technical specifications.",
-    approach: [
-      "Initiated a comprehensive kickoff call to verify critical technical details including ISA header preferences, PGP encryption requirements, file turnaround times, and credit/debit handling protocols",
-      "Proposed and established weekly staging project sync meetings to maintain visibility and momentum",
-      "Documented and validated the client's preference to use their existing ISA header instructions",
-      "Guided the team through end-to-end testing protocols, including null file testing with PGP encryption",
-      "Created clear communication channels for work order direction and specifications"
-    ],
-    impact: [
-      { metric: "On-Time Delivery", description: "Project delivered on time and to exact specifications" },
-      { metric: "Zero Post-Production Fixes", description: "Weekly sync cadence caught and resolved all issues early in development" },
-      { metric: "Streamlined Operations", description: "Established smooth operational workflow between Gordon Food Services, High Radius, and PNC" },
-      { metric: "Faster Payment Processing", description: "Enabled accelerated payment processing for vendors" }
-    ],
-    technologies: ["EDI 820", "ACH", "PGP Encryption", "AS2/SFTP", "High Radius"]
-  },
-  {
-    id: 2,
-    client: "BDO USA",
-    title: "Enterprise File Integration & Scope Redefinition",
-    category: "Requirements Analysis",
-    icon: "📋",
-    challenge: "BDO USA submitted a request for testing services covering Positive Pay, ACH, Wires, and Acknowledgment files. What appeared straightforward required deeper analysis to uncover hidden complexities.",
-    approach: [
-      "Proactively reworked project documentation, creating a comprehensive synopsis reflecting all technical requirements",
-      "Engaged cross-functional teams including MIS and EFX for transmission coordination",
-      "Identified critical upstream dependency: BDO needed to confirm producer file nomenclature would integrate with their PeopleSoft ERP system",
-      "Flagged that ACH integration would require separate file configurations for PPD versus CCD+/CTX formats, potentially requiring Snap Logic/DPS configuration changes",
-      "Created a risk assessment highlighting how filename mismatches would trigger manual processes"
-    ],
-    impact: [
-      { metric: "3-4 Weeks Saved", description: "Prevented testing phase delays by catching complexities early" },
-      { metric: "15-20 Hours/Month", description: "Eliminated manual processing workarounds for BDO" },
-      { metric: "$50,000 Annual Savings", description: "Implementation became template for similar PeopleSoft ERP integrations" },
-      { metric: "Client Commendation", description: "Praised for thoroughness and proactive approach" }
-    ],
-    technologies: ["Positive Pay", "ACH (PPD/CCD+/CTX)", "Wire Transfers", "PeopleSoft ERP", "Snap Logic/DPS"]
-  },
-  {
-    id: 3,
-    client: "Diebold Nixdorf Inc",
-    title: "Adaptive Scope Management & EDI Enhancement",
-    category: "Agile Delivery",
-    icon: "🔄",
-    challenge: "Diebold Nixdorf initially engaged us to update their invalid CTX reporting functionality. During discovery, an additional need for inbound EDI 820 testing emerged.",
-    approach: [
-      "Actively listened during client conversations to uncover the additional EDI 820 testing requirement",
-      "Evaluated technical overlap and resource availability rather than treating the new request as scope creep",
-      "Restructured the project plan to accommodate both requests simultaneously",
-      "Coordinated testing sequences to maximize efficiency and minimize client resources required"
-    ],
-    impact: [
-      { metric: "3-4 Weeks Saved", description: "Eliminated need for second project kickoff" },
-      { metric: "Comprehensive Solution", description: "Improved both reporting and payment processing capabilities" },
-      { metric: "Strengthened Relationship", description: "Positioned as trusted advisor thinking beyond immediate requests" },
-      { metric: "Reduced Admin Overhead", description: "Single engagement instead of separate implementations" }
-    ],
-    technologies: ["EDI 820", "CTX Reporting", "Inbound EDI Processing"]
-  },
-  {
-    id: 4,
-    client: "Metergy Solutions",
-    title: "Mastercard RPPS Implementation & Knowledge Building",
-    category: "Documentation & Training",
-    icon: "📚",
-    challenge: "Metergy Solutions requested adding Mastercard RPPS Items in CIE format to two RT55 (EDI 820) setups. This was a highly specialized configuration with virtually no documentation—only one person on the Electronic Commerce team had partial knowledge.",
-    approach: [
-      "Partnered closely with the one knowledgeable team member to extract tacit knowledge",
-      "Implemented the solution incrementally, documenting each step as I progressed",
-      "Created comprehensive technical documentation covering configuration steps, data mappings, testing protocols, and troubleshooting guidance",
-      "Validated documentation by having another team member review for clarity and completeness",
-      "Established this documentation as a reusable asset in the knowledge repository"
-    ],
-    impact: [
-      { metric: "60% Efficiency Gain", description: "Reduced implementation time from 40+ hours to ~15 hours for similar requests" },
-      { metric: "6 Subsequent Uses", description: "Documentation referenced for future client implementations" },
-      { metric: "Risk Mitigation", description: "Eliminated single-point-of-failure knowledge dependency" },
-      { metric: "Team Enablement", description: "Junior team members can now handle complex implementations" }
-    ],
-    technologies: ["Mastercard RPPS", "CIE Format", "RT55", "EDI 820"]
-  },
-  {
-    id: 5,
-    client: "Thoroughbred Funding / Norfolk Southern",
-    title: "Creative Data Pathway Solution",
-    category: "Problem Solving",
-    icon: "🚂",
-    challenge: "A critical issue affected high-value client Thoroughbred Funding and enterprise customer Norfolk Southern. The Pay Day Wire Report showed freight bill numbers on the PNC website, but this data was missing in High Radius. The standard solution would require modifying a map used by thousands of enterprise customers—a high-risk, 6+ month timeline approach.",
-    approach: [
-      "Engaged the Product Management Team to assess whether the EDI mapping change qualified for their development backlog",
-      "Discovered standard solution would take 6+ months just to start, with unknown completion timeline",
-      "Analyzed alternative data pathways and identified that since data originated from PME, we could leverage an existing freeform field",
-      "Presented creative alternative: have all vendors populate the OBI field, which was already available and would pass freight bill data to High Radius",
-      "Provided clear implementation guidance to make the transition seamless"
-    ],
-    impact: [
-      { metric: "2 Weeks vs 6+ Months", description: "Issue resolved in fraction of standard timeline" },
-      { metric: "$75,000 Saved", description: "Avoided enterprise-wide development costs" },
-      { metric: "Zero Client Disruption", description: "Eliminated risk to thousands of other clients" },
-      { metric: "Relationship Strengthened", description: "High satisfaction from both Norfolk Southern and Thoroughbred Funding" }
-    ],
-    technologies: ["EDI Mapping", "PME", "High Radius", "OBI Field Configuration", "Wire Reporting"]
-  },
-  {
-    id: 6,
-    client: "Trinity Health",
-    title: "Enterprise-Wide Formatting Solution",
-    category: "Technical Resolution",
-    icon: "🏥",
-    challenge: "Trinity Health, a major healthcare powerhouse, reported check numbers not populating correctly in their Integrated Receivables setup. Additionally, Wellmark ACH items had formatting issues related to a tilde (~) character appearing after the company ID in addenda records.",
-    approach: [
-      "Convened internal cross-functional meeting to diagnose data feed issues between EDI and lockbox",
-      "Identified that Wellmark's tilde character in addenda was causing formatting errors",
-      "Recognized asking Wellmark to modify their EDI file was not viable—they process thousands of transactions daily",
-      "Positioned the project as production support rather than new feature to protect client from unnecessary costs",
-      "Led technical team to develop a patch; when initial testing failed, reconvened for deeper root cause analysis",
-      "Pivoted strategy to develop a global solution fixing not only Trinity Health's issue but preventing similar problems across all clients"
-    ],
-    impact: [
-      { metric: "$12,000 Saved", description: "Client avoided feature development fees through production support classification" },
-      { metric: "40+ Issues Prevented", description: "Global fix prevented similar formatting problems across entire client base" },
-      { metric: "15% Accuracy Improvement", description: "Enhanced data accuracy in integrated receivables processing" },
-      { metric: "Expanded Engagement", description: "Client praised persistence and strategic thinking" }
-    ],
-    technologies: ["Integrated Receivables", "EDI", "Lockbox", "ACH Addenda Processing"]
-  },
-  {
-    id: 7,
-    client: "Regal Beloit / Rexnord",
-    title: "Rare EBPP Implementation & Enterprise Enhancement",
-    category: "Specialized Implementation",
-    icon: "⚙️",
-    challenge: "Regal Beloit was consolidating direct transmission files, sunsetting two of three files and retaining only their EDI 820 file transmitting to Esker. They needed to add Payer Express transactions via EBPP—highly specialized work completed only 8 times previously at PNC Bank.",
-    approach: [
-      "Created EBPP AR9 with custom mapping, using EBPP AR8 as template while establishing new value translation table",
-      "Set up Alpha receiver with RT 55 configuration to mirror existing receiver account",
-      "Identified and resolved critical mismatch between effective dates and posted dates during initial testing",
-      "When client testing revealed AMEX duplication and contactless 'tap pay' returning undefined payment type ZZZ, led comprehensive solution effort",
-      "Coordinated patch to exclude AMEX from EBPP file and updated value translation table for contactless payments",
-      "Ensured mapping and translation table updates were applied globally for all enterprise clients"
-    ],
-    impact: [
-      { metric: "8-10 Hours/Month Saved", description: "Streamlined reconciliation process for Regal Beloit" },
-      { metric: "100+ Hours Saved", description: "Global updates prevented future troubleshooting across client base" },
-      { metric: "Reference Implementation", description: "Became template for all 4 subsequent EBPP deployments" },
-      { metric: "Modern Payment Support", description: "Properly classified contactless payments for dozens of enterprise clients" }
-    ],
-    technologies: ["EBPP", "EDI 820", "Esker", "Payer Express", "RT 55", "Value Translation Tables"]
-  }
-];
+import { implementationProjects as projects } from '../../lib/implementation-data';
 
 export default function ImplementationsPage() {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
@@ -576,29 +404,29 @@ export default function ImplementationsPage() {
         <ThemeToggle />
         
         <div className="page-header">
-          <h1 className="page-title">Business Implementation Projects</h1>
+          <h1 className="page-title">Enterprise Data Projects</h1>
           <p className="page-subtitle">
-            A portfolio of enterprise implementations showcasing complex integrations, 
-            creative problem-solving, and measurable business impact across financial services and healthcare.
+            Recent architecture and delivery work, generalized for confidentiality, across cloud modernization,
+            pipelines, governance, analytics products, and portfolio leadership.
           </p>
         </div>
 
         <div className="stats-bar">
           <div className="stat-item">
-            <div className="stat-number">7</div>
-            <div className="stat-label">Enterprise Clients</div>
+            <div className="stat-number">6</div>
+            <div className="stat-label">Recent Programs</div>
           </div>
           <div className="stat-item">
-            <div className="stat-number">$137K+</div>
-            <div className="stat-label">Cost Savings Delivered</div>
+            <div className="stat-number">19.7M</div>
+            <div className="stat-label">Rows Reconciled</div>
           </div>
           <div className="stat-item">
-            <div className="stat-number">60%</div>
-            <div className="stat-label">Avg. Efficiency Gain</div>
+            <div className="stat-number">1,500+</div>
+            <div className="stat-label">Knowledge Assets</div>
           </div>
           <div className="stat-item">
-            <div className="stat-number">100%</div>
-            <div className="stat-label">On-Time Delivery</div>
+            <div className="stat-number">45</div>
+            <div className="stat-label">Governed Views Verified</div>
           </div>
         </div>
 
