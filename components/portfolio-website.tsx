@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from 'next/link';
 import { useTheme } from '../app/providers';
-import { implementationProjects as implProjects, type ImplementationProject as ImplProject } from '../lib/implementation-data';
 
 type SkillCategory = "architecture" | "delivery" | "leadership";
 
@@ -94,8 +93,6 @@ const services: Service[] = [
 
 
 
-const implCategories = ["all", ...Array.from(new Set(implProjects.map(p => p.category)))];
-
 const PortfolioWebsite: React.FC = () => {
   const [sidebar, setSidebar] = useState(false);
   const [section, setSection] = useState("home");
@@ -105,14 +102,10 @@ const PortfolioWebsite: React.FC = () => {
   const [focus, setFocus] = useState<Record<string, boolean>>({});
   const [headerClass, setHeaderClass] = useState("");
   const [activeService, setActiveService] = useState<Service | null>(null);
-  const [expandedImpl, setExpandedImpl] = useState<number | null>(null);
-  const [implFilter, setImplFilter] = useState<string>("all");
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactMessage, setContactMessage] = useState("");
   const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-
-  const filteredImpl = implFilter === "all" ? implProjects : implProjects.filter(p => p.category === implFilter);
 
   // Header scroll effect
   useEffect(() => {
@@ -209,7 +202,7 @@ const PortfolioWebsite: React.FC = () => {
     [data-theme="light"] body::before{background:none}
     [data-theme="light"] .home{background:#f8f8f8}
     [data-theme="light"] .home::before{background:radial-gradient(circle at 30% 40%, rgba(0,0,0,0.02) 0%, transparent 60%)}
-    [data-theme="light"] .home-data{background:transparent}
+    [data-theme="light"] .home-data{background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);box-shadow:0 20px 60px rgba(0,0,0,0.06)}
     [data-theme="light"] .glass-card{background:rgba(255,255,255,0.6);border:1px solid rgba(0,0,0,0.06);box-shadow:0 8px 30px rgba(0,0,0,0.06);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
     [data-theme="light"] .glass-card:hover{box-shadow:0 16px 40px rgba(0,0,0,0.1)}
     [data-theme="light"] .nav-link{color:rgba(0,0,0,0.6)}
@@ -272,11 +265,11 @@ const PortfolioWebsite: React.FC = () => {
     .main{margin-left:100px;min-height:100vh;position:relative;overflow-x:hidden}
     .home{background:linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     .home::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%, rgba(80,80,80,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(60,60,60,0.1) 0%, transparent 50%);pointer-events:none}
-    .home-data{width:min(760px,calc(100vw - 8rem));max-width:760px;padding:2rem;background:transparent;animation:fadeInUp .8s ease;text-align:center;margin:2rem auto}
+    .home-data{width:min(700px,calc(100vw - 8rem));max-width:700px;padding:3rem;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:30px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.2);animation:fadeInUp 1s ease;text-align:center;margin:2rem auto}
     @keyframes fadeInUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
-    .home-title{font-size:clamp(3.5rem,9vw,7.5rem);color:var(--title);margin-bottom:1rem;font-weight:700;line-height:.95;letter-spacing:-.055em}
+    .home-title{font-size:3.5rem;color:var(--title);margin-bottom:.5rem;font-weight:700;background:linear-gradient(135deg, #ffffff, #b2dfdb, #14b8a6);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 3s ease-in-out infinite}
     @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-    .home-subtitle{font-size:clamp(1rem,2vw,1.2rem);margin-bottom:1.5rem;color:var(--text);font-weight:400;letter-spacing:.03em}
+    .home-subtitle{font-size:1.5rem;margin-bottom:1.5rem;color:var(--text);font-weight:500;font-style:italic}
     .architecture-stage{min-height:82vh;display:flex;align-items:center;padding:6rem 0;background:var(--body)}
     .architecture-wrap{width:100%}
     .architecture-kicker{display:block;text-align:center;color:var(--skin-solid);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem}
@@ -813,109 +806,7 @@ const PortfolioWebsite: React.FC = () => {
           </div>
         </section>
 
-        <section className="impl-section section" id="implementations">
-          <h2 className="title">Enterprise Projects</h2>
-          <div className="container">
-            <p style={{ textAlign: "center", color: "var(--text)", marginBottom: "2rem", maxWidth: "700px", marginLeft: "auto", marginRight: "auto", lineHeight: "1.6" }}>
-              Current architecture programs and earlier enterprise delivery work, together in one portfolio.
-            </p>
 
-            <div className="impl-stats-bar">
-              {[
-                { number: "13", label: "Case Studies" },
-                { number: "19.7M", label: "Rows Reconciled" },
-                { number: "1,500+", label: "Knowledge Assets" },
-                { number: "45", label: "Governed Views Verified" },
-              ].map((stat) => (
-                <div key={stat.label} className="impl-stat-item">
-                  <div className="impl-stat-number">{stat.number}</div>
-                  <div className="impl-stat-label">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="impl-filter-container">
-              {implCategories.map(cat => (
-                <button
-                  key={cat}
-                  className={`impl-filter-btn ${implFilter === cat ? "active" : ""}`}
-                  onClick={() => setImplFilter(cat)}
-                >
-                  {cat === "all" ? "All Projects" : cat}
-                </button>
-              ))}
-            </div>
-
-            <div className="impl-projects-grid">
-              {filteredImpl.map((project) => (
-                <div
-                  key={project.id}
-                  className={`impl-project-card glass-card ${expandedImpl === project.id ? "impl-expanded" : ""}`}
-                  onClick={() => setExpandedImpl(expandedImpl === project.id ? null : project.id)}
-                >
-                  <div className="impl-project-header">
-                    <div className="impl-project-icon">{project.icon}</div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: "0.8rem", color: "#aaaaaa", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "0.25rem" }}>{project.client}</div>
-                      <h3 style={{ fontSize: "1.1rem", color: "var(--title)", marginBottom: "0.5rem", lineHeight: 1.3 }}>{project.title}</h3>
-                      <span style={{ display: "inline-block", padding: "0.2rem 0.6rem", background: "rgba(100,100,100,0.2)", borderRadius: "20px", fontSize: "0.7rem", color: "#aaaaaa" }}>{project.category}</span>
-                    </div>
-                  </div>
-                  <p style={{ color: "var(--text)", fontSize: "0.9rem", lineHeight: 1.7, marginBottom: "1rem" }}>{project.challenge}</p>
-                  {expandedImpl === project.id && (
-                    <>
-                      <div style={{ marginBottom: "1.5rem" }}>
-                        <h4 style={{ fontSize: "0.9rem", color: "var(--title)", marginBottom: "0.75rem", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                          <span style={{ width: "3px", height: "16px", background: "var(--skin)", borderRadius: "2px", display: "inline-block" }}></span>
-                          My Approach
-                        </h4>
-                        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                          {project.approach.map((item, idx) => (
-                            <li key={idx} style={{ position: "relative", paddingLeft: "1.5rem", marginBottom: "0.5rem", color: "var(--text)", fontSize: "0.85rem", lineHeight: 1.6 }}>
-                              <span style={{ position: "absolute", left: 0, color: "#aaaaaa" }}>→</span>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div style={{ marginBottom: "1.5rem" }}>
-                        <h4 style={{ fontSize: "0.9rem", color: "var(--title)", marginBottom: "0.75rem", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                          <span style={{ width: "3px", height: "16px", background: "var(--skin)", borderRadius: "2px", display: "inline-block" }}></span>
-                          Business Impact
-                        </h4>
-                        <div className="impl-impact-grid">
-                          {project.impact.map((item, idx) => (
-                            <div key={idx} style={{ background: "rgba(80,80,80,0.1)", padding: "0.75rem", borderRadius: "12px", border: "1px solid rgba(100,100,100,0.2)" }}>
-                              <div style={{ fontSize: "0.9rem", color: "var(--title)", fontWeight: 600, marginBottom: "0.2rem" }}>{item.metric}</div>
-                              <div style={{ fontSize: "0.75rem", color: "var(--text)", lineHeight: 1.4 }}>{item.description}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        <h4 style={{ fontSize: "0.9rem", color: "var(--title)", marginBottom: "0.75rem", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                          <span style={{ width: "3px", height: "16px", background: "var(--skin)", borderRadius: "2px", display: "inline-block" }}></span>
-                          Technologies
-                        </h4>
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-                          {project.technologies.map((tech, idx) => (
-                            <span key={idx} style={{ padding: "0.25rem 0.6rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "20px", fontSize: "0.7rem", color: "var(--text)" }}>{tech}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </>
-                  )}
-                  <button
-                    className="impl-expand-btn"
-                    onClick={(e) => { e.stopPropagation(); setExpandedImpl(expandedImpl === project.id ? null : project.id); }}
-                  >
-                    {expandedImpl === project.id ? "← Collapse Details" : "View Full Case Study →"}
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         <section className="section" id="experience">
           <h2 className="title">My Experience</h2>
