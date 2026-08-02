@@ -21,6 +21,32 @@ const builds: BuildCategory[] = [
     href: "https://helpmate-tau.vercel.app",
   },
   {
+    title: "Games",
+    icon: "PLAY",
+    description: "Small interactive games and playful browser experiments.",
+    status: "available",
+    href: "/games",
+  },
+  {
+    title: "SteadFast iOS App",
+    icon: "SF",
+    description: "A fasting and meditation app built around consistency and a growing companion.",
+    status: "available",
+    href: "https://github.com/rudeboydamn/SteadFast",
+  },
+  {
+    title: "3D Printer Builds",
+    icon: "3D",
+    description: "Custom prints, practical objects, and physical design experiments.",
+    status: "coming-soon",
+  },
+  {
+    title: "Data Dashboards",
+    icon: "DASH",
+    description: "Interactive reporting and data-visualization experiments.",
+    status: "coming-soon",
+  },
+  {
     title: "Azure PostgreSQL Modernization",
     icon: "AZ",
     description: "A production cloud cutover covering architecture, application dependencies, reconciliation, rollback, and operational readiness.",
@@ -107,7 +133,7 @@ export default function BuildsPage() {
         .build-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
         .build-card.coming-soon { opacity: 0.5; cursor: default; }
         .build-card.coming-soon:hover { transform: none; box-shadow: none; }
-        .build-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .build-icon { display: inline-flex; min-width: 54px; height: 34px; align-items: center; justify-content: center; padding: 0 0.65rem; border: 1px solid var(--primary-color); border-radius: 999px; color: var(--primary-color); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 1rem; }
         .build-icon-img { width: 64px; height: 64px; border-radius: 16px; object-fit: cover; margin-bottom: 1rem; }
         .build-title { font-size: 1.3rem; color: var(--text-color); margin-bottom: 0.5rem; font-weight: 600; }
         .build-desc { color: var(--text-color); opacity: 0.65; font-size: 0.95rem; line-height: 1.6; }
@@ -131,7 +157,7 @@ export default function BuildsPage() {
           .page-subtitle { font-size: 0.95rem; margin-bottom: 2rem; }
           .builds-grid { grid-template-columns: 1fr; gap: 1rem; }
           .build-card { padding: 1.5rem; }
-          .build-icon { font-size: 2.5rem; }
+          .build-icon { font-size: 0.68rem; }
           .build-title { font-size: 1.1rem; }
           .build-desc { font-size: 0.9rem; }
           .old-fashioned-toggle { top: 1rem; right: 1rem; transform: scale(0.8); }
@@ -157,6 +183,13 @@ export default function BuildsPage() {
             build.status === 'available' && build.href ? (
               build.title === 'HelpMate' ? (
                 <a key={build.title} href={build.href} onClick={handleHelpmateClick} className="build-card">
+                  <div className="build-icon">{build.icon}</div>
+                  <h3 className="build-title">{build.title}</h3>
+                  <p className="build-desc">{build.description}</p>
+                  <span className="build-status status-available">Explore →</span>
+                </a>
+              ) : build.href.startsWith('http') ? (
+                <a key={build.title} href={build.href} target="_blank" rel="noopener noreferrer" className="build-card">
                   <div className="build-icon">{build.icon}</div>
                   <h3 className="build-title">{build.title}</h3>
                   <p className="build-desc">{build.description}</p>

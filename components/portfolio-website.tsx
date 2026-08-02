@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from 'next/link';
 import { useTheme } from '../app/providers';
+import { implementationProjects as implProjects, type ImplementationProject as ImplProject } from '../lib/implementation-data';
 
 type SkillCategory = "architecture" | "delivery" | "leadership";
 
@@ -25,17 +26,7 @@ type Service = {
   items: string[];
 };
 
-type ImplProject = {
-  id: number;
-  client: string;
-  title: string;
-  category: string;
-  icon: string;
-  challenge: string;
-  approach: string[];
-  impact: { metric: string; description: string }[];
-  technologies: string[];
-};
+
 
 const skills: Record<SkillCategory, Skill[]> = {
   architecture: [
@@ -101,50 +92,7 @@ const services: Service[] = [
   },
 ];
 
-const implProjects: ImplProject[] = [
-  {
-    id: 1, client: "Global Manufacturing", title: "Production PostgreSQL to Azure Modernization", category: "Cloud Modernization", icon: "AZ",
-    challenge: "A business-critical production database and its application estate needed to move to managed Azure infrastructure without disrupting shop-floor operations.",
-    approach: ["Directed readiness, dependency and rollback planning across database and application owners", "Established TLS, access, reconciliation and cutover controls", "Converted the migration record into operating documentation and a reusable recovery path"],
-    impact: [{ metric: "19.7M Rows", description: "Production data reconciled after cutover" }, { metric: "12-Min Restore", description: "Restore time reduced from a legacy two-hour process" }, { metric: "No Rollback", description: "Cutover completed inside the planned window" }],
-    technologies: ["Azure Database for PostgreSQL", "PostGIS", "Docker", "TLS", "Cutover Governance"]
-  },
-  {
-    id: 2, client: "Enterprise Information Management", title: "API-Direct Market Data Pipeline", category: "Pipeline Engineering", icon: "API",
-    challenge: "A fragile file-based market-data flow created recurring refresh failures and hidden operational dependencies.",
-    approach: ["Set an API-direct target architecture and explicit schema contract", "Coordinated the Dataflow Gen2 rebuild and downstream report repoint", "Added refresh verification and recovery guidance so ownership could transfer cleanly"],
-    impact: [{ metric: "10K+ Rows", description: "Daily refresh volume validated" }, { metric: "Zero Data Loss", description: "Repoint and refresh reconciliation completed" }, { metric: "Move-Resilient", description: "Source relocation no longer silently breaks refresh" }],
-    technologies: ["Microsoft Fabric", "Dataflow Gen2", "REST API", "Power Query M", "Power BI"]
-  },
-  {
-    id: 3, client: "Commercial Leadership", title: "Executive Market Intelligence Model", category: "Analytics Products", icon: "BI",
-    challenge: "Leadership needed one governed view of revenue, backlog, market plans and forward outlook instead of competing definitions across reports.",
-    approach: ["Led the semantic-model redesign around certified sources and explicit business rules", "Aligned finance, commercial and operations stakeholders on metric treatment", "Built clear explainers, model documentation and a controlled operating cadence"],
-    impact: [{ metric: "12-Table Model", description: "Lean governed semantic layer" }, { metric: "One Source", description: "Competing definitions aligned" }, { metric: "Executive Ready", description: "Forward-looking decision views delivered" }],
-    technologies: ["Power BI", "TMDL", "DAX", "Azure Synapse", "Data Governance"]
-  },
-  {
-    id: 4, client: "Enterprise Information Management", title: "EIM Knowledge Platform", category: "Data Governance", icon: "KB",
-    challenge: "A large analytics estate lacked a searchable ownership and knowledge layer, making support and transition dependent on individual memory.",
-    approach: ["Established a taxonomy across workspaces, models, dataflows and reports", "Directed the migration of technical knowledge into a searchable enterprise surface", "Added ranked search, browse paths and reusable article standards"],
-    impact: [{ metric: "1,500+ Articles", description: "Technical knowledge made searchable" }, { metric: "Tenant-Wide", description: "One operating surface for the analytics estate" }, { metric: "Lower Key-Person Risk", description: "Support knowledge moved out of individual memory" }],
-    technologies: ["ServiceNow", "Power BI", "Metadata", "Search", "Knowledge Governance"]
-  },
-  {
-    id: 5, client: "Enterprise Analytics", title: "Data Product Transition and Ownership", category: "Portfolio Leadership", icon: "PM",
-    challenge: "A broad portfolio of semantic models, dataflows and operational services needed clear ownership ahead of a major partner transition.",
-    approach: ["Built the asset inventory and dependency view", "Separated hard-date work from deferrable enhancements", "Established takeover, credential, knowledge-transfer and support gates"],
-    impact: [{ metric: "67 Assets", description: "Remaining ownership work made visible" }, { metric: "45 Views", description: "Governed warehouse access verified" }, { metric: "Clear Gates", description: "Delivery risks translated into an executable roadmap" }],
-    technologies: ["Power BI", "Azure Synapse", "Portfolio Governance", "Lineage", "Service Transition"]
-  },
-  {
-    id: 6, client: "Operations and Purchasing", title: "Certified Composite Analytics Model", category: "Analytics Products", icon: "MDL",
-    challenge: "Operational teams needed actionable late-purchase-order insight without creating another disconnected copy of enterprise data.",
-    approach: ["Reused a certified semantic foundation", "Added business-unit measures and exception logic as a composite model", "Validated the result against live enterprise totals before release"],
-    impact: [{ metric: "147K Open POs", description: "Enterprise scope validated" }, { metric: "94K Late", description: "Exception population made actionable" }, { metric: "No Data Copy", description: "Certified lineage preserved" }],
-    technologies: ["Power BI", "Composite Models", "DirectQuery", "DAX", "Certified Data Products"]
-  }
-];
+
 
 const implCategories = ["all", ...Array.from(new Set(implProjects.map(p => p.category)))];
 
@@ -261,7 +209,7 @@ const PortfolioWebsite: React.FC = () => {
     [data-theme="light"] body::before{background:none}
     [data-theme="light"] .home{background:#f8f8f8}
     [data-theme="light"] .home::before{background:radial-gradient(circle at 30% 40%, rgba(0,0,0,0.02) 0%, transparent 60%)}
-    [data-theme="light"] .home-data{background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);box-shadow:0 20px 60px rgba(0,0,0,0.06)}
+    [data-theme="light"] .home-data{background:transparent}
     [data-theme="light"] .glass-card{background:rgba(255,255,255,0.6);border:1px solid rgba(0,0,0,0.06);box-shadow:0 8px 30px rgba(0,0,0,0.06);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
     [data-theme="light"] .glass-card:hover{box-shadow:0 16px 40px rgba(0,0,0,0.1)}
     [data-theme="light"] .nav-link{color:rgba(0,0,0,0.6)}
@@ -324,11 +272,35 @@ const PortfolioWebsite: React.FC = () => {
     .main{margin-left:100px;min-height:100vh;position:relative;overflow-x:hidden}
     .home{background:linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     .home::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%, rgba(80,80,80,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(60,60,60,0.1) 0%, transparent 50%);pointer-events:none}
-    .home-data{width:min(700px,calc(100vw - 8rem));max-width:700px;padding:3rem;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border-radius:30px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 40px rgba(0,0,0,0.2);animation:fadeInUp 1s ease;text-align:center;margin:2rem auto}
+    .home-data{width:min(760px,calc(100vw - 8rem));max-width:760px;padding:2rem;background:transparent;animation:fadeInUp .8s ease;text-align:center;margin:2rem auto}
     @keyframes fadeInUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
-    .home-title{font-size:3.5rem;color:var(--title);margin-bottom:.5rem;font-weight:700;background:linear-gradient(135deg, #ffffff, #b2dfdb, #14b8a6);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 3s ease-in-out infinite}
+    .home-title{font-size:clamp(3.5rem,9vw,7.5rem);color:var(--title);margin-bottom:1rem;font-weight:700;line-height:.95;letter-spacing:-.055em}
     @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-    .home-subtitle{font-size:1.5rem;margin-bottom:1.5rem;color:var(--text);font-weight:500;font-style:italic}
+    .home-subtitle{font-size:clamp(1rem,2vw,1.2rem);margin-bottom:1.5rem;color:var(--text);font-weight:400;letter-spacing:.03em}
+    .architecture-stage{min-height:82vh;display:flex;align-items:center;padding:6rem 0;background:var(--body)}
+    .architecture-wrap{width:100%}
+    .architecture-kicker{display:block;text-align:center;color:var(--skin-solid);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem}
+    .architecture-heading{text-align:center;color:var(--title);font-size:clamp(2rem,5vw,4.5rem);line-height:1;margin-bottom:1rem}
+    .architecture-note{text-align:center;color:var(--text);max-width:520px;margin:0 auto 3rem;line-height:1.7}
+    .semantic-map{position:relative;display:grid;grid-template-columns:minmax(120px,.8fr) minmax(260px,1.5fr) minmax(120px,.8fr);gap:clamp(1.5rem,5vw,5rem);align-items:center;max-width:980px;margin:0 auto;padding:2.5rem;border:1px solid var(--glass-border);border-radius:30px;background:var(--glass);overflow:hidden}
+    .semantic-map::before{content:'';position:absolute;left:12%;right:12%;top:50%;height:1px;background:linear-gradient(90deg,transparent,var(--skin-solid),rgba(20,184,166,.2),var(--skin-solid),transparent);background-size:220% 100%;animation:routeFlow 4s linear infinite}
+    .semantic-stack{display:grid;gap:.7rem;position:relative;z-index:2}
+    .semantic-node{padding:.75rem .8rem;border:1px solid var(--glass-border);border-radius:12px;background:var(--body);color:var(--text);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-align:center;text-transform:uppercase;animation:nodeWake 3.6s ease-in-out infinite}
+    .semantic-node:nth-child(2){animation-delay:.45s}.semantic-node:nth-child(3){animation-delay:.9s}.semantic-node:nth-child(4){animation-delay:1.35s}
+    .semantic-core{position:relative;z-index:3;padding:1.4rem;border:1px solid rgba(20,184,166,.55);border-radius:24px;background:rgba(10,10,10,.78);box-shadow:0 0 45px rgba(20,184,166,.08)}
+    [data-theme="light"] .semantic-core{background:rgba(255,255,255,.88)}
+    .semantic-core-label{text-align:center;color:var(--skin-solid);font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1.2rem}
+    .semantic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.65rem,2vw,1.2rem);padding:1rem;position:relative}
+    .semantic-grid::before,.semantic-grid::after{content:'';position:absolute;inset:24% 10%;border-top:1px solid rgba(20,184,166,.38);border-bottom:1px solid rgba(20,184,166,.38)}
+    .semantic-grid::after{inset:10% 24%;border:0;border-left:1px solid rgba(20,184,166,.38);border-right:1px solid rgba(20,184,166,.38)}
+    .semantic-dot{width:10px;height:10px;border-radius:50%;background:var(--skin-solid);justify-self:center;position:relative;z-index:2;box-shadow:0 0 0 0 rgba(20,184,166,.45);animation:semanticPulse 2.8s ease-out infinite}
+    .semantic-dot:nth-child(2n){animation-delay:.35s}.semantic-dot:nth-child(3n){animation-delay:.7s}.semantic-dot:nth-child(4n){animation-delay:1.05s}
+    .flow-dot{position:absolute;z-index:4;top:calc(50% - 5px);left:12%;width:10px;height:10px;border-radius:50%;background:#d4af37;box-shadow:0 0 16px rgba(212,175,55,.8);animation:moveSignal 4s ease-in-out infinite}
+    @keyframes routeFlow{to{background-position:-220% 0}}
+    @keyframes nodeWake{0%,70%,100%{border-color:var(--glass-border);color:var(--text)}35%{border-color:var(--skin-solid);color:var(--title);transform:translateY(-2px)}}
+    @keyframes semanticPulse{0%{box-shadow:0 0 0 0 rgba(20,184,166,.5)}70%,100%{box-shadow:0 0 0 10px rgba(20,184,166,0)}}
+    @keyframes moveSignal{0%{left:12%;opacity:0}8%{opacity:1}50%{left:50%}92%{opacity:1}100%{left:88%;opacity:0}}
+    @media(prefers-reduced-motion:reduce){.semantic-map::before,.semantic-node,.semantic-dot,.flow-dot{animation:none!important}.flow-dot{display:none}}
     .about{padding:6rem 0}.about-container{grid-template-columns:350px 1fr;gap:4rem;align-items:flex-start;max-width:1400px;margin:0 auto}.about-img{width:100%;max-width:350px;height:auto;border-radius:25px;box-shadow:0 20px 40px rgba(0,0,0,0.2);transition:transform 0.3s ease;object-fit:cover}.about-img:hover{transform:translateY(-10px)}
     .about-info{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:2rem 0}
     .about-box{padding:1.5rem;border-radius:15px;text-align:center}
@@ -388,7 +360,7 @@ const PortfolioWebsite: React.FC = () => {
     .impl-project-card:hover{border-color:rgba(100,100,100,0.3)}
     .impl-expanded{grid-column:1/-1}
     .impl-project-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem}
-    .impl-project-icon{font-size:2rem;background:rgba(255,255,255,0.05);padding:0.6rem;border-radius:14px;border:1px solid rgba(255,255,255,0.1)}
+    .impl-project-icon{min-width:52px;height:42px;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800;letter-spacing:.08em;color:var(--skin-solid);background:rgba(255,255,255,0.05);padding:0.6rem;border-radius:14px;border:1px solid rgba(255,255,255,0.1)}
     .impl-impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem}
     .impl-expand-btn{display:flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;padding:0.6rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:var(--text);cursor:pointer;transition:all 0.3s;font-family:'Poppins',sans-serif;font-size:0.85rem;margin-top:1rem}
     .impl-expand-btn:hover{background:rgba(255,255,255,0.1);color:var(--title)}
@@ -403,6 +375,11 @@ const PortfolioWebsite: React.FC = () => {
     }
     @media(max-width:768px){
       .main{margin-left:0}
+      .architecture-stage{min-height:auto;padding:4.5rem 0}
+      .semantic-map{grid-template-columns:1fr;gap:1rem;padding:1.2rem;max-width:420px}
+      .semantic-map::before,.flow-dot{display:none}
+      .semantic-stack{grid-template-columns:repeat(2,1fr)}
+      .architecture-note{margin-bottom:2rem;padding:0 1rem}
       .sidebar{
         position:fixed;
         top:0;
@@ -558,7 +535,7 @@ const PortfolioWebsite: React.FC = () => {
       .impl-projects-grid{grid-template-columns:1fr;gap:1rem;padding:0 0.25rem}
       .impl-project-card{padding:1.25rem}
       .impl-impact-grid{grid-template-columns:1fr}
-      .impl-project-icon{font-size:1.5rem;padding:0.5rem}
+      .impl-project-icon{font-size:.65rem;padding:0.5rem}
       .steadfast-showcase{padding:1rem!important;overflow:hidden}
       .steadfast-images{gap:0.5rem!important}
       .steadfast-images img{width:80px!important;height:160px!important}
@@ -685,18 +662,11 @@ const PortfolioWebsite: React.FC = () => {
             <p style={{ marginBottom: "0.75rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--skin-solid)", fontSize: "0.8rem", fontWeight: 700 }}>
               Senior Data Architect
             </p>
-            <h1 className="home-title">Hi, I&apos;m Dammy</h1>
-            <h3 className="home-subtitle">I shape the data platforms, operating models, and teams behind enterprise decisions.</h3>
-            <p style={{ lineHeight: 1.8, color: "var(--text)", maxWidth: "620px", margin: "0 auto 1.5rem" }}>
-              I turn fragmented systems and competing definitions into governed, supportable data products,
-              then lead the people and transitions that keep them useful.
-            </p>
+            <h1 className="home-title">Dammy Henry</h1>
+            <h3 className="home-subtitle">Data platforms. Clear decisions. Strong teams.</h3>
             <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <button className="btn" onClick={() => scrollToSection("platform-work")}>
-                <i className="uil uil-database"></i>See Recent Platform Work
-              </button>
-              <button className="btn" onClick={() => scrollToSection("contact")} style={{ background: "transparent", border: "1px solid var(--skin-solid)", color: "var(--title)" }}>
-                <i className="uil uil-navigator"></i>Contact me
+              <button className="btn" onClick={() => scrollToSection("architecture")}>
+                Explore
               </button>
             </div>
           </div>
@@ -710,6 +680,29 @@ const PortfolioWebsite: React.FC = () => {
               e.currentTarget.style.setProperty('--my', `${y}%`);
             }}
           ></div>
+        </section>
+
+        <section className="architecture-stage" id="architecture" aria-labelledby="architecture-heading">
+          <div className="architecture-wrap container">
+            <span className="architecture-kicker">How I work</span>
+            <h2 className="architecture-heading" id="architecture-heading">Complex in. Clear out.</h2>
+            <p className="architecture-note">A governed semantic layer turns scattered systems into decisions people can trust.</p>
+            <div className="semantic-map" role="img" aria-label="Animated flow from enterprise source systems through a governed semantic layer to trusted decisions">
+              <div className="semantic-stack" aria-hidden="true">
+                {['Oracle', 'APIs', 'Files', 'Operations'].map((label) => <span className="semantic-node" key={label}>{label}</span>)}
+              </div>
+              <div className="semantic-core" aria-hidden="true">
+                <div className="semantic-core-label">Semantic Layer</div>
+                <div className="semantic-grid">
+                  {Array.from({ length: 12 }).map((_, index) => <span className="semantic-dot" key={index}></span>)}
+                </div>
+              </div>
+              <div className="semantic-stack" aria-hidden="true">
+                {['Models', 'Metrics', 'Reports', 'Decisions'].map((label) => <span className="semantic-node" key={label}>{label}</span>)}
+              </div>
+              <span className="flow-dot" aria-hidden="true"></span>
+            </div>
+          </div>
         </section>
 
         <section className="section" id="platform-work">
@@ -740,28 +733,28 @@ const PortfolioWebsite: React.FC = () => {
                   icon: "AZ",
                   tag: "Cloud Modernization",
                   title: "Production PostgreSQL to Azure",
-                  body: "Directed the modernization of a business-critical production database and its application estate. The cutover reconciled 19.7 million rows, completed inside the planned window, and reduced restore time from roughly two hours to 12 minutes.",
+                  body: "Led a production Azure cutover that reconciled 19.7 million rows and reduced restore time to 12 minutes.",
                   tech: ["Azure PostgreSQL", "PostGIS", "TLS", "Cutover Governance"],
                 },
                 {
                   icon: "API",
                   tag: "Pipeline Engineering",
                   title: "API-Direct Market Data",
-                  body: "Reframed a fragile file-based flow as an API-direct data product, then led its Fabric Dataflow Gen2 rebuild, downstream repoint, schema validation, and recovery design. Daily refreshes now validate 10,000+ rows without silent source-location failures.",
+                  body: "Replaced a fragile file flow with a validated API-direct Fabric data product.",
                   tech: ["Microsoft Fabric", "Dataflow Gen2", "REST", "Power Query M"],
                 },
                 {
                   icon: "BI",
                   tag: "Decision Products",
                   title: "Executive Market Intelligence",
-                  body: "Led a governed semantic-model rebuild that aligned revenue, backlog, market plans, and forward outlook across commercial, finance, and operations. The result is a lean 12-table model with transparent business rules and executive-ready decision views.",
+                  body: "Aligned revenue, backlog, plans, and outlook in one governed executive model.",
                   tech: ["Power BI", "TMDL", "DAX", "Azure Synapse"],
                 },
                 {
                   icon: "KB",
                   tag: "Knowledge Governance",
                   title: "EIM Knowledge Platform",
-                  body: "Turned a sprawling analytics estate into a searchable operating system for support. More than 1,500 articles now connect workspaces, models, dataflows, reports, ownership, and recovery knowledge in one enterprise surface.",
+                  body: "Connected 1,500+ analytics articles into one searchable operating layer.",
                   tech: ["ServiceNow", "Metadata", "Search", "Knowledge Governance"],
                 },
               ].map((card) => (
@@ -824,13 +817,12 @@ const PortfolioWebsite: React.FC = () => {
           <h2 className="title">Enterprise Projects</h2>
           <div className="container">
             <p style={{ textAlign: "center", color: "var(--text)", marginBottom: "2rem", maxWidth: "700px", marginLeft: "auto", marginRight: "auto", lineHeight: "1.6" }}>
-              Selected recent work, generalized for confidentiality, with the focus on architecture decisions,
-              delivery leadership, and measurable operating outcomes.
+              Current architecture programs and earlier enterprise delivery work, together in one portfolio.
             </p>
 
             <div className="impl-stats-bar">
               {[
-                { number: "6", label: "Recent Programs" },
+                { number: "13", label: "Case Studies" },
                 { number: "19.7M", label: "Rows Reconciled" },
                 { number: "1,500+", label: "Knowledge Assets" },
                 { number: "45", label: "Governed Views Verified" },

@@ -169,7 +169,15 @@ export default function ImplementationsPage() {
         }
 
         .project-icon { 
-          font-size: 2.5rem;
+          min-width: 58px;
+          height: 46px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--primary-color);
+          font-size: 0.7rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
           background: var(--glass-bg);
           padding: 0.75rem;
           border-radius: 16px;
@@ -406,15 +414,14 @@ export default function ImplementationsPage() {
         <div className="page-header">
           <h1 className="page-title">Enterprise Data Projects</h1>
           <p className="page-subtitle">
-            Recent architecture and delivery work, generalized for confidentiality, across cloud modernization,
-            pipelines, governance, analytics products, and portfolio leadership.
+            Current architecture programs and earlier enterprise delivery work, together in one portfolio.
           </p>
         </div>
 
         <div className="stats-bar">
           <div className="stat-item">
-            <div className="stat-number">6</div>
-            <div className="stat-label">Recent Programs</div>
+            <div className="stat-number">13</div>
+            <div className="stat-label">Case Studies</div>
           </div>
           <div className="stat-item">
             <div className="stat-number">19.7M</div>
